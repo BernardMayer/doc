@@ -1,0 +1,6 @@
+http://bbil.developpez.com/tutoriel/vbs/interface-hta/
+http://www.siteduzero.com/tutoriel-3-32330-html-application.html
+http://technet.microsoft.com/en-us/scriptcenter/dd742317.aspx
+
+http://blogs.technet.com/b/heyscriptingguy/archive/2008/01/30/how-can-i-display-a-message-or-change-the-cursor-when-carrying-out-a-lengthy-operation-in-an-hta.aspx
+http://www.tek-tips.com/viewthread.cfm?qid=1266755

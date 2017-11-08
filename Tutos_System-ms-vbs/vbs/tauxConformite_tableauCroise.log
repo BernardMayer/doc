@@ -1,0 +1,52 @@
+
+E:\www\DEV_TauxConformite\batchs>.\tauxConformite_tableauCroise_1agregateur.vbs        /fichierLog:..\log\tauxConformite_tableauCroise_1agregateur.log 
+Microsoft (R) Windows Script Host Version 5.6
+Copyright (C) Microsoft Corporation 1996-2001. Tous droits r‚serv‚s.
+
+
+E:\www\DEV_TauxConformite\batchs>.\tauxConformite_tableauCroise_2ajoutInfosClient.vbs /fichierLog:..\log\tauxConformite_tableauCroise_2ajoutInfosClient.log 
+Microsoft (R) Windows Script Host Version 5.6
+Copyright (C) Microsoft Corporation 1996-2001. Tous droits r‚serv‚s.
+
+infos pers pour 00003514:1
+.../...
+infos pers pour 11699973:1
+infos pers pour 11701196:1
+
+E:\www\DEV_TauxConformite\batchs>rem .\tauxConformite_tableauCroise_3ventilationEdS.vbs /fichierLog:..\log\tauxConformite_tableauCroise.log 
+
+E:\www\DEV_TauxConformite\batchs>.\tauxConformite_tableauCroise_1agregateur.vbs        /fichierLog:..\log\tauxConformite_tableauCroise_1agregateur.log 
+Microsoft (R) Windows Script Host Version 5.6
+Copyright (C) Microsoft Corporation 1996-2001. Tous droits r‚serv‚s.
+
+
+E:\www\DEV_TauxConformite\batchs>.\tauxConformite_tableauCroise_2ajoutInfosClient.vbs /fichierLog:..\log\tauxConformite_tableauCroise_2ajoutInfosClient.log 
+Microsoft (R) Windows Script Host Version 5.6
+Copyright (C) Microsoft Corporation 1996-2001. Tous droits r‚serv‚s.
+
+
+E:\www\DEV_TauxConformite\batchs>rem .\tauxConformite_tableauCroise_3ventilationEdS.vbs /fichierLog:..\log\tauxConformite_tableauCroise.log 
+
+E:\www\DEV_TauxConformite\batchs>.\tauxConformite_tableauCroise_1agregateur.vbs        /fichierLog:..\log\tauxConformite_tableauCroise_1agregateur.log 
+Microsoft (R) Windows Script Host Version 5.6
+Copyright (C) Microsoft Corporation 1996-2001. Tous droits r‚serv‚s.
+
+
+E:\www\DEV_TauxConformite\batchs>.\tauxConformite_tableauCroise_2ajoutInfosClient.vbs /fichierLog:..\log\tauxConformite_tableauCroise_2ajoutInfosClient.log 
+Microsoft (R) Windows Script Host Version 5.6
+Copyright (C) Microsoft Corporation 1996-2001. Tous droits r‚serv‚s.
+
+
+E:\www\DEV_TauxConformite\batchs>rem .\tauxConformite_tableauCroise_3ventilationEdS.vbs /fichierLog:..\log\tauxConformite_tableauCroise.log 
+
+E:\www\DEV_TauxConformite\batchs>.\tauxConformite_tableauCroise_1agregateur.vbs        /fichierLog:..\log\tauxConformite_tableauCroise_1agregateur.log 
+Microsoft (R) Windows Script Host Version 5.6
+Copyright (C) Microsoft Corporation 1996-2001. Tous droits r‚serv‚s.
+
+
+E:\www\DEV_TauxConformite\batchs>.\tauxConformite_tableauCroise_2ajoutInfosClient.vbs /fichierLog:..\log\tauxConformite_tableauCroise_2ajoutInfosClient.log 
+Microsoft (R) Windows Script Host Version 5.6
+Copyright (C) Microsoft Corporation 1996-2001. Tous droits r‚serv‚s.
+
+
+E:\www\DEV_TauxConformite\batchs>rem .\tauxConformite_tableauCroise_3ventilationEdS.vbs /fichierLog:..\log\tauxConformite_tableauCroise.log 
