@@ -1,0 +1,17 @@
+http://www.journaldunet.com/developpeur/tutoriel/jav/050201-java-choix-awt-swing-swt.shtml
+
+http://stackoverflow.com/questions/18134193/gui-builder-for-eclipse-juno-4-2
+
+http://franck.simon.free.fr/?p=124
+
+http://blog.developpez.com/james-poulson/p9788/ide/l_editeur_gui_windowbuilder_pro
+
+http://www.eclipsetotale.com/index.html?keywords=windowbuilder&search=Chercher
+
+http://www.java-javafx.com/2011/01/windowbuilder-pro-hello-world-java.html
+
+http://www.java-javafx.com/2011/01/swt-hello-world-using-windowbuilder.html
+
+http://www.java2s.com/Code/Java/Swing-JFC/DisplayResultSetinTableJTable.htm
+
+http://help.eclipse.org/indigo/index.jsp?topic=%2Forg.eclipse.wb.doc.user%2Fhtml%2Findex.html

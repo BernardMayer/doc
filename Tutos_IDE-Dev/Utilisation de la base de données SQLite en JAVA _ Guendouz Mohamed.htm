@@ -1,0 +1,966 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE>Utilisation de la base de donn&eacute;es SQLite en JAVA | Guendouz Mohamed</TITLE>
+	<META NAME="GENERATOR" CONTENT="LibreOffice 3.5  (Windows)">
+	<META NAME="CREATED" CONTENT="0;0">
+	<META NAME="CHANGED" CONTENT="20130913;15272153">
+	<META NAME="DESCRIPTION" CONTENT="Bonjour a tous , Dans ce Tutorial je vous pr&eacute;sentez comment utiliser une base de donn&eacute;es embarqu&eacute; dans un projet java , de la connexion au base de donn&eacute;e a la manipulation des donn&eacute;es (Projection,Ajout,Mise a Jour etc ...) et en fin  comment bien g&eacute;rer l&rsquo;acc&egrave;s au base de donn&eacute;e (Ouverture &amp; Fermeture) Pr&eacute;requis : 1- Java : des notions fondamentales sur le langage (Classes , M&eacute;thodes ...) 2- Bases de donn&eacute;es&hellip;">
+	<META NAME="" CONTENT="">
+	<META NAME="application-name" CONTENT="Guendouz Mohamed">
+	<META NAME="msapplication-task" CONTENT="name=Subscribe;action-uri=http://guendouz.wordpress.com/feed/;icon-uri=http://s2.wp.com/i/favicon.ico">
+	<META NAME="msapplication-window" CONTENT="width=device-width;height=device-height">
+	<META NAME="title" CONTENT="Utilisation de la base de donn&eacute;es SQLite en JAVA | Guendouz Mohamed on WordPress.com">
+	<META NAME="twitter:card" CONTENT="photo">
+	<META NAME="twitter:creator" CONTENT="@wordpressdotcom">
+	<META NAME="twitter:image" CONTENT="http://i2.wp.com/guendouz.files.wordpress.com/2012/11/capture-new-package.jpg?fit=1000%2C1000">
+	<META NAME="twitter:site" CONTENT="@wordpressdotcom">
+	<STYLE TYPE="text/css">
+	<!--
+		TD P { color: #000000; line-height: 100% }
+		P { color: #000000; line-height: 100% }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="fr-FR" TEXT="#000000" DIR="LTR" STYLE="border: none; padding: 0cm">
+<FORM ACTION="http://guendouz.wordpress.com/wp-comments-post.php" METHOD="POST">
+	<INPUT TYPE=HIDDEN NAME="highlander_comment_nonce" VALUE="1b7511bedc">
+	<INPUT TYPE=HIDDEN NAME="_wp_http_referer" VALUE="/2012/11/23/utilisation-de-la-base-de-donnees-sqlite-en-java/">
+	<INPUT TYPE=HIDDEN NAME="hc_post_as" VALUE="guest">
+	<INPUT TYPE=HIDDEN NAME="wp_avatar">
+	<INPUT TYPE=HIDDEN NAME="wp_user_id">
+	<INPUT TYPE=HIDDEN NAME="wp_access_token">
+	<INPUT TYPE=HIDDEN NAME="twitter_avatar">
+	<INPUT TYPE=HIDDEN NAME="twitter_user_id">
+	<INPUT TYPE=HIDDEN NAME="twitter_access_token">
+	<INPUT TYPE=HIDDEN NAME="fb_avatar">
+	<INPUT TYPE=HIDDEN NAME="fb_user_id">
+	<INPUT TYPE=HIDDEN NAME="fb_access_token">
+	<INPUT TYPE=HIDDEN NAME="googleplus_avatar">
+	<INPUT TYPE=HIDDEN NAME="googleplus_user_id">
+	<INPUT TYPE=HIDDEN NAME="googleplus_access_token">
+	<INPUT TYPE=HIDDEN NAME="comment_post_ID" VALUE="22">
+	<INPUT TYPE=HIDDEN NAME="comment_parent" VALUE="0">
+	<INPUT TYPE=HIDDEN NAME="genseq" VALUE="1379077490">
+	<INPUT TYPE=HIDDEN NAME="akismet_comment_nonce" VALUE="3cf21df41d">
+	<INPUT TYPE=HIDDEN NAME="ak_js" VALUE="1379077531728">
+</FORM>
+<FORM ACTION="https://subscribe.wordpress.com/" METHOD="POST">
+	<INPUT TYPE=HIDDEN NAME="action" VALUE="subscribe">
+	<INPUT TYPE=HIDDEN NAME="blog_id" VALUE="28120466">
+	<INPUT TYPE=HIDDEN NAME="source" VALUE="http://guendouz.wordpress.com/2012/11/23/utilisation-de-la-base-de-donnees-sqlite-en-java/">
+	<INPUT TYPE=HIDDEN NAME="sub-type" VALUE="loggedout-follow">
+	<INPUT TYPE=HIDDEN NAME="_wpnonce" VALUE="5dd6d49b99">
+	<INPUT TYPE=HIDDEN NAME="_wp_http_referer" VALUE="/2012/11/23/utilisation-de-la-base-de-donnees-sqlite-en-java/">
+</FORM>
+<DIV ID="wrapper" DIR="LTR">
+	<DIV ID="main" DIR="LTR">
+		<DIV ID="container" DIR="LTR">
+			<DIV ID="content" DIR="LTR">
+				<DIV ID="nav-above" DIR="LTR">
+					<P STYLE="margin-bottom: 0cm">http://guendouz.wordpress.com/2012/11/23/utilisation-de-la-base-de-donnees-sqlite-en-java/</P>
+					<P STYLE="margin-bottom: 0cm"><BR>
+					</P>
+					<P STYLE="margin-bottom: 0cm"><A HREF="http://guendouz.wordpress.com/2013/02/08/java-lire-un-fichier-xml-via-dom/">[JAVA]
+					</A><A HREF="http://guendouz.wordpress.com/2012/11/23/utilisation-de-la-base-de-donnees-sqlite-en-java/">Utilisation
+					de la base de donn&eacute;es SQLite en&nbsp;JAVA</A></P>
+					<P STYLE="margin-bottom: 0cm"><BR>
+					</P>
+				</DIV>
+				<DIV ID="post-22" DIR="LTR">
+					<P>Dans ce&nbsp;Tutorial&nbsp;je vous&nbsp;pr&eacute;sentez&nbsp;comment
+					utiliser une base de donn&eacute;es&nbsp;embarqu&eacute;&nbsp;dans
+					un projet java , de la&nbsp;connexion&nbsp;au base de donn&eacute;e
+					a la manipulation des donn&eacute;es (Projection,Ajout,Mise a
+					Jour etc &hellip;) et en fin &nbsp;comment bien&nbsp;g&eacute;rer&nbsp;l&rsquo;acc&egrave;s&nbsp;au
+					base de donn&eacute;e (Ouverture&nbsp;&amp;&nbsp;Fermeture)</P>
+					<P><STRONG>Pr&eacute;requis :</STRONG></P>
+					<P>1- Java : des notions&nbsp;fondamentales&nbsp;sur le langage
+					(Classes ,&nbsp;M&eacute;thodes&nbsp;&hellip;)</P>
+					<P>2- Bases de donn&eacute;es : les Tables (Cr&eacute;ation&nbsp;,
+					Ajout) syntaxe des&nbsp;Requ&ecirc;tes&nbsp;(SELECT , DELETE &hellip;)</P>
+					<P>3-&nbsp;SQLite JDBC : un driver JDBC pour&nbsp;acc&eacute;der&nbsp;a
+					une BD SQLite , on va utiliser ce <A HREF="http://www.xerial.org/trac/Xerial/wiki/SQLiteJDBC" TARGET="_blank">Driver&nbsp;</A></P>
+					<P>4- une base de donn&eacute;e SQLite (fichier .db) Telecharger
+					<A HREF="http://www.mediafire.com/?g06owec50ywtlkk" TARGET="_blank">ICI</A></P>
+					<P><STRONG>1 &ndash; Installation &amp; Configuration :</STRONG></P>
+					<P>ouvrir Eclipse et choisiser File -&gt; New -&gt; Java Project</P>
+					<P ALIGN=CENTER><A HREF="http://guendouz.files.wordpress.com/2012/11/capture-new-project.jpg"><FONT COLOR="#000080"><IMG SRC="Utilisation%20de%20la%20base%20de%20donn%C3%A9es%20SQLite%20en%20JAVA%20_%20Guendouz%20Mohamed_fichiers/capture-new-project.jpg" NAME="images2" ALIGN=BOTTOM WIDTH=320 HEIGHT=430 BORDER=1></P>
+					<P>apr&egrave;s donner un nom au projet cliquer sur Finish</P>
+					<P>cr&eacute;er un nouveau package java et lui donner un nom
+					comme <STRONG>com.votre_nom.nom_application</STRONG> (Ex :
+					<STRONG>com.guendouz.tutdb</STRONG>)</P>
+					<P><A HREF="http://guendouz.files.wordpress.com/2012/11/capture-new-package.jpg"><FONT COLOR="#000080"><IMG SRC="Utilisation%20de%20la%20base%20de%20donn%C3%A9es%20SQLite%20en%20JAVA%20_%20Guendouz%20Mohamed_fichiers/capture-new-package.jpg" NAME="images3" ALIGN=BOTTOM WIDTH=300 HEIGHT=285 BORDER=1></P>
+					<P>Maintenant&nbsp;cr&eacute;er&nbsp;un dossier dans
+					le&nbsp;Project&nbsp;sous le nom &ldquo;lib&rdquo;
+					pour&nbsp;sauvegarder&nbsp;toutes les&nbsp;biblioth&egrave;ques&nbsp;que
+					l&rsquo;on&nbsp;utilise&nbsp;(ex : driver jdbc) pour cela Clique
+					droit sur l&rsquo;icone du&nbsp;Project&nbsp;dans le &ldquo;Package
+					Explorer&rdquo; &nbsp;-&gt; New -&gt; Folder</P>
+					<P>apr&egrave;s&nbsp;t&eacute;l&eacute;charger&nbsp;et&nbsp;d&eacute;compresser&nbsp;le<STRONG>&nbsp;SQLite
+					JDBC</STRONG> copier le fichier dans le dossier &ldquo;lib&rdquo;
+					de votre projet et l&rsquo;ajouter a<STRONG> Referenced
+					Libraries &nbsp;</STRONG>en cliquent sur le fichier jar -&gt;
+					Build Path -&gt; Add to Build Path</P>
+					<P><STRONG>2-Connexion&nbsp;&agrave; la&nbsp;base de donn&eacute;e</STRONG><STRONG><EM>s&nbsp;</EM></STRONG>:</P>
+					<P>Pour connecter a une base de donn&eacute;e en java ont
+					doivent cr&eacute;er une Classe</P>
+					<DIV ID="highlighter_942968" DIR="LTR">
+						<TABLE CELLPADDING=0 CELLSPACING=0>
+							<TR>
+								<TD STYLE="border: none; padding: 0cm">
+									<P STYLE="margin-bottom: 0cm">1</P>
+									<P STYLE="margin-bottom: 0cm">2</P>
+									<P STYLE="margin-bottom: 0cm">3</P>
+									<P STYLE="margin-bottom: 0cm">4</P>
+									<P STYLE="margin-bottom: 0cm">5</P>
+									<P STYLE="margin-bottom: 0cm">6</P>
+									<P STYLE="margin-bottom: 0cm">7</P>
+									<P STYLE="margin-bottom: 0cm">8</P>
+									<P STYLE="margin-bottom: 0cm">9</P>
+									<P STYLE="margin-bottom: 0cm">10</P>
+									<P STYLE="margin-bottom: 0cm">11</P>
+									<P STYLE="margin-bottom: 0cm">12</P>
+									<P STYLE="margin-bottom: 0cm">13</P>
+									<P STYLE="margin-bottom: 0cm">14</P>
+									<P STYLE="margin-bottom: 0cm">15</P>
+									<P STYLE="margin-bottom: 0cm">16</P>
+									<P STYLE="margin-bottom: 0cm">17</P>
+									<P STYLE="margin-bottom: 0cm">18</P>
+									<P STYLE="margin-bottom: 0cm">19</P>
+									<P STYLE="margin-bottom: 0cm">20</P>
+									<P STYLE="margin-bottom: 0cm">21</P>
+									<P STYLE="margin-bottom: 0cm">22</P>
+									<P STYLE="margin-bottom: 0cm">23</P>
+									<P STYLE="margin-bottom: 0cm">24</P>
+									<P STYLE="margin-bottom: 0cm">25</P>
+									<P STYLE="margin-bottom: 0cm">26</P>
+									<P STYLE="margin-bottom: 0cm">27</P>
+									<P STYLE="margin-bottom: 0cm">28</P>
+									<P STYLE="margin-bottom: 0cm">29</P>
+									<P STYLE="margin-bottom: 0cm">30</P>
+									<P STYLE="margin-bottom: 0cm">31</P>
+									<P STYLE="margin-bottom: 0cm">32</P>
+									<P STYLE="margin-bottom: 0cm">33</P>
+									<P STYLE="margin-bottom: 0cm">34</P>
+									<P STYLE="margin-bottom: 0cm">35</P>
+									<P STYLE="margin-bottom: 0cm">36</P>
+									<P STYLE="margin-bottom: 0cm">37</P>
+									<P STYLE="margin-bottom: 0cm">38</P>
+									<P STYLE="margin-bottom: 0cm">39</P>
+									<P>40</P>
+								</TD>
+								<TD STYLE="border: none; padding: 0cm">
+									<P STYLE="margin-bottom: 0cm"><CODE>package</CODE>
+									<CODE>com.guendouz.tutdb;</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P STYLE="margin-bottom: 0cm"><CODE>import</CODE>
+									<CODE>java.sql.Connection;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>import</CODE>
+									<CODE>java.sql.DriverManager;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>import</CODE>
+									<CODE>java.sql.SQLException;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>import</CODE>
+									<CODE>java.sql.Statement;</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P STYLE="margin-bottom: 0cm"><CODE>public</CODE> <CODE>class</CODE>
+									<CODE>Connexion {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;private</CODE>
+									<CODE>String DBPath = &quot;Chemin aux base de donn&eacute;e
+									SQLite&quot;;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;private</CODE>
+									<CODE>Connection connection = null;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;private</CODE>
+									<CODE>Statement statement = null;</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;public</CODE>
+									<CODE>Connexion(String dBPath) {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DBPath
+									= dBPath;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;}</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;public</CODE>
+									<CODE>void</CODE> <CODE>connect() {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try</CODE>
+									<CODE>{</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class.forName(&quot;org.sqlite.JDBC&quot;);</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connection
+									= DriverManager.getConnection(&quot;jdbc:sqlite:&quot;</CODE>
+									<CODE>+ DBPath);</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;statement
+									= connection.createStatement();</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;Connexion
+									a &quot;</CODE> <CODE>+ DBPath + &quot; avec succ&egrave;s&quot;);</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+									catch</CODE> <CODE>(ClassNotFoundException
+									notFoundException) {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;notFoundException.printStackTrace();</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;Erreur
+									de connecxion&quot;);</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+									catch</CODE> <CODE>(SQLException sqlException) {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sqlException.printStackTrace();</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;Erreur
+									de connecxion&quot;);</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;}</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;public</CODE>
+									<CODE>void</CODE> <CODE>close() {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try</CODE>
+									<CODE>{</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connection.close();</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;statement.close();</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+									catch</CODE> <CODE>(SQLException e) {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;}</CODE></P>
+									<P><CODE>}</CODE></P>
+								</TD>
+							</TR>
+						</TABLE>
+					</DIV>
+					<P>La Classe Main pour tester la connexion</P>
+					<DIV ID="highlighter_738176" DIR="LTR">
+						<TABLE CELLPADDING=0 CELLSPACING=0>
+							<TR>
+								<TD STYLE="border: none; padding: 0cm">
+									<P STYLE="margin-bottom: 0cm">1</P>
+									<P STYLE="margin-bottom: 0cm">2</P>
+									<P STYLE="margin-bottom: 0cm">3</P>
+									<P STYLE="margin-bottom: 0cm">4</P>
+									<P STYLE="margin-bottom: 0cm">5</P>
+									<P STYLE="margin-bottom: 0cm">6</P>
+									<P STYLE="margin-bottom: 0cm">7</P>
+									<P STYLE="margin-bottom: 0cm">8</P>
+									<P STYLE="margin-bottom: 0cm">9</P>
+									<P STYLE="margin-bottom: 0cm">10</P>
+									<P>11</P>
+								</TD>
+								<TD STYLE="border: none; padding: 0cm">
+									<P STYLE="margin-bottom: 0cm"><CODE>package</CODE>
+									<CODE>com.guendouz.tutdb;</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P STYLE="margin-bottom: 0cm"><CODE>public</CODE> <CODE>class</CODE>
+									<CODE>Main {</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;public</CODE>
+									<CODE>static</CODE> <CODE>void</CODE> <CODE>main(String[]
+									args) {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Connexion
+									connexion = new</CODE> <CODE>Connexion(&quot;Database.db&quot;);</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connexion.connect();</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connexion.close();</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;}</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P><CODE>}</CODE></P>
+								</TD>
+							</TR>
+						</TABLE>
+					</DIV>
+					<P>3- <STRONG>Fouiller dans la base de donn&eacute;es :</STRONG></P>
+					<P>avant que nous puisent lire les donn&eacute;es dans la BD il
+					faut q&rsquo;ont ajoute une&nbsp;m&eacute;thode &ldquo;<STRONG>query</STRONG>&rdquo;
+					a la classe Connexion qui prend en&nbsp;param&egrave;tre&nbsp;la&nbsp;requ&ecirc;te&nbsp;et
+					retourne un Objet&nbsp;<STRONG>ResultSet</STRONG></P>
+					<DIV ID="highlighter_406333" DIR="LTR">
+						<TABLE CELLPADDING=0 CELLSPACING=0>
+							<TR>
+								<TD STYLE="border: none; padding: 0cm">
+									<P>1</P>
+								</TD>
+								<TD STYLE="border: none; padding: 0cm">
+									<P><CODE>SELECT</CODE> <CODE>* FROM</CODE> <CODE>Book</CODE></P>
+								</TD>
+							</TR>
+						</TABLE>
+					</DIV>
+					<P>la methode query :</P>
+					<DIV ID="highlighter_925154" DIR="LTR">
+						<TABLE CELLPADDING=0 CELLSPACING=0>
+							<TR>
+								<TD STYLE="border: none; padding: 0cm">
+									<P STYLE="margin-bottom: 0cm">1</P>
+									<P STYLE="margin-bottom: 0cm">2</P>
+									<P STYLE="margin-bottom: 0cm">3</P>
+									<P STYLE="margin-bottom: 0cm">4</P>
+									<P STYLE="margin-bottom: 0cm">5</P>
+									<P STYLE="margin-bottom: 0cm">6</P>
+									<P STYLE="margin-bottom: 0cm">7</P>
+									<P STYLE="margin-bottom: 0cm">8</P>
+									<P STYLE="margin-bottom: 0cm">9</P>
+									<P STYLE="margin-bottom: 0cm">10</P>
+									<P>11</P>
+								</TD>
+								<TD STYLE="border: none; padding: 0cm">
+									<P STYLE="margin-bottom: 0cm"><CODE>public</CODE> <CODE>ResultSet
+									query(String requet) {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ResultSet
+									resultat = null;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try</CODE>
+									<CODE>{</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;resultat
+									= statement.executeQuery(requet);</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+									catch</CODE> <CODE>(SQLException e) {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;Erreur
+									dans la requet : &quot;</CODE> <CODE>+ requet);</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return</CODE>
+									<CODE>resultat;</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P><CODE>&nbsp;&nbsp;&nbsp;}</CODE></P>
+								</TD>
+							</TR>
+						</TABLE>
+					</DIV>
+					<P><STRONG>Example &nbsp;1 : &nbsp;afficher tout les titres des
+					livres dans la Table Book</STRONG></P>
+					<DIV ID="highlighter_207584" DIR="LTR">
+						<TABLE CELLPADDING=0 CELLSPACING=0>
+							<TR>
+								<TD STYLE="border: none; padding: 0cm">
+									<P STYLE="margin-bottom: 0cm">1</P>
+									<P STYLE="margin-bottom: 0cm">2</P>
+									<P STYLE="margin-bottom: 0cm">3</P>
+									<P STYLE="margin-bottom: 0cm">4</P>
+									<P STYLE="margin-bottom: 0cm">5</P>
+									<P STYLE="margin-bottom: 0cm">6</P>
+									<P STYLE="margin-bottom: 0cm">7</P>
+									<P STYLE="margin-bottom: 0cm">8</P>
+									<P STYLE="margin-bottom: 0cm">9</P>
+									<P STYLE="margin-bottom: 0cm">10</P>
+									<P STYLE="margin-bottom: 0cm">11</P>
+									<P STYLE="margin-bottom: 0cm">12</P>
+									<P STYLE="margin-bottom: 0cm">13</P>
+									<P STYLE="margin-bottom: 0cm">14</P>
+									<P STYLE="margin-bottom: 0cm">15</P>
+									<P STYLE="margin-bottom: 0cm">16</P>
+									<P STYLE="margin-bottom: 0cm">17</P>
+									<P STYLE="margin-bottom: 0cm">18</P>
+									<P STYLE="margin-bottom: 0cm">19</P>
+									<P STYLE="margin-bottom: 0cm">20</P>
+									<P STYLE="margin-bottom: 0cm">21</P>
+									<P STYLE="margin-bottom: 0cm">22</P>
+									<P>23</P>
+								</TD>
+								<TD STYLE="border: none; padding: 0cm">
+									<P STYLE="margin-bottom: 0cm"><CODE>package</CODE>
+									<CODE>com.guendouz.tutdb;</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P STYLE="margin-bottom: 0cm"><CODE>import</CODE>
+									<CODE>java.sql.ResultSet;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>import</CODE>
+									<CODE>java.sql.SQLException;</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P STYLE="margin-bottom: 0cm"><CODE>public</CODE> <CODE>class</CODE>
+									<CODE>Main {</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;public</CODE>
+									<CODE>static</CODE> <CODE>void</CODE> <CODE>main(String[]
+									args) {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Connexion
+									connexion = new</CODE> <CODE>Connexion(&quot;Database.db&quot;);</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connexion.connect();</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ResultSet
+									resultSet = connexion.query(&quot;SELECT * FROM BOOK&quot;);</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try</CODE>
+									<CODE>{</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while</CODE>
+									<CODE>(resultSet.next()) {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;Titre
+									: &quot;+resultSet.getString(&quot;Title&quot;));</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+									catch</CODE> <CODE>(SQLException e) {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connexion.close();</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;}</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P><CODE>}</CODE></P>
+								</TD>
+							</TR>
+						</TABLE>
+					</DIV>
+					<P>R&eacute;sultat apr&egrave;s Ex&eacute;cution</P>
+					<DIV ID="highlighter_642339" DIR="LTR">
+						<TABLE CELLPADDING=0 CELLSPACING=0>
+							<TR>
+								<TD STYLE="border: none; padding: 0cm">
+									<P STYLE="margin-bottom: 0cm">1</P>
+									<P STYLE="margin-bottom: 0cm">2</P>
+									<P STYLE="margin-bottom: 0cm">3</P>
+									<P>4</P>
+								</TD>
+								<TD STYLE="border: none; padding: 0cm">
+									<P STYLE="margin-bottom: 0cm"><CODE>Connexion a Database.db
+									avec succ&egrave;s</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>Titre : Programmation
+									JAVA</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>Titre : C++ par la
+									pratique</CODE></P>
+									<P><CODE>Titre : L'art du d&eacute;veloppement Android</CODE></P>
+								</TD>
+							</TR>
+						</TABLE>
+					</DIV>
+					<P><STRONG>Example &nbsp;2 : &nbsp;ajouter un livre a la base de
+					donn&eacute;e<BR></STRONG>pour ajouter un livre a notre base de
+					donn&eacute;e il suffit d&rsquo;utiliser une autre Classe (<STRONG>Book</STRONG>)
+					pour simplifier notre tache<BR>la classe Book contient tous les
+					attributs de la Table Book en plus des getters et les setters</P>
+					<DIV ID="highlighter_181504" DIR="LTR">
+						<TABLE CELLPADDING=0 CELLSPACING=0>
+							<TR>
+								<TD STYLE="border: none; padding: 0cm">
+									<P STYLE="margin-bottom: 0cm">1</P>
+									<P STYLE="margin-bottom: 0cm">2</P>
+									<P STYLE="margin-bottom: 0cm">3</P>
+									<P STYLE="margin-bottom: 0cm">4</P>
+									<P STYLE="margin-bottom: 0cm">5</P>
+									<P STYLE="margin-bottom: 0cm">6</P>
+									<P STYLE="margin-bottom: 0cm">7</P>
+									<P STYLE="margin-bottom: 0cm">8</P>
+									<P STYLE="margin-bottom: 0cm">9</P>
+									<P STYLE="margin-bottom: 0cm">10</P>
+									<P STYLE="margin-bottom: 0cm">11</P>
+									<P>12</P>
+								</TD>
+								<TD STYLE="border: none; padding: 0cm">
+									<P STYLE="margin-bottom: 0cm"><CODE>package</CODE>
+									<CODE>com.guendouz.tutdb;</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P STYLE="margin-bottom: 0cm"><CODE>import</CODE>
+									<CODE>java.sql.Date;</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P STYLE="margin-bottom: 0cm"><CODE>public</CODE> <CODE>class</CODE>
+									<CODE>Book {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;private</CODE>
+									<CODE>String BookId;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;private</CODE>
+									<CODE>String Title;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;private</CODE>
+									<CODE>String SubTitle;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;private</CODE>
+									<CODE>int</CODE> <CODE>Pages;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;private</CODE>
+									<CODE>Date Published;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;private</CODE>
+									<CODE>String Description ;</CODE></P>
+									<P><CODE>}</CODE></P>
+								</TD>
+							</TR>
+						</TABLE>
+					</DIV>
+					<P><EM><STRONG>Astuce Eclipse :</STRONG></EM></P>
+					<P>pour&nbsp;g&eacute;n&eacute;rer&nbsp;automatiquement des
+					getters et des setters des attributs cliquer sur Source -&gt;
+					Generate Getters and Setters -&gt;&nbsp;Choisiser&nbsp;&nbsp;les
+					Attributs</P>
+					<P>pour&nbsp;g&eacute;n&eacute;rer&nbsp;automatiquement un
+					Constructeur a base des attributs&nbsp;cliquer sur Source -&gt;
+					Generate constructor using Fields &nbsp;-&gt;&nbsp;Choiser &nbsp;les
+					Attributs</P>
+					<P>et voila notre Classe Book&nbsp;apr&egrave;s&nbsp;le
+					traitement</P>
+					<DIV ID="highlighter_544305" DIR="LTR">
+						<TABLE CELLPADDING=0 CELLSPACING=0>
+							<TR>
+								<TD STYLE="border: none; padding: 0cm">
+									<P STYLE="margin-bottom: 0cm">1</P>
+									<P STYLE="margin-bottom: 0cm">2</P>
+									<P STYLE="margin-bottom: 0cm">3</P>
+									<P STYLE="margin-bottom: 0cm">4</P>
+									<P STYLE="margin-bottom: 0cm">5</P>
+									<P STYLE="margin-bottom: 0cm">6</P>
+									<P STYLE="margin-bottom: 0cm">7</P>
+									<P STYLE="margin-bottom: 0cm">8</P>
+									<P STYLE="margin-bottom: 0cm">9</P>
+									<P STYLE="margin-bottom: 0cm">10</P>
+									<P STYLE="margin-bottom: 0cm">11</P>
+									<P STYLE="margin-bottom: 0cm">12</P>
+									<P STYLE="margin-bottom: 0cm">13</P>
+									<P STYLE="margin-bottom: 0cm">14</P>
+									<P STYLE="margin-bottom: 0cm">15</P>
+									<P STYLE="margin-bottom: 0cm">16</P>
+									<P STYLE="margin-bottom: 0cm">17</P>
+									<P STYLE="margin-bottom: 0cm">18</P>
+									<P STYLE="margin-bottom: 0cm">19</P>
+									<P STYLE="margin-bottom: 0cm">20</P>
+									<P STYLE="margin-bottom: 0cm">21</P>
+									<P STYLE="margin-bottom: 0cm">22</P>
+									<P STYLE="margin-bottom: 0cm">23</P>
+									<P STYLE="margin-bottom: 0cm">24</P>
+									<P STYLE="margin-bottom: 0cm">25</P>
+									<P STYLE="margin-bottom: 0cm">26</P>
+									<P STYLE="margin-bottom: 0cm">27</P>
+									<P STYLE="margin-bottom: 0cm">28</P>
+									<P STYLE="margin-bottom: 0cm">29</P>
+									<P STYLE="margin-bottom: 0cm">30</P>
+									<P STYLE="margin-bottom: 0cm">31</P>
+									<P STYLE="margin-bottom: 0cm">32</P>
+									<P STYLE="margin-bottom: 0cm">33</P>
+									<P STYLE="margin-bottom: 0cm">34</P>
+									<P STYLE="margin-bottom: 0cm">35</P>
+									<P STYLE="margin-bottom: 0cm">36</P>
+									<P STYLE="margin-bottom: 0cm">37</P>
+									<P STYLE="margin-bottom: 0cm">38</P>
+									<P STYLE="margin-bottom: 0cm">39</P>
+									<P STYLE="margin-bottom: 0cm">40</P>
+									<P STYLE="margin-bottom: 0cm">41</P>
+									<P STYLE="margin-bottom: 0cm">42</P>
+									<P STYLE="margin-bottom: 0cm">43</P>
+									<P STYLE="margin-bottom: 0cm">44</P>
+									<P STYLE="margin-bottom: 0cm">45</P>
+									<P STYLE="margin-bottom: 0cm">46</P>
+									<P STYLE="margin-bottom: 0cm">47</P>
+									<P STYLE="margin-bottom: 0cm">48</P>
+									<P STYLE="margin-bottom: 0cm">49</P>
+									<P STYLE="margin-bottom: 0cm">50</P>
+									<P STYLE="margin-bottom: 0cm">51</P>
+									<P STYLE="margin-bottom: 0cm">52</P>
+									<P STYLE="margin-bottom: 0cm">53</P>
+									<P STYLE="margin-bottom: 0cm">54</P>
+									<P STYLE="margin-bottom: 0cm">55</P>
+									<P STYLE="margin-bottom: 0cm">56</P>
+									<P STYLE="margin-bottom: 0cm">57</P>
+									<P STYLE="margin-bottom: 0cm">58</P>
+									<P STYLE="margin-bottom: 0cm">59</P>
+									<P STYLE="margin-bottom: 0cm">60</P>
+									<P>61</P>
+								</TD>
+								<TD STYLE="border: none; padding: 0cm">
+									<P STYLE="margin-bottom: 0cm"><CODE>package</CODE>
+									<CODE>com.guendouz.tutdb;</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P STYLE="margin-bottom: 0cm"><CODE>import</CODE>
+									<CODE>java.sql.Date;</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P STYLE="margin-bottom: 0cm"><CODE>public</CODE> <CODE>class</CODE>
+									<CODE>Book {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;private</CODE>
+									<CODE>String BookId;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;private</CODE>
+									<CODE>String Title;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;private</CODE>
+									<CODE>String SubTitle;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;private</CODE>
+									<CODE>int</CODE> <CODE>Pages;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;private</CODE>
+									<CODE>Date Published;</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;public</CODE>
+									<CODE>Book(String bookId, String title, String subTitle, int</CODE>
+									<CODE>pages,</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date
+									published, String description) {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super();</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BookId
+									= bookId;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Title
+									= title;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SubTitle
+									= subTitle;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pages
+									= pages;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Published
+									= published;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description
+									= description;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;}</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;public</CODE>
+									<CODE>String getBookId() {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return</CODE>
+									<CODE>BookId;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;}</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;public</CODE>
+									<CODE>void</CODE> <CODE>setBookId(String bookId) {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BookId
+									= bookId;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;}</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;public</CODE>
+									<CODE>String getTitle() {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return</CODE>
+									<CODE>Title;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;}</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;public</CODE>
+									<CODE>void</CODE> <CODE>setTitle(String title) {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Title
+									= title;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;}</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;public</CODE>
+									<CODE>String getSubTitle() {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return</CODE>
+									<CODE>SubTitle;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;}</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;public</CODE>
+									<CODE>void</CODE> <CODE>setSubTitle(String subTitle) {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SubTitle
+									= subTitle;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;}</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;public</CODE>
+									<CODE>int</CODE> <CODE>getPages() {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return</CODE>
+									<CODE>Pages;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;}</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;public</CODE>
+									<CODE>void</CODE> <CODE>setPages(int</CODE> <CODE>pages) {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pages
+									= pages;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;}</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;public</CODE>
+									<CODE>Date getPublished() {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return</CODE>
+									<CODE>Published;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;}</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;public</CODE>
+									<CODE>void</CODE> <CODE>setPublished(Date published) {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Published
+									= published;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;}</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;public</CODE>
+									<CODE>String getDescription() {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return</CODE>
+									<CODE>Description;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;}</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;public</CODE>
+									<CODE>void</CODE> <CODE>setDescription(String description) {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Description
+									= description;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;}</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;private</CODE>
+									<CODE>String Description ;</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P><CODE>}</CODE></P>
+								</TD>
+							</TR>
+						</TABLE>
+					</DIV>
+					<P>maintenant ont ajoute une&nbsp;m&eacute;thode&nbsp;a la
+					Classe Connexion &ldquo;addBook&rdquo; qui prend en param&egrave;tre
+					un objet de la classe <STRONG>Book</STRONG></P>
+					<DIV ID="highlighter_979628" DIR="LTR">
+						<TABLE CELLPADDING=0 CELLSPACING=0>
+							<TR>
+								<TD STYLE="border: none; padding: 0cm">
+									<P STYLE="margin-bottom: 0cm">1</P>
+									<P STYLE="margin-bottom: 0cm">2</P>
+									<P STYLE="margin-bottom: 0cm">3</P>
+									<P STYLE="margin-bottom: 0cm">4</P>
+									<P STYLE="margin-bottom: 0cm">5</P>
+									<P STYLE="margin-bottom: 0cm">6</P>
+									<P STYLE="margin-bottom: 0cm">7</P>
+									<P STYLE="margin-bottom: 0cm">8</P>
+									<P STYLE="margin-bottom: 0cm">9</P>
+									<P STYLE="margin-bottom: 0cm">10</P>
+									<P STYLE="margin-bottom: 0cm">11</P>
+									<P STYLE="margin-bottom: 0cm">12</P>
+									<P STYLE="margin-bottom: 0cm">13</P>
+									<P STYLE="margin-bottom: 0cm">14</P>
+									<P STYLE="margin-bottom: 0cm">15</P>
+									<P STYLE="margin-bottom: 0cm">16</P>
+									<P>17</P>
+								</TD>
+								<TD STYLE="border: none; padding: 0cm">
+									<P STYLE="margin-bottom: 0cm"><CODE>public</CODE> <CODE>void</CODE>
+									<CODE>addBook(Book book) {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String
+									query = &quot;&quot;;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;query
+									+= &quot;INSERT INTO BOOK VALUES (&quot;;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;query
+									+= &quot;'&quot;</CODE> <CODE>+ book.getBookId() + &quot;',
+									&quot;;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;query
+									+= &quot;'&quot;</CODE> <CODE>+ book.getTitle() + &quot;',
+									&quot;;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;query
+									+= &quot;'&quot;</CODE> <CODE>+ book.getSubTitle() + &quot;',
+									&quot;;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;query
+									+= book.getPages() + &quot;, &quot;;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;query
+									+= &quot;'&quot;</CODE> <CODE>+
+									book.getPublished().toString() + &quot;', &quot;;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;query
+									+= &quot;'&quot;</CODE> <CODE>+ book.getDescription() + &quot;'
+									)&quot;;</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try</CODE>
+									<CODE>{</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;statement.executeUpdate(query);</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+									catch</CODE> <CODE>(SQLException e) {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//
+									TODO Auto-generated catch block</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P><CODE>&nbsp;&nbsp;&nbsp;&nbsp;}</CODE></P>
+								</TD>
+							</TR>
+						</TABLE>
+					</DIV>
+					<P>Test :</P>
+					<DIV ID="highlighter_344217" DIR="LTR">
+						<TABLE CELLPADDING=0 CELLSPACING=0>
+							<TR>
+								<TD STYLE="border: none; padding: 0cm">
+									<P STYLE="margin-bottom: 0cm">1</P>
+									<P STYLE="margin-bottom: 0cm">2</P>
+									<P STYLE="margin-bottom: 0cm">3</P>
+									<P STYLE="margin-bottom: 0cm">4</P>
+									<P STYLE="margin-bottom: 0cm">5</P>
+									<P STYLE="margin-bottom: 0cm">6</P>
+									<P STYLE="margin-bottom: 0cm">7</P>
+									<P STYLE="margin-bottom: 0cm">8</P>
+									<P STYLE="margin-bottom: 0cm">9</P>
+									<P STYLE="margin-bottom: 0cm">10</P>
+									<P STYLE="margin-bottom: 0cm">11</P>
+									<P STYLE="margin-bottom: 0cm">12</P>
+									<P STYLE="margin-bottom: 0cm">13</P>
+									<P STYLE="margin-bottom: 0cm">14</P>
+									<P STYLE="margin-bottom: 0cm">15</P>
+									<P STYLE="margin-bottom: 0cm">16</P>
+									<P STYLE="margin-bottom: 0cm">17</P>
+									<P STYLE="margin-bottom: 0cm">18</P>
+									<P>19</P>
+								</TD>
+								<TD STYLE="border: none; padding: 0cm">
+									<P STYLE="margin-bottom: 0cm"><CODE>package</CODE>
+									<CODE>com.guendouz.tutdb;</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P STYLE="margin-bottom: 0cm"><CODE>import</CODE>
+									<CODE>java.sql.Date;</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P STYLE="margin-bottom: 0cm"><CODE>public</CODE> <CODE>class</CODE>
+									<CODE>Main {</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;public</CODE>
+									<CODE>static</CODE> <CODE>void</CODE> <CODE>main(String[]
+									args) {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Connexion
+									connexion = new</CODE> <CODE>Connexion(&quot;Database.db&quot;);</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connexion.connect();</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Book
+									book = new</CODE>
+									<CODE>Book(&quot;3ff883e6-dfc0-4149-902a-4dbdfa22a408&quot;,</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;Programmation
+									Android&quot;, &quot;&quot;, 450,
+									Date.valueOf(&quot;2012-11-01&quot;),</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;&quot;);</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connexion.addBook(book);</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connexion.close();</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;}</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P><CODE>}</CODE></P>
+								</TD>
+							</TR>
+						</TABLE>
+					</DIV>
+					<P>essayent maintenant d&rsquo;ajouter un livre avec le titre
+					Syst&egrave;me D&rsquo;Information</P>
+					<DIV ID="highlighter_171350" DIR="LTR">
+						<TABLE CELLPADDING=0 CELLSPACING=0>
+							<TR>
+								<TD STYLE="border: none; padding: 0cm">
+									<P STYLE="margin-bottom: 0cm">1</P>
+									<P STYLE="margin-bottom: 0cm">2</P>
+									<P STYLE="margin-bottom: 0cm">3</P>
+									<P STYLE="margin-bottom: 0cm">4</P>
+									<P STYLE="margin-bottom: 0cm">5</P>
+									<P STYLE="margin-bottom: 0cm">6</P>
+									<P STYLE="margin-bottom: 0cm">7</P>
+									<P STYLE="margin-bottom: 0cm">8</P>
+									<P STYLE="margin-bottom: 0cm">9</P>
+									<P STYLE="margin-bottom: 0cm">10</P>
+									<P STYLE="margin-bottom: 0cm">11</P>
+									<P STYLE="margin-bottom: 0cm">12</P>
+									<P STYLE="margin-bottom: 0cm">13</P>
+									<P STYLE="margin-bottom: 0cm">14</P>
+									<P STYLE="margin-bottom: 0cm">15</P>
+									<P STYLE="margin-bottom: 0cm">16</P>
+									<P STYLE="margin-bottom: 0cm">17</P>
+									<P STYLE="margin-bottom: 0cm">18</P>
+									<P>19</P>
+								</TD>
+								<TD STYLE="border: none; padding: 0cm">
+									<P STYLE="margin-bottom: 0cm"><CODE>package</CODE>
+									<CODE>com.guendouz.tutdb;</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P STYLE="margin-bottom: 0cm"><CODE>import</CODE>
+									<CODE>java.sql.Date;</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P STYLE="margin-bottom: 0cm"><CODE>public</CODE> <CODE>class</CODE>
+									<CODE>Main {</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;public</CODE>
+									<CODE>static</CODE> <CODE>void</CODE> <CODE>main(String[]
+									args) {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Connexion
+									connexion = new</CODE> <CODE>Connexion(&quot;Database.db&quot;);</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connexion.connect();</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Book
+									book = new</CODE>
+									<CODE>Book(&quot;9aa883e6-dfc0-4149-902a-4dbdfa22a408&quot;,</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;Syst&egrave;me
+									D'Information&quot;, &quot;&quot;, 450,
+									Date.valueOf(&quot;2012-11-01&quot;),</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;&quot;);</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connexion.addBook(book);</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connexion.close();</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;}</CODE></P>
+									<P STYLE="margin-bottom: 0cm">&nbsp;</P>
+									<P><CODE>}</CODE></P>
+								</TD>
+							</TR>
+						</TABLE>
+					</DIV>
+					<P>R&eacute;sultat :</P>
+					<DIV ID="highlighter_525993" DIR="LTR">
+						<TABLE CELLPADDING=0 CELLSPACING=0>
+							<TR>
+								<TD STYLE="border: none; padding: 0cm">
+									<P STYLE="margin-bottom: 0cm">1</P>
+									<P STYLE="margin-bottom: 0cm">2</P>
+									<P STYLE="margin-bottom: 0cm">3</P>
+									<P STYLE="margin-bottom: 0cm">4</P>
+									<P STYLE="margin-bottom: 0cm">5</P>
+									<P STYLE="margin-bottom: 0cm">6</P>
+									<P STYLE="margin-bottom: 0cm">7</P>
+									<P>8</P>
+								</TD>
+								<TD STYLE="border: none; padding: 0cm">
+									<P STYLE="margin-bottom: 0cm"><CODE>Connexion a Database.db
+									avec succ&egrave;s</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>java.sql.SQLException:
+									near &quot;Information&quot;: syntax error</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;at
+									org.sqlite.DB.throwex(DB.java:288)</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;at
+									org.sqlite.NestedDB.prepare(NestedDB.java:115)</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;at
+									org.sqlite.DB.prepare(DB.java:114)</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;at
+									org.sqlite.Stmt.executeUpdate(Stmt.java:102)</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;at
+									com.guendouz.tutdb.Connexion.addBook(Connexion.java:65)</CODE></P>
+									<P><CODE>&nbsp;&nbsp;&nbsp;&nbsp;at
+									com.guendouz.tutdb.Main.main(Main.java:15)</CODE></P>
+								</TD>
+							</TR>
+						</TABLE>
+					</DIV>
+					<P>Cet Exception est d&eacute;clench&eacute; lorsque ont &eacute;crit
+					une requ&ecirc;te SQL avec une mauvaise syntaxe dans notre
+					example voici l&rsquo;erreur</P>
+					<DIV ID="highlighter_186009" DIR="LTR">
+						<TABLE CELLPADDING=0 CELLSPACING=0>
+							<TR>
+								<TD STYLE="border: none; padding: 0cm">
+									<P>1</P>
+								</TD>
+								<TD STYLE="border: none; padding: 0cm">
+									<P><CODE>INSERT</CODE> <CODE>INTO</CODE> <CODE>BOOK VALUES</CODE>
+									<CODE>('9aa883e6-dfc0-4149-902a-4dbdfa22a408', 'Syst&egrave;me
+									D'Information', '', 450, '2012-11-01', '' )</CODE></P>
+								</TD>
+							</TR>
+						</TABLE>
+					</DIV>
+					<P><STRONG>Question : Comment faire pour corriger ces erreurs en
+					JAVA ?<BR>R&eacute;ponse : il suff&icirc;t d&rsquo;utiliser les
+					requ&ecirc;tes pr&eacute;par&eacute;s</STRONG></P>
+					<P>En Java ont utilisent la Classe <STRONG>PreparedStatement</STRONG>
+					pour g&eacute;n&eacute;r&eacute; des requ&ecirc;tes pr&eacute;par&eacute;s
+					voici la M&eacute;thode &ldquo;<STRONG>addBook</STRONG>&rdquo;
+					version <STRONG>PreparedStatement</STRONG></P>
+					<DIV ID="highlighter_699121" DIR="LTR">
+						<TABLE CELLPADDING=0 CELLSPACING=0>
+							<TR>
+								<TD STYLE="border: none; padding: 0cm">
+									<P STYLE="margin-bottom: 0cm">1</P>
+									<P STYLE="margin-bottom: 0cm">2</P>
+									<P STYLE="margin-bottom: 0cm">3</P>
+									<P STYLE="margin-bottom: 0cm">4</P>
+									<P STYLE="margin-bottom: 0cm">5</P>
+									<P STYLE="margin-bottom: 0cm">6</P>
+									<P STYLE="margin-bottom: 0cm">7</P>
+									<P STYLE="margin-bottom: 0cm">8</P>
+									<P STYLE="margin-bottom: 0cm">9</P>
+									<P STYLE="margin-bottom: 0cm">10</P>
+									<P STYLE="margin-bottom: 0cm">11</P>
+									<P STYLE="margin-bottom: 0cm">12</P>
+									<P STYLE="margin-bottom: 0cm">13</P>
+									<P STYLE="margin-bottom: 0cm">14</P>
+									<P STYLE="margin-bottom: 0cm">15</P>
+									<P>16</P>
+								</TD>
+								<TD STYLE="border: none; padding: 0cm">
+									<P STYLE="margin-bottom: 0cm"><CODE>public</CODE> <CODE>void</CODE>
+									<CODE>addBook(Book book) {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try</CODE>
+									<CODE>{</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PreparedStatement
+									preparedStatement = connection</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.prepareStatement(&quot;INSERT
+									INTO Book VALUES(?,?,?,?,?,?)&quot;);</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;preparedStatement.setString(1,
+									book.getBookId());</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;preparedStatement.setString(2,
+									book.getTitle());</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;preparedStatement.setString(3,
+									book.getSubTitle());</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;preparedStatement.setInt(4,
+									book.getPages());</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;preparedStatement.setDate(5,
+									book.getPublished());</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;preparedStatement.setString(6,
+									book.getDescription());</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;preparedStatement.executeUpdate();</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+									catch</CODE> <CODE>(SQLException e) {</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//
+									TODO Auto-generated catch block</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();</CODE></P>
+									<P STYLE="margin-bottom: 0cm"><CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</CODE></P>
+									<P><CODE>&nbsp;&nbsp;&nbsp;&nbsp;}</CODE></P>
+								</TD>
+							</TR>
+						</TABLE>
+					</DIV>
+					<P>R&eacute;sultat&nbsp;Finale :</P>
+					<DIV ID="highlighter_180019" DIR="LTR">
+						<TABLE CELLPADDING=0 CELLSPACING=0>
+							<TR>
+								<TD STYLE="border: none; padding: 0cm">
+									<P STYLE="margin-bottom: 0cm">1</P>
+									<P>2</P>
+								</TD>
+								<TD STYLE="border: none; padding: 0cm">
+									<P STYLE="margin-bottom: 0cm"><CODE>Connexion a Database.db
+									avec succ&egrave;s</CODE></P>
+									<P><CODE>Insertion Avec Succ&eacute;es</CODE></P>
+								</TD>
+							</TR>
+						</TABLE>
+					</DIV>
+					<P>Voici le code source des exemples <A HREF="http://www.mediafire.com/?4zflcg9d3h09g4p" TARGET="_blank">ICI</A>
+					&hellip; et Bient&ocirc;t 
+					</P>
+				</DIV>
+			</DIV>
+		</DIV>
+	</DIV>
+</DIV>
+</BODY>
+</HTML>
