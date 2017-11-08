@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+				"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+
+<head>
+<meta name="Content-Type" content="text/html; charset=UTF-8"/>
+<link rel="stylesheet" type="text/css" title="Xpose" href="style.css"/>
+<title>OLAP - La méthodologie OLAP</title>
+</head>
+
+<body>
+<div id="content">
+<h1>Informatique décisionnelle (<acronym title="Business Intelligence">BI</acronym>) : OLAP et la modélisation dimensionnelle</h1>
+
+<h2>La méthodologie OLAP</h2>
+
+<h3>Implémentations OLAP</h3>
+
+<p>Les différentes implémentations OLAP sont :<br><br>
+<b>MOLAP</b> = Multidimensional OLAP<br>
+<b>ROLAP</b> = Relational OLAP<br>
+<b>HOLAP</b> = Hybrid OLAP<br>
+<b>DOLAP</b> = Desktop OLAP<br>
+<b>SOLAP</b> = Spatial OLAP</p>
+<p>Il existe deux critères permettant de bien différencier les implémentations OLAP : <br><br>
+<b>La technologie de stockage des données OLAP :</b><br>
+1- Base de données relationnelles : les données sont stockées dans un SGBD relationnel. Il permet un stockage presque infini des données OLAP. (<b>Rolap</b>)<br>
+2- Base de données dimensionnelle (Cube) : Les données sont stockées dans une base de données multidimensionnelles le plus souvent propriétaires. cependant il y’a des limitations quand à la quantité de données ! (<b>Molap</b>)<br>
+3- Fichiers sur le poste client : Une petite quantité de données est stockée directement sur le poste client de l’utilisateur (<b>Dolap</b>) <br><br>
+<b>Les techniques de traitements des données OLAP : </b><br>
+1- SQL : SQL est utilisé pour effectuer les différents traitements sur les données OLAP. On réaliser des roll-ups, des drills-down... en utilisant des requêtes en général très complexes et très exigeantes en terme de ressources et de temps d’exécution. (<b>Rolap</b>)<br>
+2- Serveur de traitement OLAP : Il s’agit de l’approche la plus adaptée aux traitements de données OLAP. Un serveur, conjointement avec la base de données, est alors dédié à effectuer les différents traitements de données OLAP. Les performances sont excellentes en général ! (<b>Molap</b>)<br>
+3- Client de traitement OLAP : Une approche qui perd beaucoup de terrain vu l’émergence des postes clients léger. Un nombre limité de traitement OLAP se font sur le poste client de l’utilisateur. (<b>Dolap</b>)<br><br>
+Le <b>SOLAP</b> est une solution qui supporte l’exploration et l’analyse spatio-temporelle faciles et rapides des données selon une approche multidimensionnelle à plusieurs niveaux d’agrégation via un affichage cartographique, tabulaire ou en diagramme statistique.<br>
+</p>
+</div>
+
+<div id="navigation">
+<h2>Découvrir</h2>
+<ul>
+<li><a href="index-2.html">Accueil</a></li>
+</ul>
+
+<h2>L'informatique décisionnelle</h2>
+<ul>
+<li><a href="definition.html">- Définition</a></li>
+<li><a href="pp.html">- Pourquoi et pour qui</a></li>
+<li><a href="architecture.html">- Architecture</a></li>
+<li><a href="fonctions.html">- Fonctions essentielles</a></li>
+</ul>
+
+<h2>La méthodologie OLAP</h2>
+<ul>
+<li><a href="hetd.html">- Historique et définition</a></li>
+<li><a href="mc.html">- Le modèle relationnel</a></li>
+<li><a href="md.html">- La modélisation dimensionnelle</a></li>
+<li><a href="mdvsmc.html">- Le dimensionnel VS le relationnel</a></li>
+<li><a href="colap.html">- Cube OLAP</a></li>
+<li><a href="olapimpl.html">- Implémentations OLAP</a></li>
+<li><a href="pouretcontre.html">- Pour et contre</a></li>
+</ul>
+
+<h2>Outils OLAP</h2>
+<ul>
+<li><a href="outils.html">Gratuits et payants</a></li>
+</ul>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+				"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+
+<head>
+<meta name="Content-Type" content="text/html; charset=UTF-8"/>
+<link rel="stylesheet" type="text/css" title="Xpose" href="style.css"/>
+<title>OLAP - La méthodologie OLAP</title>
+</head>
+
+<body>
+<div id="content">
+<h1>Informatique décisionnelle (<acronym title="Business Intelligence">BI</acronym>) : OLAP et la modélisation dimensionnelle</h1>
+
+<h2>La méthodologie OLAP</h2>
+
+<h3>La modélisation dimensionnelle</h3>
+
+<p>La modélisation dimensionnelle structure les données d'une façon très différente de la structure en 3FN ( 3ième forme normale) fréquemment utilisée par les modélisateurs des systèmes OLTP. La modélisation dimensionnelle produit ce qu'on appelle le modèle dimensionnel ou communément le schéma en étoile. C'est la structure de données la plus utilisée et la plus appropriée aux requêtes et analyses des utilisateurs d'entrepôts de données. Elle est simples à créer, stable et intuitivement compréhensible par les utilisateurs finaux. Le modèle dimensionnel est la fondation même de la construction des cubes OLAP(détaillés dans la section "cube OLAP").</p>
+<p>Il existe principalement deux types de base de modèle dimensionnel : <br>
+<br>1- Le schéma <b>en étoile</b>
+<br>2- Le schéma <b>en flocons de neige</b></p>
+<p><br><b>1- le schéma en étoile : </b><br>
+<br>Il consiste en une grande table de faits et un cercle d’autres tables qui contient les éléments descriptifs du fait, appelées « dimensions ». Quand illustré, le modèle ressemble à une étoile, c’est d’ailleurs l’origine du terme « En étoile ».
+<br><br>La figure suivante illustre le schéma en étoile : 
+</p>
+<center><img src="images/star.png"/></center>
+<p>Les deux nouveaux concepts (par rapport au modèl relationnel) sont : <b>la table des faits et la table de dimension</b>.<br>
+<b>La Table des faits</b> contient les données observables (les faits) que l'on possède sur un sujet et que l'on veut étudier, selon divers axes d'analyse (les dimensions).<br>
+<b>La Table de dimension</b> contient les axes d'analyse (les dimensions) selon lesquels on veut étudier des données observables (les faits) qui, soumises à une analyse multidimensionnelle, donnent aux utilisateurs des renseignements nécessaires à la prise de décision.On appelle « dimension » un axe d'analyse. Il peut s'agir des clients ou des produits d'une entreprise, etc.</p>
+<p><br><b>2- le schéma en flocons de neige : </b><br><br>
+Le schéma en flocons de neige est une variante du schéma en étoile. Dans la théorie la différence réside dans la simple normalisation des tables de dimensions. Il est donc tout simplement question de mettre les attributs de chaque niveau hiérarchique dans une table de dimension à part.<br>
+<br><br>La figure suivante illustre le schéma en flocons de neige : 
+
+</p>
+<center><img src="imagessnowflake.html"/></center>
+<p>Il existe quatre étapes à suivre pour concevoir un bon modèle dimensionnel : <br><br>
+a- Choisir le processus à modéliser<br>
+b- Définir la granularité du processus<br>
+c- Choisir les dimensions<br>
+4- Identifier les faits<br></p>
+</div>
+</div>
+
+<div id="navigation">
+<h2>Découvrir</h2>
+<ul>
+<li><a href="index-2.html">Accueil</a></li>
+</ul>
+
+<h2>L'informatique décisionnelle</h2>
+<ul>
+<li><a href="definition.html">- Définition</a></li>
+<li><a href="pp.html">- Pourquoi et pour qui</a></li>
+<li><a href="architecture.html">- Architecture</a></li>
+<li><a href="fonctions.html">- Fonctions essentielles</a></li>
+</ul>
+
+<h2>La méthodologie OLAP</h2>
+<ul>
+<li><a href="hetd.html">- Historique et définition</a></li>
+<li><a href="mc.html">- Le modèle relationnel</a></li>
+<li><a href="md.html">- La modélisation dimensionnelle</a></li>
+<li><a href="mdvsmc.html">- Le dimensionnel VS le relationnel</a></li>
+<li><a href="colap.html">- Cube OLAP</a></li>
+<li><a href="olapimpl.html">- Implémentations OLAP</a></li>
+<li><a href="pouretcontre.html">- Pour et contre</a></li>
+</ul>
+
+<h2>Outils OLAP</h2>
+<ul>
+<li><a href="outils.html">Gratuits et payants</a></li>
+</ul>
+
+</div>
+
+</body>
+
+</html>

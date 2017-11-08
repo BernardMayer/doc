@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+				"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+
+<head>
+<meta name="Content-Type" content="text/html; charset=UTF-8"/>
+<link rel="stylesheet" type="text/css" title="Xpose" href="style.css"/>
+<title>OLAP - La méthodologie OLAP</title>
+</head>
+
+<body>
+<div id="content">
+<h1>Informatique décisionnelle (<acronym title="Business Intelligence">BI</acronym>) : OLAP et la modélisation dimensionnelle</h1>
+
+<h2>La méthodologie OLAP</h2>
+
+<h3>Le cube OLAP</h3>
+
+<p>Un cube OLAP est une représentation abstraite d'informations multidimensionnelles exclusivement numérique utilisé par l'approche OLAP (acronyme de On-line Analytical Processing). Cette structure est prévue à des fins d'analyses interactives par une ou plusieurs personnes (souvent ni informaticiens ni statisticiens) du métier que ces données sont censées représenter.
+<br><br>
+Les cubes OLAP ont les caractéristiques suivantes :<br><br>
+
+    1- obtenir des informations déjà agrégées selon les besoins de l’utilisateur.<br>
+    2- simplicité et rapidité d’accès<br>
+    3- capacité à manipuler les données agrégées selon différentes dimensions<br>
+    4- un cube utilise les fonctions classiques d’agrégation : min, max, count, sum, avg, mais peut utiliser des fonctions d’agrégations spécifiques.<br>
+	</p>
+<p>Voici un exemple de cube OLAP : <br>
+Dans notre exemple, nous allons nous intéresser aux ventes de tous les magasins "XXX".
+<center><img src="images/cubeOLAP.png" /><br><b>Source  :  Système décisionnel Par Eddy Meylan (HES)</b></center></p>
+<p>Voyons maintenant comment peut-on utiliser ce cube. Pour cela, nous allons nous intéresser aux différentes vues de ce cube.<br><br>
+<b><u>Vue n° 1 </u>:</b> On s'intéresse à toutes les ventes du magasin d'ANNECY (toutes catégories confondues durant toute l'année)<br>
+<center><img src="images/magasin.png" /></center>
+<b><u>Vue n° 2 </u>: </b>On s'intéresse aux ventes de la catégorie "vêtements pour enfants" (tous les magasins durant toute l'année)<br>
+<center><img src="images/categorie.png" /></center>
+<b><u>Vue n° 3 </u>:</b> On s'intéresse à toutes les ventes durant le mois de Février (toutes catégories confondues et dans tous les magasins)<br>
+<center><img src="images/mois.png" /></center>
+<b><u>Vue n° 4 </u>:</b> On s'intéresse aux ventes du magasin d'ANNECY dans la catégorie "vêtements pour enfants" durant le mois de Février<br>
+<center><img src="images/vueComplete.png" /></center>
+</p>
+<p>Ces différentes vues correspondent à différentes opérations. Voici la liste des opérations OLAP :<br><br>
+<b>1- Pivoter (pivot, swap) :</b> interchanger 2 dimensions.<br>
+<b>2- Forage vers le bas (drill-down) :</b> descendre dans la hiérarchie de la dimension (Ex. visualiser les ventes par mois au lieu de par année).<br>
+<b>3- Forage vers le haut (drill-up, roll-up) :</b> remonter dans la hiérarchie de la dimension (Ex. visualiser les ventes par année au lieu de par mois).<br>
+<b>4- Forer latéralement (drill-across) :</b> Permet de passer d’un membre de dimension à un autre (Ex. visualiser les ventes d’ANNECY au lieu de celles de PARIS).<br>
+</p>
+</div>
+
+<div id="navigation">
+<h2>Découvrir</h2>
+<ul>
+<li><a href="index-2.html">Accueil</a></li>
+</ul>
+
+<h2>L'informatique décisionnelle</h2>
+<ul>
+<li><a href="definition.html">- Définition</a></li>
+<li><a href="pp.html">- Pourquoi et pour qui</a></li>
+<li><a href="architecture.html">- Architecture</a></li>
+<li><a href="fonctions.html">- Fonctions essentielles</a></li>
+</ul>
+
+<h2>La méthodologie OLAP</h2>
+<ul>
+<li><a href="hetd.html">- Historique et définition</a></li>
+<li><a href="mc.html">- Le modèle relationnel</a></li>
+<li><a href="md.html">- La modélisation dimensionnelle</a></li>
+<li><a href="mdvsmc.html">- Le dimensionnel VS le relationnel</a></li>
+<li><a href="colap.html">- Cube OLAP</a></li>
+<li><a href="olapimpl.html">- Implémentations OLAP</a></li>
+<li><a href="pouretcontre.html">- Pour et contre</a></li>
+</ul>
+
+<h2>Outils OLAP</h2>
+<ul>
+<li><a href="outils.html">Gratuits et payants</a></li>
+</ul>
+
+</div>
+
+</body>
+
+</html>
