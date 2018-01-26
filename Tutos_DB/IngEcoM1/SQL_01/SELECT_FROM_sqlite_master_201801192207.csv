@@ -1,0 +1,51 @@
+﻿"type";"name";"tbl_name";"rootpage";"sql"
+table;sqlite_sequence;sqlite_sequence;5;CREATE TABLE sqlite_sequence(name,seq)
+table;Resident;Resident;3;"CREATE TABLE Resident (
+	IDResident integer primary key autoincrement,
+	NomResident char(32) null,
+	PrenomResident char(32) null,
+	IDChambre int not null
+)"
+index;UIDX_Resident;Resident;4;CREATE UNIQUE INDEX UIDX_Resident ON Resident(IDResident)
+table;Charte;Charte;9;"CREATE TABLE Charte (
+	IDCharte integer primary key autoincrement,
+	AdrMac char(32) null,
+	AdrIp char(32) null,
+	NomOrdi char(32) null,
+	IDResident integer not null
+)"
+index;UIDX_Charte;Charte;18;CREATE UNIQUE INDEX UIDX_Charte ON Charte(IDCharte)
+table;Chambre;Chambre;6;"CREATE TABLE Chambre (
+	IDChambre integer primary key autoincrement,
+	NumChambre char(32) null
+)"
+index;UIDX_Chambre;Chambre;7;CREATE UNIQUE INDEX UIDX_Chambre ON Chambre(IDChambre)
+table;Recu;Recu;10;"CREATE TABLE Recu (
+	NumRecu int not null,
+	DatePaiement char(32) not null,
+	IDResident integer null
+)"
+index;UIDX_Recu;Recu;11;CREATE UNIQUE INDEX UIDX_Recu ON Recu(NumRecu)
+table;Imputation;Imputation;12;"CREATE TABLE Imputation (
+	IDImput integer primary key autoincrement,
+	NumImput char(32) null,
+	LibelleInput char(32) null
+)"
+index;UIDX_Imputation;Imputation;13;CREATE UNIQUE INDEX UIDX_Imputation ON Imputation(IDImput)
+table;TypePaiement;TypePaiement;14;"CREATE TABLE TypePaiement (
+	IDTypePaiement integer primary key autoincrement,
+	NaturePaiement char(32) null
+)"
+index;UIDX_TypePaiement;TypePaiement;15;CREATE UNIQUE INDEX UIDX_TypePaiement ON TypePaiement(IDTypePaiement)
+table;Paiement;Paiement;16;"CREATE TABLE Paiement (
+	IDInput integer integer not null,
+	NumRecu integer integer not null,
+	MontantPaiement char(32) null
+)"
+index;UIDX_Paiement;Paiement;17;CREATE UNIQUE INDEX UIDX_Paiement ON Paiement(IDInput, NumRecu)
+table;Reparti;Reparti;2;"CREATE TABLE Reparti (
+	NumRecu int not null,
+	IDTypePaiement char(32) not null,
+	MontantReparti decimal(10,2) null
+)"
+index;UIDX_Reparti;Reparti;8;CREATE UNIQUE INDEX UIDX_Reparti ON Reparti(NumRecu, IDTypePaiement)
