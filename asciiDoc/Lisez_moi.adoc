@@ -1,0 +1,494 @@
+= SHUB
+Bourget sophie
+v1.0, 2018-06-11
+:toc:
+:imagesdir: images_pour_DOC
+
+// ---------------------------------------------------Généralités-------------------------------
+== Généralités 
+
+
+SourceTree est un open source qui permet d’encapsulé GIT 
+.Bloc.
+----
+Le but de cet outil est de pouvoir 
+  * Créer facilement les requêtes de MAJ ou de création des flux CDP pour les squad 
+  * De faire des recherches dans la tables de référence sur un certain nombre de critères 
+  * Extraire la totalité de la table et de la mettre dans une feuille excel 
+
+L’outils ne mets pas à jour directement le référentiel, il ne produit que des requêtes qu’il faudra après demander à passer par les DBA de prod 
+----
+
+// ---------------------------------------------------fenêtre menu-------------------------------
+== Fenêtre menu
+
+image::menu_principale.jpg[menu_principale]
+
+----
+La fenêtre est divisée en 4 parties 
+  * Connexion TERADATA 
+  * Extraction du référentiel vers Excel 
+     Il faudra saisir la type d’affichage avant de cliquer sur le bouton 
+  * Recherche par lot ou création de requête de pour MAJ du référentiel 
+  * Contrôle du référentiel =  
+
+Pour pouvoir utiliser l’outil, il faut commencer par se connecter avec :
+	son user  
+	son mot de passe TERADATA
+	Ou le user générique teradata pour l'outil
+	
+Il faut mettre le Mot de passe qui correspond  à l’environnement de saisie 
+	MUP10 étant le référentiel CDP  
+	ZUDA0 étant un environnement de DEV , ou on peut tester ses requêtes 
+----
+
+[WARNING]
+*Message d’anomalie possible sur cette fenêtre :* + 
+  User obligatoire +
+   Mot de passe obligatoire +
+
+----
+L’outils n’est pas capable de dire si vous vous êtes trompé dans la saisie de votre mot de passe. 
+L’outils ouvrira une fenêtre anomalie, avec la requête qu’il a tentée lancé et qui est tombé en anomalie. 
+
+95% des anomalies sont dû à un mot de passe incorrecte. 
+----
+
+
+
+// ---------------------------------------------------fenêtre Consultation-------------------------------
+== Fenêtre consultation
+//image 
+image::menu_consultation.jpg[Présentation fenêtre consultation]
+
+On saisit le type d’affiche sur le menu  initial  +
+
+.On a 2 parties dans cette fenêtre + 
+	* le résultat de la mise à plat de la table de référence  +
+	*  un bouton qui permet de d’exporter cette MAP vers un document csv +
+		-- L’outil n’ouvre pas le csv, mais le créé dans le répertoire d:\SHUB\... +
+
+
+
+// ---------------------------------------------------fenêtre Recherche-------------------------------
+== Fenêtre Recherche
+//image 
+image::menu_recherche.jpg[Présentation fenêtre Recherche]
+
+*Partie 1* +
+----
+C'est la zone où on va definir les recehrches . les reCehrches possibles sont : +
+	* Squad 
+	* Nom d’un PCL  ( on peut saisir le nom complet ou avec *  ) 
+	* Nom du flux ( on peut saisir le nom du PCL complet ou avec *  ) 
+	* La périodicité 
+	* Le type de flux CDP 
+	* Le type de chargement CDP 
+	
+On peut cumuler plusieurs recherches en même temps 
+----
+
+----
+Et le type d’affichage souhaité 
+	* Total : toutes les colonnes  
+	* Abrégé : 23 des 43 colonnes (ancienne liste simplifié de l’ancien référentiel excel) 
+	* Light : 17 colonnes (les colonnes techniques indispensables pour une analyse)  
+----
+ 
+*Partie 2* +
+	Le boutons pour lancer la requête de recherche +
+
+*Partie 3* +
+	C'est la partie où le resultat de la requête va apparaitre . les colonnes visible seront en focntione du type d'affichage qu'on aura definit  +
+
+*Partie 4* +
+	L’environnement où la requête de recherche a été lancé ( c’est celui saisie sur le menu )  +
+	
+*Partie 5* +
+	Boutons pour exporter le résultat dans une feuille csv +
+	L’outil n’ouvre pas le csv, mais le créé dans le répertoire d:\SHUB\... +
+
+
+// ---------------------------------------------------fenêtre Création requete-------------------------------
+== Fenêtre création requêtes
+=== généralitées
+----
+Cette fenêtre est composée de 3 parties +
+	* la partie recherche si le flux existe +
+	* la partie de saisie +
+	* le boutons pour générer la requête  +
+----
+
+//image 
+image::menu_creation.jpg[Présentation fenêtre Création de requête ]
+
+// tableau correspondance nom champ et libellé de la fenêtre 
+tableau correspondance nom champ et libellé de la fenêtre + informations importantes +
+
+|===
+|Nom colonne dans REF_CDP |Libellé dans la fenêtre | commentaire
+|Object_name  		|Nom de l’objet	|Notion d’unicité 
+|LIB_OBJECT_NAME    |Libellé de l’objet	|
+|CDAP     			|Code Application CDP|	
+|THEME_NAME_DTWH_V2 |  	Thème DATAWARE|	
+|FLUX_NAME     		|Nom du flux ( peut être différent de objet name)	|
+|CDAP_ORIGINE     	|Code application amont	|
+|CDAP_ORIGINE_LIB   |Libéllé du code appli amont|	
+|FLUX_TYPE     		|Type de traitement -  adhérent ou communautaire |	
+|CDAP_COURT     	|Libellé court CDP ( H0 H1 H2 H3 H4 )| 	
+|TEMPORALITE    	|Temporalité ( BvaTn BvnTn Tn )	|
+|TYPE_CDP     		| * Type de flux CDP +
+					* AD 1 : flux host DTWH + 
+					* AD3 : Flux host non DTWH + 
+					* AD4 : flux open non DTWH  +
+					* AD4.2 : flux open DTW  +
+					* TAD : autoroute de la donnée + 
+					* SERV : Servitude  +
+					* Big Data  +
+					* Hors périmètre |   	
+|FILE_MODE     		|* Type de Chargement +
+					 * Stock – COMPLET +
+					 * Flux – PARTIEL|	 
+|squad     			|* Squad support +
+					 * Ban : bancaire +
+					 * REG : régalien +
+					 * DIS : distribution +
+					 * PRO : plateform |	
+|CODE_PRIO   		| * Si un flux priorisé +
+					* Priorité car lié à un flux AD1 : Priorité AD1 +
+					* Priorité des flux AD3 pour être iso avec la V1 ( univers compta … ) +
+					* Priorité iso V1 +
+					* les flux AD1 qui passe après 6 h doivent finir avant 9h : Priorité autre 6h |
+|RGPD     			|Flux soumis à RGPD	|
+|TABLE_V1     		|Nom de la table V1 si elle existe| 	
+|TYPE_ORIGINE     	|Origine de la donnée + 
+					FIC : Fichier +
+					CDP : données issus de CDP +
+					TET4 +
+					Start : données issu de table START +
+					DB2 : données issus de Mise à plat table DB2 +
+					DB2 PGM : données issus de table DB2 +
+					Ispool : données issus d’un ispool +
+					OPEN : Données issus d’un fichier open +
+					Servitudes|
+|ORIGINE     		|Nom usuel origine|	
+|FILE_LOCATION     	|Nom physique de la source	|
+|DB2   				|  	|	
+|SOURCE_NAME     	|Nom du répertoire sur le quai de dépôt CPCI CPCC CPDM CPFI CPMS CPDT CPMP CPOT DTWH  |	
+|PERIODICITE     	|Périodicité du PCL  +
+						TPT pour CDP +
+						Du PCL de SIDV2 pour DTW |	
+|PCL_TRANF_OPEN     	|Nom du PCL de transfert de donné du monde WINDOWS vers le quai de dépôt CDP | 	
+|PCL_ECLAT_OPEN     	|PCL d’éclatement d’un fichier OPEN en plusieurs fichiers |	
+|PCL_FOR1     		|Premiers PCLS de mise en forme ( unload - extraction ispool - chargement ispool - … )| 	
+|ISPOOL     			|Nom de l’ispool s’il existe|	
+|PCL_FOR2     		|2eme PCL de mise en  forme ( extraction ispool … )| 	
+|PCL_TOKEN   	  	|PCL detokenisation	|
+|DCLF   			 	|Nom du fichier en entré du TPT	|
+|PCL_TPT   		  	|Nom du PCL TPT	Si remplit doit être unique |
+|RQ_TRT   		 	|Remarques +
+						Nom du script pour la matière windows +
+						Nom script pour les PCL SIDV2|	
+|PSI_ISPOOL   	  	|Nom de l’ispool sur lequel on peut s’appuyer en cas de PSI 	|
+|PSI_REGLE     		|Regle de SPI qu’on peut appliqué	|
+|MOE_DIR     		||
+|MOE_DEP     		||
+|MOE_SERV     		||
+|MOE_UNIT     		||
+|MOE_GR_SUPPORT     ||	
+|MOA_FILIERE     	||	
+|MOA_POLE     		||
+|MOA_DOMAINE     	||	
+|MOA_CODE_DOM    	||	
+|DATE_DENIERE_LIVRAISON|	Date dernière livraison| 	
+|===
+
+//----------------------------------------------------------------------------------------------------------
+=== Cas de création d'un flux 
+Il va falloir remplir les zones saisissables 
+Certaines zones sont obligatoires ( étoiles rouges )  et d’autre sont obligatoires par rapport au type de flux.  
+Des messages d’anomalies indiqueront les anomalies trouvées lors de la génération de la requête.
+Ces contrôles sont importants car ce sont eux qui assure la cohérence des informations du flux .
+
+==== Partie 1 
+// image 
+image::menu_creation_partie1.jpg[Partie1]
+Le nom du flux et son libellé est obligatoire  +
+Qu’on soit sur une flux CDP , SIDV , TAD , SERV BIGDATA , …  + 
+
+==== Partie 2 
+//image$image::menu_creation_partie2.jpg[Partie 2]
+Exemple pour aider à remplir les cases 
+
+===== CDP / TAD : 
+
+Thème : en fonction du domaine , s’il manque des domaine , il faudra les demander , on en ajoutera +
+*Nom du flux :* = Au nom du flux  +
+*Code application amont :* Obligatoire  code de l’application qui fournit les données +
+*Libellé du code application amont :* Obligatoire libellé de l’application qui fournit les données +
+*Type de traitement :* Adhérent ou communautaire +
+*Lib court CDP :* H0 H1 H2 H3 H4 suivant le domaine amont +
+*Temporalité :* celui utilisé lors du maping +
+*Type de flux :* + 
+- -AD1 flux host CDP remontant dans DTW +
+- -AD3 flux host CDP ne remontant pas dans DTW +
+- -AD4 flux open CDP remontant dans DTW 
+- -AD42 flux open CDP ne remontant pas dans DTW +
+- -TAD : table de l’autoroute +
+
+*Type de chargement :* PARTIEL ( flux )  ou complet ( stock) + 
+*Squad Support :*  la squad support +
+*Flux prioritaire :* si on est sur un flux soumis à un jalon prioritaire +
+- -Priorité AD1  si on est sur un flux AD1+
+- -Priorité iso V1 +
+- - - -	Jalon pour que des flux CDP AD3 passe avant 6h du matin ( c’est une planif particulière à saisir dans le DCNT ) +
+- -Priorité autre 6h +
+- - - -	Jalon pour que des flux CDP AD3 passe avant 6h ( pour BO compta entre autre )  du matin ( c’est une planif particulière à saisir dans le DCNT ) +
+- -Sans objet +
+	
+[WARNING]
+ *La notion de priorité est très importante pour le suivi de production, les flux soumis à priorité seront à déplanter en premier*
+
+*RGPD :* cocher si cette table est soumise à RGPD +
+
+===== SIDV/SERV/BIGDATA
+*Thème :* Thème defaut +
+*Nom du flux :* = nom du flux +
+*Code application amont :* CPDT / DTWH +
+*Libellé du code application amont :* Copie de production ou DATAWARE +
+*Type de traitement :* Adhérent ou communautaire +
+*Lib court CDP :* sans objet +
+*Temporalité :* sans objet +
+*Type de flux :* +
+- -SERV pour servitude +
+- -SIDV pour les PCLS qui tournent sur TET4 pour le plan communautaire +
+- -BIGDATA pour les flux big data +
+
+*Type de chargement :* sans objet +
+*Squad Support :*   SERV et SIV bien souvent plateform PROD +
+*Flux prioritaire :* +
+
+==== Partie 3 
+// image 
+image::menu_creation_partie3.jpg[Partie 3]
+Sur flux CDP ( AD1 AD3 AD4 AD42 TAD) , s’il existe une table V1 , on mets le nom , pour pouvoir faire le rapprochement pour les rapports BO .
+
+==== Partie 4 
+//image
+image::menu_creation_partie4.jpg[Partie 4]
+
+===== CDP / TAD :
+*Type origine source de donné :*  Type de la source de donnée d'origine +
+- - FIC fichier +
+- -	DB2 pour une MAP de vue DB2 +
+- -	DB2 PGM pour une extraction de table DB2 via un PGM  +
+- -	CDP , CDP +
+- -	ISPOOL pour un lot ispool  +
+- -	OPEN pour une flux OPEN +
+- -	START pour une MAP start +
+- -	A DELETER pour un flux qui ne tourne plus et qui va être supprimé +
+- -	A voir quand on n’arrive pas à savoir +	
+
+*Nom usuel origine :* Nom du fichier usuel d'origine , le nom physique n'est pas toujours le nom qu'on utilise  +
+*Nom physique de la source :* +
+- - Nom réel de la source de données +
+- - Nom du fichier type pour un flux OPEN +
+- - La vue de MAP pour une unload DB2 Host  +
+		….
+		
+*Saisie OPEN source file LOCATION* +
+ le nom du répertoire domaine ( CPDT, CPCC, CPCR, … ) pour les flux OPEN AD4 AD42 +
+*Périodicité :* OBLIGATOIRE  pour tous les PCLS déclarés +
+
+
+===== SIDV/SERV/BIGDATA
+*Type origine source de donné :*  
+- - SERV pour SERVitude +
+- - TET4 pour SIDV +
+
+*Nom user origine :* Sans objet  +
+*Nom physique de la source :* Sans objet +
+*Saisie OPEN source file LOCATION :* Sans objet +
+*Périodicité :* OBLIGATOIRE  pour tous les PCLS déclarés +
+
+==== partie 5 
+//image 
+image::menu_creation_partie5.jpg[Partie5]
+===== CDP / TAD :
+*Nom PCL transfert :* Sur un flux open uniquement +
+- - si on a un PCL qui dépose le fichier sur le que de dépôt CDP , c’est ce PCL là qui appelle un script Windows  + 
+
+*Nom du PCL de transfert vers le serveur open :*  Sur un flus OPEN uniquement + 
+- - PCL qui éclatement un fichier en plusieurs sur le quai de dépôt CDP, le PCL qui fait le split  + 
+
+*Nom du PCL mise en forme 1 :*  Premier PCL possible de mise en forme de données, ça peut être une MAP de table DB2 ; de lot ispool, Un chargement de lot ispool ... + 
+
+*Nom du PCL mise en forme 2 :*  second PCL possible de la mise en forme de données , ça peut être un déchargement de lot ispool, …  + 
+
+*PCL de tokenrisation :*  PCL qui tokenise ( anonimise ) les N° de carte + 
+
+*Nom du fichier en entré du TPT :* Obligatoire pour une flux CDP HOST + 
+
+*Nom du PCL TPT :* Le nom du PCL TPT qui charge les données dans teradata pour CDP + 
+
+*Remarques :*  Pour un flux OPEN avec PCL d transfert : Nom du script Windows + 
+
+===== SIDV/SERV/BIGDATA
+*Nom PCL transfert :* RAS + 
+*Nom du PCL d’éclatement:* RAS + 
+*Nom du PCL mise en forme 1 :* Nom du PCL  + 
+*Nom du PCL mise en forme 2:* RAS + 
+*PCL de tolérisation:* RAS + 
+*Nom du fichier en entré du TPT:* RAS + 
+*Nom du PCL TPT :* RAS + 
+*Remarques :* Nom du script Shell + 
+
+==== Partie 6 
+//image
+image::menu_creation_partie6.jpg[Partie6]
+===== Pour les CDP / TAD :
+LA but est de mettre les règles de PSI qu’on appliquera lors d’un PSI +
+----
+Qu'est ce qu'un PSI 
+Ou plan de Sauvegearde informatique . il est activé lors d'un accident majeur sur un des sites de production ( Diderot / d'Alemberg)
+il permet lors de l'arrêt d'un des 2 sites , de faire basculer les CRs qui sont sur les caisses arrêté s sur l'autre site.
+Mais durant le l'apse de temps de bascule les traitements sont arrêtés .
+Afin de ne pas engeorger la machine, et étant donné que les flux CDP representent 1/3 des traitements de la production, on désactive tout ce qui n'est pas vitale.
+on va désactivé tous les flux journalier complet( stock)  ,  qui seront repris automatiquement au prochain passage de ces traitements 
+La desactivation se fait alors sur les TPT et les Unload . 
+Si l'arrêt de la machine est de plus de 24h, on peut aussi dans certains avoir des actions sur les flus CDP partiel ( flux ). Pour facilté les actions , 
+on marque dans ref_CDP la règle qu'on peut appliqué. En effet certains flux partiel , sont de faux partiel ( flux complet mis en partiel),
+certains ont des ispools  en amont ce qui fait qu'ils peuvent être arrêtés, d'autre des PGMS d'extraction par date , ....       
+ 
+----
+.Les règles ont été établit en fonction de +
+* Le type de chargement +
+**	PARTIEL / COMPLET +
+*	Périodicité +
+*	Le type de flux ( HOST , OPE? , remonte ou non dans dTW , ... )  +
+
+.Pour tout flux CDP OPEN  +
+*	Les traitements s’arrêtent lors du PSI passeront après le déblocage, peu importe la périodicité +
+*	REGLE : EXE UNLOAD , EXE TPT +
+
+.Pour Tout flux CDP host COMPLET +
+*	Si non journalier mettre dans règle la périodicité  +
+**		REGLE : MENSUEL , HEBDOMADAIRE, …  +
+*	Si journalier +
+**		REGLE NEXE mise en forme 2 , NEXE TPT ou NEXE mise en forme, NEXE TPT +
+
+.Pour Tout flux CDP host PARTIEL +
+*	Si non journalier mettre dans règle la périodicité  +
+**		REGLE : MENSUEL , HEBDOMADAIRE, …  +
+*	Si journalier +
+**   		Si ispool les diffrentes règles possible sont : 
+***			NEXE mise en forme 2 , NEXE TPT +
+***			NEXE et le nom des PCLs à mettre à NEXE   +
+***			NEXE mise en forme, NEXE TPT +
+**		Si pas ispool  +
+***			A reprendre +
+***			pas un vrai partiel mise à NEXE  +
+***			PGM extacte à date  -Mise à NEXE UNLOAD et TPT +
+
+[WARNING]
+*Nom ispool utilisable pour le PSI :*  +
+ Mettre ISPOOL si le flux a un ispool soit en amont  ou sur un des PCLS CDP   + 
+*Règle de PSI :*  +
+	Les différentes règles qui existent  ( cf ci-dessus )  +
+	
+
+===== Pour les SIDV/SERV/BIGDATA
+RAS
+
+==== Partie 7 
+//image
+image::menu_creation_partie7.jpg[Partie7]
+===== Pour CDP / TAD :
+Au moins 1 zone obligatoire  +
+
+===== Pour SIDV/SERV/BIGDATA
+RAS +
+
+==== Partie 8 
+//image partie 8 
+image::menu_creation_partie8.jpg[Partie8]
+La date de livraison  +
+	2020S21 par exemple  +
+
+==== Génération de la requête
+//image 
+image::menu_creation_generationReq.jpg[Bouton de génération de la Requête]
+
+Le traitement va faire des contrôles sur les zones  +
+S’il y a des anomalies  +
+	Une feuille TXT va s’ouvrir dans notepad++ avec la liste des anomalies  +
+
+Exemple d’anomalie : +
+//image ano 
+image::menu_creation_ano.jpg[Exemple d'Anomalies]
+
+
+Le traitement va aussi faire des  vérifications : +
+Si le flux existe déjà , le traitement vérifie si le TPT renseigné ou le nom du flux existe  +
+- - Si oui il fera une requête de MAJ  +
+- - Sinon une requête de création  +
+
+Dans le cas d’une MAJ , il vérifie si la MAJ va faire impacté plus d’une ligne  +
+	Il produira une requête mais avec des ATTENTION  +
+	Il faudra alors faire des correction soit dans la requête ( créé une ligne de delete puis une creation par exemple , ou changer le nom de l'object name )
+	
+//-------------------------------------------------------------------------------------------------------------
+=== Cas de MAJ de référentiel
+Dans le cas d’un flux qu’on veut mettre à jour , il est fortement conseillé de faire une recherche par nom du flux ou du PCL TPT ( traitement qui charge les données dans CDP ) 
+ Cette recherche pre-remplira les zones de saisie avec les anciennes valeurs
+
+==== Partie 1 
+//image partie  1
+image::menu_creation_MAJ_recherche.jpg[boutons de recherche recherche pour pré-remplissage ]
+
+Saisie du nom du flux ou du PCL TPT, si la recherche renvoie plus d’une ligne , il y aura un message d’anomalie qui demandera d’affiner la sélection en passant par la fenêtre recherche
+Si la recherche renvoie qu’une ligne, l’écran sera alors rempli avec les informations du flux 
+ Il suffira de modifier la zone voulue
+Et de cliquer sur 
+
+==== Partie 2 
+//image partie 2 
+image::menu_creation_MAJ_generationReq.jpg[Bouton generation requête]
+
+Le traitement va faire des contrôles sur les zones 
+S’il y a des anomalies 
+	Une feuille TXT va s’ouvrir dans notepad++ avec la liste des anomalies 
+Exemple d’anomalie :
+
+//image ano
+image::menu_creation_ano.jpg[Exemeple d'Anomalies]
+
+
+// ---------------------------------------------------fenêtre contrôle-------------------------------
+== Fenêtre contrôle
+La table Metatech REF_CDP est très important , car c’est dessus que s’appuit des rapports à destinations des PP métiers et des CRs+
+Nous être sur que la table est conforme à ce qui tourne en production , un e page de contrôle a été rajouté +
+
+.Pour le moment on a 2 contrôles en place 
+	* contrôle par rapport à la table CDP_log ( qui liste tous les flux CDP qui ont été sous teradata )
+	* Contrôle par rapportà la table de purge n table qui liste les caractéristiques de purges du flux CDP ( la purge est hebdomadaire ) 
+
+//image 
+image::menu_controle.jpg[Bouton controle]
+
+La fenêtre comprend 3 zones +
+
+//image
+image::menu_controle_partie.jpg[présentation fenêtre contrôle]
+
+*Le bouton 1 :* Liste flux CDP en prod, pas dans le référentiel +
+*Le bouton 2 :* Liste flux CDP en prod, et qui n’existe pas dans le table de purge CDP  +
+*La zone 3 :* restitution des listes +
+*Le bouton aide :* pour ouvrir la doc d'aide  +
+
+En cliquant sur le bouton Liste flux CDP en prod, pas dans le référentiel, +
+On restitue la liste de  tous les flux CDP qui tournent en prod ( extrait de CDP_log )  et qui ne sont pas dans la table ref_CDP+
+
+En cliquant sur le bouton : Liste   flux CDP en prod, et qui n’existe pas dans le table de purge CDP +
+On restitue la liste des tables CDP qui n’ont pas purge ( table OTL_Purge_CDP) +
+

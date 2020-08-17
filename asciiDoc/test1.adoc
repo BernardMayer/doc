@@ -1,0 +1,70 @@
+Titre
+=====
+Bernard Mayer ET02773
+v3.2.1-SNAPSHOT, 2020-08-14
+:toc:
+
+
+== Introduction
+bla
+//:doctype: book
+bla
+
+
+== Level1
+text.
+text.
+
+=== Level2
+text.
+text.
+
+.Optionnal Title
+usual
+paragraph
+
+.Test en Perl
+[source, perl]
+die 'connect: '.$dbh->errstr;
+
+suite n'est pas du code
+
+Test de note, tip, important, warning, caution
+
+.titre option
+----
+NOTE: premier exemple
+test de note
+
+TIP: test de tip
+
+IMPORTANT: test e important
+
+WARNING: test de warning
+
+CAUTION: test de caution
+----
+paragraphe suivant
+
+https://asciidoc.org/
+
+AsciiDoc cheatsheet
+https://powerman.name/doc/asciidoc
+
+AsciiDoc Syntax Quick Reference
+https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/#admon-bl
+
+asciidoctor.js live preview (extension pour chrome)
+
+http://espadrine.github.io/AsciiDocBox/
+
+
+https://www.tipandshaft.com/podcasts/un-ete-avec-bilou-episode-3/
+
+https://java.developpez.com/tutoriels/java/maven-book/
+https://github.com/ndeloof/apache-maven-book/blob/master/maven.adoc#utiliser-des-tests-fonctionnels
+
+https://openclassrooms.com/fr/courses/4503526-organisez-et-packagez-une-application-java-avec-apache-maven
+
+ Heads up! If your are using Chrome or Opera, in order to use this extension on local files (i.e. files on this computer), you must check the option Allow access to file URLs on the chrome://extensions page
+ 
