@@ -1,0 +1,572 @@
+= Les outils liés aux quais BO BI4 :: TestSecuQuais
+Bernard Mayer
+v1.1, 2020-10-06
+:source-highlighter: coderay
+:toc-title: ToC
+:toc: preamble
+// Permet que la ToC soit numerotee
+:numbered:
+:toclevels: 3
+:imagesdir: ./img
+// :imagedir: ./MOS_Modelisation_UserCode-img
+:ldquo: &laquo;&nbsp;
+:rdquo: &nbsp;&raquo;
+:ge: &ge;
+:le: &le;
+:demicadratin: &ndash;
+
+:description: Je ne sait pas encore ce \
+    que je vais écrire ici...
+    
+----
+TestSecuQuais
+----
+
+
+// ---------------------------------------------------
+
+== Introduction
+
+Rappel : Outil réalisé hors des pratiques usuelles de l'entreprise.
+En conséquence, comporte des particularités, les librairies sont incluses dans les sources, et l'utilitaire `ant` est utilisé en lieu et place de maven.
+
+== Les particularités
+
+=== Les librairies incluses
+
+Voir le répertoire `./lib` 
+
+* `bcprov-jdk15on-1.61.jar` 
+* `jcifs-ng-2.1.4.jar`
+* `json-20190722.jar`
+* `log4j-api-2.5.jar`
+* `log4j-core-2.5.jar`
+* `log4j-slf4j-impl-2.5.jar`
+* `slf4j-api-1.7.24.jar`
+
+
+
+=== L'utilitaire `ant`
+
+Si vous voulez utiliser TestSecuQuais, vous devez installer cet outil sur votre poste de travail.
+Cela est facilement réalisable, cet outil est lui-même en java.
+
+Le site `ant` est disponible à cette URL -> link:https://ant.apache.org/[]
+
+Bien que nous disposions de JRE assez anciennes {demicadratin}comme la version 1.7{demicadratin}, 
+je n'ai pas chargé le *binaire* de la version `apache-ant-1.9.15-bin`, 
+mais la version `apache-ant-1.10.9-bin` qui requiert une *JRE {ge} 1.8* +
+Puis j'ai décompressé cette archive quelque part sur mon disque dur (_dans un répertoire dédié à mes propres outils..._) +
+Ceci fait, il est possible {demicadratin}moyennant la rédaction d'un petit script bash de lancement{demicadratin} d'utiliser `ant`.
+
+Quant à utiliser `ant`, une fois de plus, internet est notre ami, car il a présenté la documentation de JM Doudoux, assez centrale pour ce qui touche java et son écosystème.
+
+Chapitre sur `ant` --> link:https://www.jmdoudoux.fr/java/dej/chap-ant.htm[]
+
+=== Cinématique du fonctionnement
+
+Par chance, l'auteur du programme TestSecuQuais a laissé le traditionnel fichier `build.xml`, qui est le fichier d'instructions / de configuration que `ant` utilise par défaut.
+
+Un exemple de fichier script est proposé en annexe.
+
+Globalement, l'usage de `ant` est d'exécuter des opérations, afin d'atteindre un but / une cible.+
+Le fichier qu'il utilise définit ces cibles, et les actions à mener pour les atteindre.
+
+Ici, nous allons utiliser 2 cibles :
+
+* `jar` pour compiler / construire l'outil
+* `run` pour lancer l'outil
+
+==== Construction
+Opération lancé par l'incantation `ant jar` + 
+qui va nous retourner :
+----
+compile:
+    [mkdir] Created dir: D:\Workspace\git\test_securisation_des_quais_sap_bi4_java\build\classes
+    [javac] Compiling 5 source files to D:\Workspace\git\test_securisation_des_quais_sap_bi4_java\build\classes
+     [copy] Copying 9 files to D:\Workspace\git\test_securisation_des_quais_sap_bi4_java\build\classes
+
+jar:
+    [mkdir] Created dir: D:\Workspace\git\test_securisation_des_quais_sap_bi4_java\build\jar
+      [jar] Building jar: D:\Workspace\git\test_securisation_des_quais_sap_bi4_java\build\jar\TestSecuQuais.jar
+----
+
+==== Fonctionnement
+Opération lancé par l'incantation `ant run`
+
+// NOTE TIP IMPORTANT WARNING CAUTION
+IMPORTANT: Je ne lance pas TestSecuQuais, car il réalise des opérations de fichiers qui se réalisent sur des espaces disques des Caisses Régionales.
+
+Vu avec Maxime Sorel ; des blocs {ldquo}users*\***{rdquo} présents dans le fichier de configuration, 
+seul le bloc "users" est parcouru par le programme java.
+Le fichier (sauvegardé en `config-ORIGINE.json`) a été utilisé pour tester en production. 
+je renomme le bloc users en userPROD, et crée un nouveau bloc users, afin de tester a minima.
+
+IMPORTANT: Ne pas oublier de vérifier la présence / de créer si besoin le répertoire `out/` dans l'arborescence de l'outil ! + 
+Cela provoque l'erreur suivante : +
+`[java] ## MAIN sur smb://CPZUYD2APPVG.yres.ytech/ZUY10BURA/ZZR10/ avec YCAM\OR52770 (Niveau=0)
+[java] java.io.FileNotFoundException: out\result_20201106111830.csv (Le chemin dÆaccÞs spÚcifiÚ est introuvable)`
+
+Tenir compte du temps d'exécution, l'espace ZUR10 dure plus d'une demie-heure (_certes, via accès mobilité_)...
+----
+     [java] Fin des tests
+     [java] -----------------------------------------------------
+
+BUILD SUCCESSFUL
+Total time: 36 minutes 31 seconds
+----
+
+voir
+
+----
+     [java] Fin des tests
+     [java] -----------------------------------------------------
+
+BUILD SUCCESSFUL
+Total time: 147 minutes 21 seconds
+----
+
+CAUTION: L'outil nécessite java {ge} 1.8 ; Les machines dites {ldquo}VM{rdquo} elles, hébergent une JRE 1.7 !
+
+== Tests
+
+=== Truc minimal
+Nous avons des disques distant sur nos postes de travail, autant les utiliser...
+
+TIP: Depuis le bastion, quand on est en télétravail.
+
+Dans le bastion, je vérifie que j'ai le droit de me relier à un disque distant.
+[source,dos]
+----
+net use s: \\CPTTPD2BURV6.ZRES.ZTECH\TTP10BURS
+----
+Pour déterminer un nom de partage, vous pouvez ouvrir une console sur votre poste de travail, et saisir la commande `net use` pour faire leur connaissance.
+[source,dos]
+----
+C:\AncienDisqueD>net use
+Les nouvelles connexions seront mémorisées.
+
+
+État         Local     Distant                   Réseau
+
+-------------------------------------------------------------------------------
+Non disponib S:        \\CPTTPD2BURV6.ZRES.ZTECH\TTP10BURS
+                                                Microsoft Windows Network
+Non disponib U:        \\CPTTPD2BURV8.ZRES.ZTECH\TTP10BURD
+                                                Microsoft Windows Network
+Non disponib V:        \\CPTTPD2BURV7.ZRES.ZTECH\TTP10BURC
+                                                Microsoft Windows Network
+OK           P:        \\CPTTPD2BURV2.ZRES.ZTECH\TTP10BURP\ET02773
+                                                Microsoft Windows Network
+La commande s’est terminée correctement.
+----
+
+=== Un truc minimal ... qui fonctionne (27/11/2020)
+
+==== préparation
+Testé depuis le bastion `tep10-bstg_p3.ca-technologies.fr` avec mon utilisateur ZGIE\ET02773 +
+L'utilitaire `ant` n'est pas disponible sur le bastion, je l'ai installé sous `O:\Public\apache-ant-1.10.9` +
+L'outil est dans le répertoire `O:\Public\ET02773\test_securisation_des_quais_sap_bi4_java` +
+Au même endroit, il y a un batch pour le lancer :
+
+[source,dos]
+----
+@echo off
+set oldPath=%PATH%
+rem set JAVA_HOME=C:\LOGICIELS\JAVA\jdk1.8.0_25
+set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_25
+set ANT_HOME=O:\Public\apache-ant-1.10.9
+@rem set CLASSPATH=%JAVA_HOME%\jre\lib
+set PATH=%ANT_HOME%\bin;%JAVA_HOME%\bin;%PATH%
+
+@rem ant -buildfile build.xml jar
+ant -buildfile build.xml run
+
+set PATH=%oldPath%
+----
+
+Dans la machine cible, un répertoire a été créé. +
+image:TrucMinimal_disqueDistant.png[]
+
+
+----
+{
+	"conf": {
+		"depthMax": 10,
+		"testConnectionOnly": false,
+		"cleanOnly": false,
+		"userADM": {"user": "ET02773", "pass": "yYzZaAbBcCdD@@55", "domain": "ZGIE"},
+		"userADM_oldProd": {"user": "ETA6834", "pass": "HtuJdAff15tayZVhJnNu", "domain": "ZGIE"},
+		"userADM_zxr10": {"user": "ETA6834", "pass": "HtuJdAff15tayZVhJnNu", "domain": "YGIE"},
+		"tests": {
+			"fileToRead": "pourtest.txt",
+			"fileToCreate": "_test.txt",
+			"fileRenameTo": "_test2.txt",
+			"folderToCreate": "_TEST/",
+			"folderRenameTo": "_TEST2/"
+		},
+		"foldersToTests": [
+			"/BOBJ_D/ACCES_CAISSE/",
+			"/BOBJ_D/ACCES_COOPERATIONS/",
+			"/BOBJ_D/ACCES_SECURISES_CAISSE/",
+			"/BOBJ_S/"
+		],
+		"users": [
+			{"user": "ET02773", "pass": "yYzZaAbBcCdD@@55", "domain": "ZGIE", "path": "\\\\CPTTPD2BURV6.ZRES.ZTECH\\TTP10BURS\\SER_DATA_FACTORY\\COMMUN\\DONNEES\\"}
+		]
+	}
+}
+----
+
+==== Affichage du lancement :
+----
+O:\Public\ET02773\test_securisation_des_quais_sap_bi4_java>TestSecuQuais_Build.cmd
+Buildfile: O:\Public\ET02773\test_securisation_des_quais_sap_bi4_java\build.xml
+
+compile:
+     [copy] Copying 1 file to O:\Public\ET02773\test_securisation_des_quais_sap_bi4_java\build\classes
+
+jar:
+      [jar] Building jar: O:\Public\ET02773\test_securisation_des_quais_sap_bi4_java\build\jar\TestSecuQuais.jar
+
+run:
+     [java] TestSecuQuais version : 1.7
+     [java] -----------------------------------------------------
+     [java] LISTE DES PARAMETRES
+     [java] oldFile:pourtest.txt
+     [java] newFile:_test.txt
+     [java] newFile2:_test2.txt
+     [java] newFolder:_TEST/
+     [java] newFolder2:_TEST2/
+     [java] adminDomain:ZGIE
+     [java] adminUser:ET02773
+     [java] adminPass:yYzZaAbBcCdD@@55
+     [java] niveauMax:10
+     [java] testConnectOnly:false
+     [java] Folder:/BOBJ_D/ACCES_CAISSE/
+     [java] Folder:/BOBJ_D/ACCES_COOPERATIONS/
+     [java] Folder:/BOBJ_D/ACCES_SECURISES_CAISSE/
+     [java] Folder:/BOBJ_S/
+     [java] User:ET02773 // yYzZaAbBcCdD@@55 // ZGIE // smb://CPTTPD2BURV6.ZRES.ZTECH/TTP10BURS/SER_DATA_FACTORY/COMMUN/DONNEES/
+     [java] -----------------------------------------------------
+     [java]
+     [java] RESULT:LOGIN;DOSSIER;AccÚder dossier;Lire fichier;Modifier fichier;Renommer fichier;CrÚer fichier;Supprimer fichier;Renom
+mer dossier;Supprimer dossier;CrÚer sous-dossier;Renommer sous-dossier;CrÚer fichier dans sous-dossier;Supprimer fichier dans sous-do
+ssier;Supprimer sous-dossier
+----
+
+==== Affichage d'une ligne
+----
+     [java] ## MAIN sur smb://CPTTPD2BURV6.ZRES.ZTECH/TTP10BURS/SER_DATA_FACTORY/COMMUN/DONNEES/ avec ZGIE\ET02773 (Niveau=0)
+     [java] 1. Test accÞs au dossier /TTP10BURS/SER_DATA_FACTORY/COMMUN/DONNEES/ > OK
+     [java] A. CrÚation du fichier temporaire de test dans le dossier /TTP10BURS/SER_DATA_FACTORY/COMMUN/DONNEES/
+     [java] 2. Test accÞs au fichier /TTP10BURS/SER_DATA_FACTORY/COMMUN/DONNEES/pourtest.txt > OK
+     [java] 3. Test modification du fichier /TTP10BURS/SER_DATA_FACTORY/COMMUN/DONNEES/pourtest.txt > OK
+     [java] 4. Test renommage fichier /TTP10BURS/SER_DATA_FACTORY/COMMUN/DONNEES/pourtest.txt > OK
+     [java] 5. Test crÚation fichier /TTP10BURS/SER_DATA_FACTORY/COMMUN/DONNEES/_test.txt > OK
+     [java] 6. Test suppression fichier /TTP10BURS/SER_DATA_FACTORY/COMMUN/DONNEES/_test.txt > OK
+     [java] 7. Test renommer dossier /TTP10BURS/SER_DATA_FACTORY/COMMUN/DONNEES/ > OK
+     [java] 8. Test suppression dossier /TTP10BURS/SER_DATA_FACTORY/COMMUN/DONNEES/ > Non rÚalisÚ
+     [java] 9. Test crÚation sous-dossier /TTP10BURS/SER_DATA_FACTORY/COMMUN/DONNEES/_TEST/ > OK
+     [java] 10. Test renommage sous-dossier /TTP10BURS/SER_DATA_FACTORY/COMMUN/DONNEES/_TEST/ > OK
+     [java] 11. Test crÚation fichier /TTP10BURS/SER_DATA_FACTORY/COMMUN/DONNEES/_TEST/_test.txt > OK
+     [java] 12. Test suppression fichier /TTP10BURS/SER_DATA_FACTORY/COMMUN/DONNEES/_TEST/_test.txt > OK
+     [java] 13. Test suppression sous-dossier /TTP10BURS/SER_DATA_FACTORY/COMMUN/DONNEES/_TEST/ > OK
+     [java] Z. Nettoyage du dossier /TTP10BURS/SER_DATA_FACTORY/COMMUN/DONNEES/
+     [java] RESULT:ET02773;/TTP10BURS/SER_DATA_FACTORY/COMMUN/DONNEES/;O;O;O;O;O;O;O;N;O;O;O;O;O
+----
+
+==== Affichage de la fin
+----
+     [java] Fin des tests
+     [java] -----------------------------------------------------
+
+BUILD SUCCESSFUL
+Total time: 3 minutes 21 seconds
+----     
+
+
+==== Fichier généré pour Excel dans le répertoire out/
+
+result_20201202094934.csv
+
+----
+LOGIN;DOSSIER;Accéder dossier;Lire fichier;Modifier fichier;Renommer fichier;Créer fichier;Supprimer fichier;Renommer dossier;Supprimer dossier;Créer sous-dossier;Renommer sous-dossier;Créer fichier dans sous-dossier;Supprimer fichier dans sous-dossier;Supprimer sous-dossier
+ET02773;/TTP10BURS/SER_DATA_FACTORY/COMMUN/DONNEES/;O;O;O;O;O;O;O;N;O;O;O;O;O
+ET02773;/TTP10BURS/SER_DATA_FACTORY/COMMUN/DONNEES/BOBJ_D/;O;O;O;O;O;O;O;N;O;O;O;O;O
+ET02773;/TTP10BURS/SER_DATA_FACTORY/COMMUN/DONNEES/BOBJ_D/ACCES_CAISSE/;O;O;O;O;O;O;O;N;O;O;O;O;O
+ET02773;/TTP10BURS/SER_DATA_FACTORY/COMMUN/DONNEES/BOBJ_D/ACCES_COOPERATIONS/;O;O;O;O;O;O;O;N;O;O;O;O;O
+ET02773;/TTP10BURS/SER_DATA_FACTORY/COMMUN/DONNEES/BOBJ_D/ACCES_SECURISES_CAISSE/;O;O;O;O;O;O;O;N;O;O;O;O;O
+ET02773;/TTP10BURS/SER_DATA_FACTORY/COMMUN/DONNEES/BOBJ_S/;O;O;O;O;O;O;O;N;O;O;O;O;O
+----
+
+
+=== Essai dans ZXR10
+
+==== Modification de config.json
+----
+{
+	"conf": {
+		"depthMax": 10,
+		"testConnectionOnly": false,
+		"cleanOnly": false,
+		"userADM": {"user": "ETA2458", "pass": "yYzZaAbBcCdD@@55", "domain": "ZGIE"},
+		"userADM_test1": {"user": "ET02773", "pass": "yYzZaAbBcCdD@@55", "domain": "ZGIE"},
+		"userADM_oldProd": {"user": "ETA6834", "pass": "HtuJdAff15tayZVhJnNu", "domain": "ZGIE"},
+		"userADM_zxr10": {"user": "ETA6834", "pass": "HtuJdAff15tayZVhJnNu", "domain": "YGIE"},
+		"tests": {
+			"fileToRead": "pourtest.txt",
+			"fileToCreate": "_test.txt",
+			"fileRenameTo": "_test2.txt",
+			"folderToCreate": "_TEST/",
+			"folderRenameTo": "_TEST2/"
+		},
+		"foldersToTests": [
+			"/BOBJ_D/ACCES_CAISSE/",
+			"/BOBJ_D/ACCES_COOPERATIONS/",
+			"/BOBJ_D/ACCES_SECURISES_CAISSE/",
+			"/BOBJ_S/"
+		],
+		"users": [
+			{"user": "OR52770", "pass": "Acces_Quai_ZXR10", "domain": "YCAM", "path": "\\\\CPZUYD2APPVG.yres.ytech\\ZUY10BURA\\ZXR10\\"},
+			{"user": "OR52771", "pass": "Acces_Quai_ZXR10", "domain": "YCAM", "path": "\\\\CPZUYD2APPVG.yres.ytech\\ZUY10BURA\\ZXR10\\"},
+			{"user": "OR52770", "pass": "TEST_QU41", "domain": "YCAM", "path": "\\\\CPZUYD2APPVG.yres.ytech\\ZUY10BURA\\ZZR10\\"},
+			{"user": "OR52771", "pass": "TEST_QU41", "domain": "YCAM", "path": "\\\\CPZUYD2APPVG.yres.ytech\\ZUY10BURA\\ZZR10\\"}
+		],		
+		"users_MINI": [
+			{"user": "ET02773", "pass": "yYzZaAbBcCdD@@55", "domain": "ZGIE", "path": "\\\\CPTTPD2BURV6.ZRES.ZTECH\\TTP10BURS\\SER_DATA_FACTORY\\COMMUN\\DONNEES\\"}
+		]
+
+	}
+}
+----
+
+J'ai changé le `userADM` et le bloc `users` +
+userADM est sauvegardé en userADM_test1, et le bloc users est sauvegardé en users_MINI
+
+Les fichiers générés, +
+dans out/ result_20201202112335.csv +
+dans logs/ log_20201202112335.txt +
+
+==== result_20201202112335.csv
+
+----
+LOGIN;DOSSIER;Accéder dossier;Lire fichier;Modifier fichier;Renommer fichier;Créer fichier;Supprimer fichier;Renommer dossier;Supprimer dossier;Créer sous-dossier;Renommer sous-dossier;Créer fichier dans sous-dossier;Supprimer fichier dans sous-dossier;Supprimer sous-dossier
+OR52770;/ZUY10BURA/ZXR10/;O;N;N;N;N;N;N;N;N;N;N;N;N
+OR52770;/ZUY10BURA/ZXR10/Donnees/;O;N;N;N;N;N;N;N;N;N;N;N;N
+OR52770;/ZUY10BURA/ZXR10/Donnees/BOBJ_D/;O;O;O;O;O;O;N;N;O;O;O;O;O
+OR52770;/ZUY10BURA/ZXR10/Donnees/BOBJ_D/ACCES_CAISSE/;O;N;N;N;N;N;N;N;N;N;N;N;N
+OR52770;/ZUY10BURA/ZXR10/Donnees/BOBJ_D/ACCES_CAISSE/ARCH_TRANSFERT/;O;N;N;N;N;N;N;N;N;N;N;N;N
+OR52770;/ZUY10BURA/ZXR10/Donnees/BOBJ_D/ACCES_CAISSE/ARCH_TRANSFERT/AXUPOC1J/;O;O;N;N;N;N;N;N;O;N;N;N;O
+OR52770;/ZUY10BURA/ZXR10/Donnees/BOBJ_D/ACCES_CAISSE/ARCH_TRANSFERT/BOB93/;O;O;N;N;N;N;N;N;O;N;N;N;O
+OR52770;/ZUY10BURA/ZXR10/Donnees/BOBJ_D/ACCES_CAISSE/ARCH_TRANSFERT/EMABIDE2/;O;O;N;N;N;N;N;N;O;N;N;N;O
+OR52770;/ZUY10BURA/ZXR10/Donnees/BOBJ_D/ACCES_CAISSE/ARCH_TRANSFERT/EMAC1BBL/;O;O;N;N;N;N;N;N;O;N;N;N;O
+OR52770;/ZUY10BURA/ZXR10/Donnees/BOBJ_D/ACCES_CAISSE/ARCH_TRANSFERT/FDPINF1/;O;O;N;N;N;N;N;N;O;N;N;N;O
+OR52770;/ZUY10BURA/ZXR10/Donnees/BOBJ_D/ACCES_CAISSE/ARCH_TRANSFERT/GREE1CDJ/;O;O;N;N;N;N;N;N;O;N;N;N;O
+OR52770;/ZUY10BURA/ZXR10/Donnees/BOBJ_D/ACCES_CAISSE/ARCH_TRANSFERT/PMRXSB11/;O;O;N;N;N;N;N;N;O;N;N;N;O
+OR52770;/ZUY10BURA/ZXR10/Donnees/BOBJ_D/ACCES_CAISSE/ARCH_TRANSFERT/PRBPREAB/;O;O;N;N;N;N;N;N;O;N;N;N;O
+OR52770;/ZUY10BURA/ZXR10/Donnees/BOBJ_D/ACCES_CAISSE/ARCH_TRANSFERT/TablesPrivees/;O;O;N;N;N;N;N;N;O;N;N;N;O
+OR52770;/ZUY10BURA/ZXR10/Donnees/BOBJ_D/ACCES_CAISSE/ARCH_TRANSFERT/TIKBURA1/;O;O;N;N;N;N;N;N;O;N;N;N;O
+OR52770;/ZUY10BURA/ZXR10/Donnees/BOBJ_D/ACCES_CAISSE/EXPORT/;O;O;N;N;N;N;N;N;O;N;N;N;O
+OR52770;/ZUY10BURA/ZXR10/SAS/;O;N;N;N;N;N;N;N;N;N;N;N;N
+OR52771;/ZUY10BURA/ZXR10/;O;N;N;N;N;N;N;N;N;N;N;N;N
+OR52771;/ZUY10BURA/ZXR10/Donnees/;O;N;N;N;N;N;N;N;N;N;N;N;N
+OR52771;/ZUY10BURA/ZXR10/Donnees/BOBJ_D/;O;O;O;O;O;O;N;N;O;O;O;O;O
+OR52771;/ZUY10BURA/ZXR10/Donnees/BOBJ_D/ACCES_CAISSE/;O;N;N;N;N;N;N;N;N;N;N;N;N
+OR52771;/ZUY10BURA/ZXR10/Donnees/BOBJ_D/ACCES_CAISSE/IMPORT/;O;O;O;O;O;O;N;N;O;O;O;O;O
+OR52771;/ZUY10BURA/ZXR10/SAS/;O;N;N;N;N;N;N;N;N;N;N;N;N
+OR52770;/ZUY10BURA/ZZR10/;N;N;N;N;N;N;N;N;N;N;N;N;N
+OR52771;/ZUY10BURA/ZZR10/;N;N;N;N;N;N;N;N;N;N;N;N;N
+----
+
+==== Log pour la première ligne :
+----
+[2020-12-02 11:23:35] [INFOS  ] ## MAIN sur smb://CPZUYD2APPVG.yres.ytech/ZUY10BURA/ZXR10/ avec YCAM\OR52770 (Niveau=0) 
+[2020-12-02 11:23:45] [INFOS  ] A. Création du fichier temporaire de test dans le dossier /ZUY10BURA/ZXR10/ 
+[2020-12-02 11:23:53] [GRAVE  ] testCreateFile:SmbException(smb://CPZUYD2APPVG.yres.ytech/ZUY10BURA/ZXR10//pourtest.txt) : Logon failure: unknown user name or bad password. 
+[2020-12-02 11:23:53] [GRAVE  ] testReadFile:SmbException(smb://CPZUYD2APPVG.yres.ytech/ZUY10BURA/ZXR10/pourtest.txt) : The system cannot find the file specified. 
+[2020-12-02 11:23:53] [GRAVE  ] testModifyFile:SmbException(smb://CPZUYD2APPVG.yres.ytech/ZUY10BURA/ZXR10/pourtest.txt) : Access is denied. 
+[2020-12-02 11:23:53] [GRAVE  ] testRename:SmbException(smb://CPZUYD2APPVG.yres.ytech/ZUY10BURA/ZXR10/pourtest.txt, smb://CPZUYD2APPVG.yres.ytech/ZUY10BURA/ZXR10/_test.txt) : The system cannot find the file specified. 
+[2020-12-02 11:23:53] [GRAVE  ] testCreateFile:SmbException(smb://CPZUYD2APPVG.yres.ytech/ZUY10BURA/ZXR10/_test.txt) : Access is denied. 
+[2020-12-02 11:23:53] [GRAVE  ] testRename:SmbException(smb://CPZUYD2APPVG.yres.ytech/ZUY10BURA/ZXR10/, smb://CPZUYD2APPVG.yres.ytech/ZUY10BURA/ZXR10_TEST/) : Access is denied. 
+[2020-12-02 11:23:53] [GRAVE  ] testCreateFolder:SmbException(smb://CPZUYD2APPVG.yres.ytech/ZUY10BURA/ZXR10/_TEST/) : Access is denied. 
+[2020-12-02 11:23:53] [GRAVE  ] testRename:SmbException(smb://CPZUYD2APPVG.yres.ytech/ZUY10BURA/ZXR10/_TEST/, smb://CPZUYD2APPVG.yres.ytech/ZUY10BURA/ZXR10/_TEST2/) : The system cannot find the file specified. 
+[2020-12-02 11:23:53] [GRAVE  ] testCreateFile:SmbException(smb://CPZUYD2APPVG.yres.ytech/ZUY10BURA/ZXR10/_TEST/_test.txt) : The system cannot find the path specified. 
+[2020-12-02 11:23:53] [INFOS  ] Z. Nettoyage du dossier /ZUY10BURA/ZXR10/ 
+[2020-12-02 11:23:59] [GRAVE  ] testDelete:SmbException(smb://CPZUYD2APPVG.yres.ytech/ZUY10BURA/ZXR10/_TEST/) : Logon failure: unknown user name or bad password. 
+[2020-12-02 11:24:00] [GRAVE  ] testDelete:SmbException(smb://CPZUYD2APPVG.yres.ytech/ZUY10BURA/ZXR10/_TEST2/) : Logon failure: unknown user name or bad password. 
+[2020-12-02 11:24:00] [GRAVE  ] testDelete:SmbException(smb://CPZUYD2APPVG.yres.ytech/ZUY10BURA/ZXR10/_test.txt) : Logon failure: unknown user name or bad password. 
+[2020-12-02 11:24:00] [GRAVE  ] testDelete:SmbException(smb://CPZUYD2APPVG.yres.ytech/ZUY10BURA/ZXR10/_test2.txt) : Logon failure: unknown user name or bad password. 
+[2020-12-02 11:24:00] [GRAVE  ] testDelete:SmbException(smb://CPZUYD2APPVG.yres.ytech/ZUY10BURA/ZXR10/pourtest.txt) : Logon failure: unknown user name or bad password. 
+[2020-12-02 11:24:00] [INFOS  ] RESULT:OR52770;/ZUY10BURA/ZXR10/;O;N;N;N;N;N;N;N;N;N;N;N;N
+----
+
+==== Log pour la ligne où (presque) tout va bien :
+----
+[2020-12-02 11:24:15] [INFOS  ] ## MAIN sur smb://CPZUYD2APPVG.yres.ytech/ZUY10BURA/ZXR10/Donnees/BOBJ_D/ avec YCAM\OR52770 (Niveau=2) 
+[2020-12-02 11:24:15] [INFOS  ] A. Création du fichier temporaire de test dans le dossier /ZUY10BURA/ZXR10/Donnees/BOBJ_D/ 
+[2020-12-02 11:24:23] [GRAVE  ] testCreateFile:SmbException(smb://CPZUYD2APPVG.yres.ytech/ZUY10BURA/ZXR10/Donnees/BOBJ_D//pourtest.txt) : Logon failure: unknown user name or bad password. 
+[2020-12-02 11:24:24] [GRAVE  ] testRename:SmbException(smb://CPZUYD2APPVG.yres.ytech/ZUY10BURA/ZXR10/Donnees/BOBJ_D/, smb://CPZUYD2APPVG.yres.ytech/ZUY10BURA/ZXR10/Donnees/BOBJ_D_TEST/) : Access is denied. 
+[2020-12-02 11:24:24] [INFOS  ] Z. Nettoyage du dossier /ZUY10BURA/ZXR10/Donnees/BOBJ_D/ 
+[2020-12-02 11:24:30] [GRAVE  ] testDelete:SmbException(smb://CPZUYD2APPVG.yres.ytech/ZUY10BURA/ZXR10/Donnees/BOBJ_D/_TEST/) : Logon failure: unknown user name or bad password. 
+[2020-12-02 11:24:30] [GRAVE  ] testDelete:SmbException(smb://CPZUYD2APPVG.yres.ytech/ZUY10BURA/ZXR10/Donnees/BOBJ_D/_TEST2/) : Logon failure: unknown user name or bad password. 
+[2020-12-02 11:24:30] [GRAVE  ] testDelete:SmbException(smb://CPZUYD2APPVG.yres.ytech/ZUY10BURA/ZXR10/Donnees/BOBJ_D/_test.txt) : Logon failure: unknown user name or bad password. 
+[2020-12-02 11:24:30] [GRAVE  ] testDelete:SmbException(smb://CPZUYD2APPVG.yres.ytech/ZUY10BURA/ZXR10/Donnees/BOBJ_D/_test2.txt) : Logon failure: unknown user name or bad password. 
+[2020-12-02 11:24:30] [GRAVE  ] testDelete:SmbException(smb://CPZUYD2APPVG.yres.ytech/ZUY10BURA/ZXR10/Donnees/BOBJ_D/pourtest.txt) : Logon failure: unknown user name or bad password. 
+[2020-12-02 11:24:30] [INFOS  ] RESULT:OR52770;/ZUY10BURA/ZXR10/Donnees/BOBJ_D/;O;O;O;O;O;O;N;N;O;O;O;O;O 
+----
+
+==== Mise en forme du fichier résultat
+// // // https://blog.mrhaki.com/2014/11/awesome-asciidoctor-csv-and-dsv-tables.html 
+// // // https://github.com/asciidoctor/asciidoctor.org/blob/master/docs/_includes/table-data.adoc
+// // // https://alvinalexander.com/photos/how-to-specify-asciidoc-table-column-separator/
+//[format="dsv", options="header"]
+[format="csv", separator=";", options="header"]
+|===
+include::../out/result_20201202112335.csv[]
+|===
+
+// -------------------------------------------------------------------
+// <<< pour page break, et ''' pour ligne horizontale
+<<<
+== Annexes
+
+=== Le fichier script à rédiger pour lancer l'outil TestSecuQuais
+
+On constate la présence du mot clef {ldquo}jar{rdquo}, qui va compiler et assembler l'outil. + 
+Ce mot clef pourrait très bien être remplacé par {ldquo}run{rdquo} afin de lancer l'outil. + 
+Bien sûr, remplacez les chemins, les noms par ce qu'il convient pour vous.
+
+[source,shell]
+----
+@echo off
+set oldPath=%PATH%
+set JAVA_HOME=C:\LOGICIELS\JAVA\jdk1.8.0_25
+set ANT_HOME=C:\AncienDisqueD\myTools\apache-ant-1.10.9
+set PATH=%PATH%;%ANT_HOME%\bin
+
+ant -buildfile build.xml jar
+
+set PATH=%oldPath%
+----
+
+=== Le fichier build.xml utilisé par `ant`
+[source,xml]
+----
+<project name="TestSecuQuais"  default="main"  basedir=".">
+	<property name="lib.dir"     value="lib" />
+	<property name="src.dir"     value="src" />
+	<property name="conf.dir"    value="conf" />
+    <property name="build.dir"   value="build" />
+    <property name="classes.dir" value="${build.dir}/classes" />
+    <property name="jar.dir"     value="${build.dir}/jar" />
+	<property name="jar.file"    value="${jar.dir}/${ant.project.name}.jar" />
+    <property name="main-class"  value="com.CATS.TestSecuQuais" />
+	<property name="version.num" value="1.7" />
+	
+    <path id="classpath">
+        <fileset dir="${lib.dir}" includes="**/*.jar" />
+    </path>
+	
+	<target name="main" depends="run" description="Create project">
+		<echo>Creating project...</echo>
+	</target>
+	
+	<target name="clean">
+	    <delete dir="${build.dir}"/>
+	</target>
+	
+	<target name="compile" description="Compile target">
+		<mkdir dir="${classes.dir}" />
+		<javac 
+			srcdir="${src.dir}" 
+			destdir="${classes.dir}" 
+			includeantruntime="false"
+			encoding="cp1252">
+			<classpath refid="classpath" />	
+		</javac>
+		<copy todir="${classes.dir}">
+            <fileset dir="${conf.dir}" excludes="**/*.java"/>
+			<fileset dir="${lib.dir}" excludes="**/*.java"/>
+        </copy>
+	</target>
+	
+	<target name="jar" description="Jar target" depends="compile">
+		<mkdir dir="${jar.dir}" />
+		
+		
+		<manifestclasspath property="jar.classpath" jarfile="${jar.file}">
+            <classpath>
+                <fileset dir="${lib.dir}" includes="*.jar"/>
+            </classpath>
+        </manifestclasspath>
+			
+		<jar destfile="${jar.file}" basedir="${classes.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="${main-class}" />
+            	<attribute name="Implementation-Version" value="${version.num}" /> 
+				<attribute name="Specification-Vendor"   value="CGI" />
+				<attribute name="Class-Path" value="${jar.classpath}" />
+            </manifest>
+        </jar>
+	</target>
+	
+	<target name="run" depends="jar">
+        <java fork="true" classname="${main-class}">
+        	<sysproperty key="log4j.configurationFile" value="file:///${basedir}/conf/log4j.properties" />
+            <classpath>
+                <path refid="classpath"/>
+                <path location="${jar.file}"/>
+            </classpath>
+        </java>
+    </target>
+	
+</project>
+----
+
+=== 3 questions à l'auteur (Maxime Jumel) le 6 novembre 2020
+----
+1.	Qui est « quai de données » et « quai de dépôt » entre BOB_J et BOB_D ?
+2.	Est-il possible, en réduisant le nombre de cibles dans config.json, de faire des essais un peu n’importe quand ?
+3.	Je ne me rappelle plus tes explications entre les cibles définies dans config.json ; users vs users_zxr10
+----
+->
+----
+1.	Quai de données = BOBJ_D   //  Quai de dépôt = BOBJ_S
+2.	Oui, tu peux tester. Je te conseille de :
+•	Passer l’option testConnectionOnly à true
+•	Passer sur les connexions à l’homol si tu as les accès (utiliser les infos des blocs ZXR10)
+3.	Dans le json que je vous ai transmis :
+•	Users = liste des comptes de service BO de production
+•	users_zxr10 = listes des comptes créés en homol pour valider la sécurité CAGIP
+A noter que les « vrais » tests sont principalement en homol. C’est là qu’on faisait les aller/retours avec CAGIP sur la sécurité
+Une fois que c’était calé en homol, on validait la MEP
+Et je relancais le script en prod juste pour m’assurer que tout était correctement livré mais c’est optionnel
+Il y a le même fonctionnement avec userADM vs userADM_zxr10 car le domaine est différent
+A noter que les blocs *_zxr10 ne sont pas pris en compte par le programme. Ils me servaient surtout de notes pour conserver les infos de l’environnement non utilisé
+----
+
+=== Courriel [Quais BO] user et MdP à Maxime Jumel + Nicolas Babin + Cyril Jambard
+
+.../... 
+
+Mon problème est qu’il me semble que ces utilisateurs hors prod ne fonctionnent plus (MdP périmé ?), et que je n’ai pas osé tester en prod. 
+Mais peut-être que cela est dû à l’architecture et à la sécurité dans laquelle nous évoluons en télétravail ?
+Il conviendrait que dans un avenir assez proche, nous soyons capable de faire tourner cet outil ; donc de construire un fichier de conf avec des valeurs dont nous sommes *certains*.
+
+Donc :
+Avons-nous tant pour bo3 que pour bo4,   tant en prod que hors prod,   
+*une liste d’utilisateurs windows, associé avec l’URN de leur quai de dépôt ?*
+
+->
+
+Voici le nouveau mot de passe pour les 2 premiers comptes Hors Prod : Acces_Quai_ZXR10
+
+->
+
+Pour la prod, les comptes fonctionnent car ils sont utilisés par BO tous les jours.
+Pour le hors prod, effectivement les mots de passe ont expiré. 
+Pour tester, je viens de réinitialiser les 2 premiers : OR52770 et OR52771.
+Reste les autres à faire, je ne sais qui doit s’en charger (je le fais en me connectant à la VM 10.166.218.44).
+Les comptes CSA* étant des comptes de service, normalement tu ne devrais pas avoir de problème.
+
