@@ -423,7 +423,7 @@ OR52771;/ZUY10BURA/ZZR10/;N;N;N;N;N;N;N;N;N;N;N;N;N
 //[format="dsv", options="header"]
 [format="csv", separator=";", options="header"]
 |===
-include::../out/result_20201202112335.csv[]
+include::./result_20201202112335.csv[]
 |===
 
 // -------------------------------------------------------------------
