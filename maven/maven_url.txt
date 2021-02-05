@@ -1,0 +1,3 @@
+https://openclassrooms.com/fr/courses/4503526-organisez-et-packagez-une-application-java-avec-apache-maven
+https://github.com/ndeloof/apache-maven-book
+https://gokan-ekinci.developpez.com/tutoriels/java/introduction-bien-debuter-avec-maven/

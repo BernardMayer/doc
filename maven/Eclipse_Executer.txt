@@ -1,0 +1,18 @@
+Nom	Java_DTWH_MOS_Editor_Build_Install
+Base directory	${workspace_loc:/Java_DTWH_MOS_Editor_Build}
+Goals	clean install
+Profiles	matiere.java
+
+
+Nom	Java_DTWH_MOS_Editor_Build_NewVersion
+Base directory	{workspace_loc:/Java_DTWH_MOS_Editor_Build}
+Goals	clean tycho-versions:set-version
+Parameter Name	Value
+newVersion	${string_prompt}
+artifact	fr.ca.cat.mos.parent,Eclipse_DTWH_MOS_Editor_Build
+
+
+Nom	Java_DTWH_MOS_Metatech_Build
+Base directory	${workspace_loc:/Java_DTWH_MOS_Metatech_Build}
+Goals	clean pic:assemblage
+Profiles	gen,local,assemblage,matiere.java

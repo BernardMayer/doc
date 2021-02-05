@@ -1,0 +1,44 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>fr.ca.cat.mos</groupId>
+	<artifactId>Java_DTWH_MOS_Editor_Build</artifactId>
+	<version>3.2.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<parent>
+		<groupId>fr.ca.cat.pic.generique.eclipse</groupId>
+		<artifactId>build-project</artifactId>
+		<version>1.9.0</version>
+	</parent>
+	<profiles>
+		<profile>
+			<id>matiere.java</id>
+			<modules>
+				<module>../fr.ca.cat.mos.core</module>
+				<module>../fr.ca.cat.mos.editor</module>
+				<module>../fr.ca.cat.mos.editor.parent</module>
+				<module>../fr.ca.cat.mos.model</module>
+				<module>../fr.ca.cat.mos.model.xml</module>
+				<module>../fr.ca.cat.mos.nature</module>
+				<module>../fr.ca.cat.mos.preference</module>
+				<module>../fr.ca.cat.mos.parser</module>
+				<module>../fr.ca.cat.mos.search</module>
+				<module>../fr.ca.cat.mos.viewer.fluxset</module>
+				<module>../fr.ca.cat.mos.cdp.generator</module>
+				<module>../fr.ca.cat.mos.cdp.cobol</module>
+				<module>../fr.ca.cat.mos.cdp.ad2</module>
+				<module>../fr.ca.cat.mos.poi.bundle</module>
+				<module>../fr.ca.cat.mos.documentation</module>
+				<module>../fr.ca.cat.mos.parent</module>
+				<module>../fr.ca.cat.mos.feature.developper</module>
+				<module>../fr.ca.cat.mos.updatesite</module>
+			</modules>
+		</profile>
+	</profiles>
+	<name>Eclipse_DTWH_MOS Build Project</name>
+</project>

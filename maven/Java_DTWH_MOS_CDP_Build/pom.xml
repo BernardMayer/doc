@@ -1,0 +1,30 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>fr.ca.cat.mos.graph</groupId>
+	<artifactId>Java_DTWH_MOS_CDP_Build</artifactId>
+	<version>2.1.0</version>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<parent>
+		<groupId>fr.ca.cat.pic.generique.eclipse</groupId>
+		<artifactId>build-project</artifactId>
+		<version>1.9.0</version>
+	</parent>
+	<profiles>
+		<profile>
+			<id>matiere.java</id>
+			<modules>
+				<module>../fr.ca.cat.mos.cdp.generator</module>
+				<module>../fr.ca.cat.mos.cdp.cobol</module>
+				<module>../fr.ca.cat.mos.cdp.ad2</module>
+				<module>../fr.ca.cat.mos.poi.bundle</module>
+			</modules>
+		</profile>
+	</profiles>
+	<name>Eclipse_DTWH_MOS Graph Build Project</name>
+	<packaging>pom</packaging>
+</project>
