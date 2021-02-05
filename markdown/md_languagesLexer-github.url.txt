@@ -1,0 +1,5 @@
+https://blog.wax-o.com/2014/04/tutoriel-un-guide-pour-bien-commencer-avec-markdown/
+https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+https://github.com/github/linguist/blob/master/lib/linguist/languages.yml
+https://stackoverflow.com/questions/20303826/highlight-bash-shell-code-in-markdown-files
+https://highlightjs.org/static/demo/

@@ -1,0 +1,203 @@
+(% class="jumbotron" %)
+(((
+(% class="container" %)
+(((
+= My new article (syntax XWiki 2.1) =
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra enim quis tristique tincidunt. Morbi nec hendrerit mi. Mauris convallis tortor et justo gravida elementum. Mauris dictum imperdiet quam, quis sodales velit tempus varius. Ut convallis mi rutrum imperdiet eleifend. Ut diam sapien, iaculis facilisis nisl non, varius cursus eros. Praesent vitae ipsum molestie enim pulvinar semper nec a nisi.
+)))
+)))
+
+(% class="row" %)
+(((
+(% class="col-xs-12 col-sm-8" %)
+(((
+= Paragraph 1 =
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+== Sub-paragraph ==
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+
+(% class="box warningmessage" %)
+(((
+CAUTION : bloc comme asciidoc orange / warning box
+)))
+
+Du style nommé ##typewriter ##qui s'insère en ligne. et un autre nommé (% class="mark" %)marker (%%)...
+
+(% class="box infomessage" %)
+(((
+INFO : autre bloc
+)))
+
+=== niveau de titre 3 ===
+
+nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+
+Un bout de code java
+
+{{code language="java"}}
+public class MVSScopeSheetMapper extends AbstractSheetMapper<MVSScopeModel> {
+
+    public MVSScopeSheetMapper(Fluxset fluxset) {
+        super(fluxset);
+    }
+
+    @Override
+    protected String getSheetName() {
+        return "MVS_Scope";
+    }
+{{/code}}
+
+sunt in culpa qui officia deserunt mollit anim id est laborum. nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+
+{{code language="sql"}}
+-----/* Create Table I1 : CPDT_WRK.CMSMUH88_I1 */
+CREATE SET TABLE D${ADABO}CPDT_WRK_${AD}_0.CMSMUH88_I1
+( IDCMVT           INTEGER           NOT NULL
+, US25_IDTERM      CHAR(4)           NOT NULL
+/* ... */
+, H88_SOLDEF1      DECIMAL(12,0)     NOT NULL
+, H88_SOLDEF2      DECIMAL(10,0)     NOT NULL
+)
+PRIMARY INDEX (
+  US25_IDTERM
+)
+;
+
+PARTITION BY ( CASE_N(
+CD_EDS_BNQ =  90000 ,
+/* ... */
+CD_EDS_BNQ =  89500 ,
+NO CASE
+)
+, RANGE_N ( TEST )
+);
+{{/code}}
+
+{{code language="cmd"}}
+@echo off
+rem On passe de 850 a 65001 (UTF8) car le fichier de Morgane est UTF8 et on veut transformer R[é]galien
+chcp 65001
+set pyBin=C:\LOGICIELS\Anaconda2\python.exe
+set runDir=C:\AncienDisqueD\v2_MOS\ReinternFwk\88-AdaptationMosAgile\InventaireFluxsets
+
+set tmpFile=./filesVar/tmp.txt
+@rem set XsfScript=./ListeFichiersXsf.sh
+set UnionDecoupageSquad=./filesVar/UnionDecoupageSquad.txt
+
+echo Se placer dans le repertoire de travail (car melange ms$ et Unix) 1>&2
+cd /D %runDir% 1>&2
+
+
+rem ****************************************
+{{/code}}
+
+{{code language="python"}}
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+from __future__ import print_function
+import os, sys, re
+
+"""
+[MOS]
+A partir d'une liste de noms de fluxset, provenant tant des fichiers xsf que de la table FLUXSEt_FWK
+Recuperer pour chaque nom de fluxset l'ensemble des informations disponibles.
+"""
+
+"""
+4 fichiers en entree :
+-l : la liste des fluxset
+-k : l'extraction de la table FLUXSET_FWK (! 1ere ligne entete)
+-x : la liste des fichier xsf
+-t : la liste des ID / nom des themes
+(-g : fichier de log)
+"""
+
+##
+##  Variables globales
+##
+fileLog = False
+
+"""
+
+"""
+
+def validCmdline() :
+
+    global fileLst, fileFwk, fileXsf, fileThm, fileSqd, fileLog
+
+    ##  Fichier liste des noms de fluxset
+    try :
+        i = sys.argv.index('-l')
+        try :
+            fileLst = sys.argv[i + 1]
+            # Le fichier existe ?
+            if (not os.path.exists(fileLst)) :
+                raise ValueError("Le fichier des noms de fluxset [" + fileLst + "] existe ?")
+{{/code}}
+
+
+deserunt mollit anim id est laborum. nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+
+Une ligne horizontale 
+
+----
+
+Un lien http ici [[le label du lien>>https://ttp10-pord.ca-technologies.fr/xwiki/bin/edit/Filieres%20de%20developpement/Data/DataHub/Outils%20DATAHUB/WebHome]]
+
+et un lien vers une page du **wiki **ici [[label du lien vers une page du wiki>>doc:Main.Bac à sable.WebHome]]
+
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+test de tableau
+
+(% border="3" summary="je suis le résumé du tableau" %)
+|=A1|=B1
+|A2|B2
+|A3|B3
+
+nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+Mes fameux « guillements »  et —tirets cadratins— de la typographie Française ! ainsi que la flêche bien utile → et ⇒  (mais pas de flêche vers la gauche)
+
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+== Sub-paragraph ==
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+=== Sub-sub paragraph ===
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+
+= Paragraph 2 =
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+== Sub-paragraph ==
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+== Sub-paragraph ==
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+)))
+
+
+(% class="col-xs-12 col-sm-4" %)
+(((
+{{box title="**Contents**"}}
+{{toc/}}
+{{/box}}
+
+[[image:Templates.Article.Template.WebHome@image1.jpg]]
+//Figure 1: [[Sea>>https://commons.wikimedia.org/wiki/File:Isle_of_Icacos_II.jpg]]//
+
+[[image:Templates.Article.Template.WebHome@image2.jpg]]
+//Figure 2: [[Waves>>https://commons.wikimedia.org/wiki/File:Culebra_-_Playa_de_Flamenco.jpg]]//
+)))
+)))
