@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.10">
+<meta name="author" content="Bourget sophie">
+<title>SHUB</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment @import statement to use as custom stylesheet */
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+abbr[title]{border-bottom:1px dotted}
+b,strong{font-weight:bold}
+dfn{font-style:italic}
+hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,*::before,*::after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto;tab-size:4;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+abbr,acronym{text-transform:uppercase;font-size:90%;color:rgba(0,0,0,.8);border-bottom:1px dotted #ddd;cursor:help}
+abbr{text-transform:none}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote cite{display:block;font-size:.9375em;color:rgba(0,0,0,.6)}
+blockquote cite::before{content:"\2014 \0020"}
+blockquote cite a,blockquote cite a:visited{color:rgba(0,0,0,.6)}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed;word-wrap:break-word}
+:not(pre)>code.nobreak{word-wrap:normal}
+:not(pre)>code.nowrap{white-space:nowrap}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:100%;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:rgba(255,255,255,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details>summary:first-of-type{cursor:pointer;display:list-item;outline:none;margin-bottom:.75em}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class="paragraph"]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+table.tableblock #preamble>.sectionbody>[class="paragraph"]:first-of-type p{font-size:inherit}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border-style:solid;border-width:1px;border-color:#dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;-webkit-border-radius:4px;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class="highlight"],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos{border-right:1px solid currentColor;opacity:.35;padding-right:.5em}
+pre.pygments .lineno{border-right:1px solid currentColor;opacity:.35;display:inline-block;margin-right:.75em}
+pre.pygments .lineno::before{content:"";margin-right:-.125em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;text-align:left;margin-right:0}
+table.tableblock{max-width:100%;border-collapse:separate}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+td.tableblock>.content>:last-child.sidebarblock{margin-bottom:0}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>thead>tr>.tableblock,table.grid-all>tbody>tr>.tableblock{border-width:0 1px 1px 0}
+table.grid-all>tfoot>tr>.tableblock{border-width:1px 1px 0 0}
+table.grid-cols>*>tr>.tableblock{border-width:0 1px 0 0}
+table.grid-rows>thead>tr>.tableblock,table.grid-rows>tbody>tr>.tableblock{border-width:0 0 1px}
+table.grid-rows>tfoot>tr>.tableblock{border-width:1px 0 0}
+table.grid-all>*>tr>.tableblock:last-child,table.grid-cols>*>tr>.tableblock:last-child{border-right-width:0}
+table.grid-all>tbody>tr:last-child>.tableblock,table.grid-all>thead:last-child>tr>.tableblock,table.grid-rows>tbody>tr:last-child>.tableblock,table.grid-rows>thead:last-child>tr>.tableblock{border-bottom-width:0}
+table.frame-all{border-width:1px}
+table.frame-sides{border-width:0 1px}
+table.frame-topbot,table.frame-ends{border-width:1px 0}
+table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd),table.stripes-even tr:nth-of-type(even),table.stripes-hover tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+ul.checklist{margin-left:.625em}
+ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist li>p:first-child>input[type="checkbox"]:first-child{margin-right:.25em}
+ul.inline{display:-ms-flexbox;display:-webkit-box;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media print,amzn-kf8{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+</head>
+<body class="article data-line-1">
+<div id="header">
+<h1>SHUB</h1>
+<div class="details">
+<span id="author" class="author">Bourget sophie</span><br>
+<span id="revnumber">version 1.0,</span>
+<span id="revdate">2018-06-11</span>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_généralités">Généralités</a></li>
+<li><a href="#_fenêtre_menu">Fenêtre menu</a></li>
+<li><a href="#_fenêtre_consultation">Fenêtre consultation</a></li>
+<li><a href="#_fenêtre_recherche">Fenêtre Recherche</a></li>
+<li><a href="#_fenêtre_création_requêtes">Fenêtre création requêtes</a>
+<ul class="sectlevel2">
+<li><a href="#_généralitées">généralitées</a></li>
+<li><a href="#_cas_de_création_dun_flux">Cas de création d&#8217;un flux</a></li>
+<li><a href="#_cas_de_maj_de_référentiel">Cas de MAJ de référentiel</a></li>
+</ul>
+</li>
+<li><a href="#_fenêtre_contrôle">Fenêtre contrôle</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1 data-line-8">
+<h2 id="_généralités">Généralités</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-11">
+<p>SourceTree est un open source qui permet d’encapsulé GIT
+.Bloc.</p>
+</div>
+<div class="listingblock data-line-13">
+<div class="content">
+<pre>Le but de cet outil est de pouvoir
+  * Créer facilement les requêtes de MAJ ou de création des flux CDP pour les squad
+  * De faire des recherches dans la tables de référence sur un certain nombre de critères
+  * Extraire la totalité de la table et de la mettre dans une feuille excel
+
+L’outils ne mets pas à jour directement le référentiel, il ne produit que des requêtes qu’il faudra après demander à passer par les DBA de prod</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-23">
+<h2 id="_fenêtre_menu">Fenêtre menu</h2>
+<div class="sectionbody">
+<div class="imageblock data-line-25">
+<div class="content">
+<img src="images_pour_DOC/menu_principale.jpg" alt="menu_principale">
+</div>
+</div>
+<div class="listingblock data-line-27">
+<div class="content">
+<pre>La fenêtre est divisée en 4 parties
+  * Connexion TERADATA
+  * Extraction du référentiel vers Excel
+     Il faudra saisir la type d’affichage avant de cliquer sur le bouton
+  * Recherche par lot ou création de requête de pour MAJ du référentiel
+  * Contrôle du référentiel =
+
+Pour pouvoir utiliser l’outil, il faut commencer par se connecter avec :
+	son user
+	son mot de passe TERADATA
+	Ou le user générique teradata pour l'outil
+
+Il faut mettre le Mot de passe qui correspond  à l’environnement de saisie
+	MUP10 étant le référentiel CDP
+	ZUDA0 étant un environnement de DEV , ou on peut tester ses requêtes</pre>
+</div>
+</div>
+<div class="admonitionblock warning data-line-46">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+<strong>Message d’anomalie possible sur cette fenêtre :</strong><br>
+  User obligatoire<br>
+   Mot de passe obligatoire<br>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock data-line-50">
+<div class="content">
+<pre>L’outils n’est pas capable de dire si vous vous êtes trompé dans la saisie de votre mot de passe.
+L’outils ouvrira une fenêtre anomalie, avec la requête qu’il a tentée lancé et qui est tombé en anomalie.
+
+95% des anomalies sont dû à un mot de passe incorrecte.</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-60">
+<h2 id="_fenêtre_consultation">Fenêtre consultation</h2>
+<div class="sectionbody">
+<div class="imageblock data-line-62">
+<div class="content">
+<img src="images_pour_DOC/menu_consultation.jpg" alt="Présentation fenêtre consultation">
+</div>
+</div>
+<div class="paragraph data-line-64">
+<p>On saisit le type d’affiche sur le menu  initial <br></p>
+</div>
+<div class="ulist data-line-67">
+<div class="title">On a 2 parties dans cette fenêtre<br></div>
+<ul>
+<li class="data-line-67">
+<p>le résultat de la mise à plat de la table de référence <br></p>
+</li>
+<li class="data-line-68">
+<p>un bouton qui permet de d’exporter cette MAP vers un document csv +&#8201;&#8212;&#8201;L’outil n’ouvre pas le csv, mais le créé dans le répertoire d:\SHUB...<br></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-74">
+<h2 id="_fenêtre_recherche">Fenêtre Recherche</h2>
+<div class="sectionbody">
+<div class="imageblock data-line-76">
+<div class="content">
+<img src="images_pour_DOC/menu_recherche.jpg" alt="Présentation fenêtre Recherche">
+</div>
+</div>
+<div class="paragraph data-line-78">
+<p><strong>Partie 1</strong><br></p>
+</div>
+<div class="listingblock data-line-79">
+<div class="content">
+<pre>C'est la zone où on va definir les recehrches . les reCehrches possibles sont : +
+	* Squad
+	* Nom d’un PCL  ( on peut saisir le nom complet ou avec *  )
+	* Nom du flux ( on peut saisir le nom du PCL complet ou avec *  )
+	* La périodicité
+	* Le type de flux CDP
+	* Le type de chargement CDP
+
+On peut cumuler plusieurs recherches en même temps</pre>
+</div>
+</div>
+<div class="listingblock data-line-91">
+<div class="content">
+<pre>Et le type d’affichage souhaité
+	* Total : toutes les colonnes
+	* Abrégé : 23 des 43 colonnes (ancienne liste simplifié de l’ancien référentiel excel)
+	* Light : 17 colonnes (les colonnes techniques indispensables pour une analyse)</pre>
+</div>
+</div>
+<div class="paragraph data-line-98">
+<p><strong>Partie 2</strong><br>
+	Le boutons pour lancer la requête de recherche<br></p>
+</div>
+<div class="paragraph data-line-101">
+<p><strong>Partie 3</strong><br>
+	C&#8217;est la partie où le resultat de la requête va apparaitre . les colonnes visible seront en focntione du type d&#8217;affichage qu&#8217;on aura definit <br></p>
+</div>
+<div class="paragraph data-line-104">
+<p><strong>Partie 4</strong><br>
+	L’environnement où la requête de recherche a été lancé ( c’est celui saisie sur le menu ) <br></p>
+</div>
+<div class="paragraph data-line-107">
+<p><strong>Partie 5</strong><br>
+	Boutons pour exporter le résultat dans une feuille csv<br>
+	L’outil n’ouvre pas le csv, mais le créé dans le répertoire d:\SHUB...<br></p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-113">
+<h2 id="_fenêtre_création_requêtes">Fenêtre création requêtes</h2>
+<div class="sectionbody">
+<div class="sect2 data-line-114">
+<h3 id="_généralitées">généralitées</h3>
+<div class="listingblock data-line-115">
+<div class="content">
+<pre>Cette fenêtre est composée de 3 parties +
+	* la partie recherche si le flux existe +
+	* la partie de saisie +
+	* le boutons pour générer la requête  +</pre>
+</div>
+</div>
+<div class="imageblock data-line-123">
+<div class="content">
+<img src="images_pour_DOC/menu_creation.jpg" alt="Présentation fenêtre Création de requête">
+</div>
+</div>
+<div class="paragraph data-line-126">
+<p>tableau correspondance nom champ et libellé de la fenêtre + informations importantes<br></p>
+</div>
+<table class="tableblock frame-all grid-all stretch data-line-128">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nom colonne dans REF_CDP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Libellé dans la fenêtre</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">commentaire</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Object_name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nom de l’objet</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Notion d’unicité</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LIB_OBJECT_NAME</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Libellé de l’objet</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CDAP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Code Application CDP</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">THEME_NAME_DTWH_V2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Thème DATAWARE</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FLUX_NAME</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nom du flux ( peut être différent de objet name)</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CDAP_ORIGINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Code application amont</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CDAP_ORIGINE_LIB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Libéllé du code appli amont</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FLUX_TYPE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Type de traitement -  adhérent ou communautaire</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CDAP_COURT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Libellé court CDP ( H0 H1 H2 H3 H4 )</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TEMPORALITE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Temporalité ( BvaTn BvnTn Tn )</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TYPE_CDP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">* Type de flux CDP<br>
+					* AD 1 : flux host DTWH<br>
+					* AD3 : Flux host non DTWH<br>
+					* AD4 : flux open non DTWH <br>
+					* AD4.2 : flux open DTW <br>
+					* TAD : autoroute de la donnée<br>
+					* SERV : Servitude <br>
+					* Big Data <br>
+					* Hors périmètre</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FILE_MODE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">* Type de Chargement<br>
+					 * Stock – COMPLET<br>
+					 * Flux – PARTIEL</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">squad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">* Squad support<br>
+					 * Ban : bancaire<br>
+					 * REG : régalien<br>
+					 * DIS : distribution<br>
+					 * PRO : plateform</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CODE_PRIO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">* Si un flux priorisé<br>
+					* Priorité car lié à un flux AD1 : Priorité AD1<br>
+					* Priorité des flux AD3 pour être iso avec la V1 ( univers compta … )<br>
+					* Priorité iso V1<br>
+					* les flux AD1 qui passe après 6 h doivent finir avant 9h : Priorité autre 6h</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RGPD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Flux soumis à RGPD</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TABLE_V1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nom de la table V1 si elle existe</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TYPE_ORIGINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Origine de la donnée<br>
+					FIC : Fichier<br>
+					CDP : données issus de CDP<br>
+					TET4<br>
+					Start : données issu de table START<br>
+					DB2 : données issus de Mise à plat table DB2<br>
+					DB2 PGM : données issus de table DB2<br>
+					Ispool : données issus d’un ispool<br>
+					OPEN : Données issus d’un fichier open<br>
+					Servitudes</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ORIGINE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nom usuel origine</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FILE_LOCATION</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nom physique de la source</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DB2</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOURCE_NAME</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nom du répertoire sur le quai de dépôt CPCI CPCC CPDM CPFI CPMS CPDT CPMP CPOT DTWH</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PERIODICITE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Périodicité du PCL <br>
+						TPT pour CDP<br>
+						Du PCL de SIDV2 pour DTW</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PCL_TRANF_OPEN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nom du PCL de transfert de donné du monde WINDOWS vers le quai de dépôt CDP</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PCL_ECLAT_OPEN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PCL d’éclatement d’un fichier OPEN en plusieurs fichiers</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PCL_FOR1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Premiers PCLS de mise en forme ( unload - extraction ispool - chargement ispool - … )</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ISPOOL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nom de l’ispool s’il existe</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PCL_FOR2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2eme PCL de mise en  forme ( extraction ispool … )</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PCL_TOKEN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PCL detokenisation</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DCLF</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nom du fichier en entré du TPT</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PCL_TPT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nom du PCL TPT	Si remplit doit être unique</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RQ_TRT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Remarques<br>
+						Nom du script pour la matière windows<br>
+						Nom script pour les PCL SIDV2</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PSI_ISPOOL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nom de l’ispool sur lequel on peut s’appuyer en cas de PSI</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PSI_REGLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Regle de SPI qu’on peut appliqué</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MOE_DIR</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MOE_DEP</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MOE_SERV</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MOE_UNIT</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MOE_GR_SUPPORT</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MOA_FILIERE</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MOA_POLE</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MOA_DOMAINE</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MOA_CODE_DOM</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DATE_DENIERE_LIVRAISON</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Date dernière livraison</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2 data-line-207">
+<h3 id="_cas_de_création_dun_flux">Cas de création d&#8217;un flux</h3>
+<div class="paragraph data-line-208">
+<p>Il va falloir remplir les zones saisissables
+Certaines zones sont obligatoires ( étoiles rouges )  et d’autre sont obligatoires par rapport au type de flux.
+Des messages d’anomalies indiqueront les anomalies trouvées lors de la génération de la requête.
+Ces contrôles sont importants car ce sont eux qui assure la cohérence des informations du flux .</p>
+</div>
+<div class="sect3 data-line-213">
+<h4 id="_partie_1">Partie 1</h4>
+<div class="imageblock data-line-215">
+<div class="content">
+<img src="images_pour_DOC/menu_creation_partie1.jpg" alt="Partie1">
+</div>
+</div>
+<div class="paragraph data-line-216">
+<p>Le nom du flux et son libellé est obligatoire <br>
+Qu’on soit sur une flux CDP , SIDV , TAD , SERV BIGDATA , … <br></p>
+</div>
+</div>
+<div class="sect3 data-line-219">
+<h4 id="_partie_2">Partie 2</h4>
+<div class="paragraph data-line-221">
+<p>Exemple pour aider à remplir les cases</p>
+</div>
+<div class="sect4 data-line-223">
+<h5 id="_cdp_tad">CDP / TAD :</h5>
+<div class="paragraph data-line-225">
+<p>Thème : en fonction du domaine , s’il manque des domaine , il faudra les demander , on en ajoutera<br>
+<strong>Nom du flux :</strong> = Au nom du flux <br>
+<strong>Code application amont :</strong> Obligatoire  code de l’application qui fournit les données<br>
+<strong>Libellé du code application amont :</strong> Obligatoire libellé de l’application qui fournit les données<br>
+<strong>Type de traitement :</strong> Adhérent ou communautaire<br>
+<strong>Lib court CDP :</strong> H0 H1 H2 H3 H4 suivant le domaine amont<br>
+<strong>Temporalité :</strong> celui utilisé lors du maping<br>
+<strong>Type de flux :</strong><br>
+- -AD1 flux host CDP remontant dans DTW<br>
+- -AD3 flux host CDP ne remontant pas dans DTW<br>
+- -AD4 flux open CDP remontant dans DTW
+- -AD42 flux open CDP ne remontant pas dans DTW<br>
+- -TAD : table de l’autoroute<br></p>
+</div>
+<div class="paragraph data-line-239">
+<p><strong>Type de chargement :</strong> PARTIEL ( flux )  ou complet ( stock)<br>
+<strong>Squad Support :</strong>  la squad support<br>
+<strong>Flux prioritaire :</strong> si on est sur un flux soumis à un jalon prioritaire<br>
+- -Priorité AD1  si on est sur un flux AD1+
+- -Priorité iso V1<br>
+- - - -	Jalon pour que des flux CDP AD3 passe avant 6h du matin ( c’est une planif particulière à saisir dans le DCNT )<br>
+- -Priorité autre 6h<br>
+- - - -	Jalon pour que des flux CDP AD3 passe avant 6h ( pour BO compta entre autre )  du matin ( c’est une planif particulière à saisir dans le DCNT )<br>
+- -Sans objet<br></p>
+</div>
+<div class="admonitionblock warning data-line-250">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+ <strong>La notion de priorité est très importante pour le suivi de production, les flux soumis à priorité seront à déplanter en premier</strong>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph data-line-252">
+<p><strong>RGPD :</strong> cocher si cette table est soumise à RGPD<br></p>
+</div>
+</div>
+<div class="sect4 data-line-254">
+<h5 id="_sidvservbigdata">SIDV/SERV/BIGDATA</h5>
+<div class="paragraph data-line-255">
+<p><strong>Thème :</strong> Thème defaut<br>
+<strong>Nom du flux :</strong> = nom du flux<br>
+<strong>Code application amont :</strong> CPDT / DTWH<br>
+<strong>Libellé du code application amont :</strong> Copie de production ou DATAWARE<br>
+<strong>Type de traitement :</strong> Adhérent ou communautaire<br>
+<strong>Lib court CDP :</strong> sans objet<br>
+<strong>Temporalité :</strong> sans objet<br>
+<strong>Type de flux :</strong><br>
+- -SERV pour servitude<br>
+- -SIDV pour les PCLS qui tournent sur TET4 pour le plan communautaire<br>
+- -BIGDATA pour les flux big data<br></p>
+</div>
+<div class="paragraph data-line-267">
+<p><strong>Type de chargement :</strong> sans objet<br>
+<strong>Squad Support :</strong>   SERV et SIV bien souvent plateform PROD<br>
+<strong>Flux prioritaire :</strong><br></p>
+</div>
+</div>
+</div>
+<div class="sect3 data-line-271">
+<h4 id="_partie_3">Partie 3</h4>
+<div class="imageblock data-line-273">
+<div class="content">
+<img src="images_pour_DOC/menu_creation_partie3.jpg" alt="Partie 3">
+</div>
+</div>
+<div class="paragraph data-line-274">
+<p>Sur flux CDP ( AD1 AD3 AD4 AD42 TAD) , s’il existe une table V1 , on mets le nom , pour pouvoir faire le rapprochement pour les rapports BO .</p>
+</div>
+</div>
+<div class="sect3 data-line-276">
+<h4 id="_partie_4">Partie 4</h4>
+<div class="imageblock data-line-278">
+<div class="content">
+<img src="images_pour_DOC/menu_creation_partie4.jpg" alt="Partie 4">
+</div>
+</div>
+<div class="sect4 data-line-280">
+<h5 id="_cdp_tad_2">CDP / TAD :</h5>
+<div class="paragraph data-line-281">
+<p><strong>Type origine source de donné :</strong>  Type de la source de donnée d&#8217;origine<br>
+- - FIC fichier<br>
+- -	DB2 pour une MAP de vue DB2<br>
+- -	DB2 PGM pour une extraction de table DB2 via un PGM <br>
+- -	CDP , CDP<br>
+- -	ISPOOL pour un lot ispool <br>
+- -	OPEN pour une flux OPEN<br>
+- -	START pour une MAP start<br>
+- -	A DELETER pour un flux qui ne tourne plus et qui va être supprimé<br>
+- -	A voir quand on n’arrive pas à savoir<br></p>
+</div>
+<div class="paragraph data-line-292">
+<p><strong>Nom usuel origine :</strong> Nom du fichier usuel d&#8217;origine , le nom physique n&#8217;est pas toujours le nom qu&#8217;on utilise <br>
+<strong>Nom physique de la source :</strong><br>
+- - Nom réel de la source de données<br>
+- - Nom du fichier type pour un flux OPEN<br>
+- - La vue de MAP pour une unload DB2 Host <br>
+		….</p>
+</div>
+<div class="paragraph data-line-299">
+<p><strong>Saisie OPEN source file LOCATION</strong><br>
+ le nom du répertoire domaine ( CPDT, CPCC, CPCR, … ) pour les flux OPEN AD4 AD42<br>
+<strong>Périodicité :</strong> OBLIGATOIRE  pour tous les PCLS déclarés<br></p>
+</div>
+</div>
+<div class="sect4 data-line-304">
+<h5 id="_sidvservbigdata_2">SIDV/SERV/BIGDATA</h5>
+<div class="paragraph data-line-305">
+<p><strong>Type origine source de donné :</strong>
+- - SERV pour SERVitude<br>
+- - TET4 pour SIDV<br></p>
+</div>
+<div class="paragraph data-line-309">
+<p><strong>Nom user origine :</strong> Sans objet <br>
+<strong>Nom physique de la source :</strong> Sans objet<br>
+<strong>Saisie OPEN source file LOCATION :</strong> Sans objet<br>
+<strong>Périodicité :</strong> OBLIGATOIRE  pour tous les PCLS déclarés<br></p>
+</div>
+</div>
+</div>
+<div class="sect3 data-line-314">
+<h4 id="_partie_5">partie 5</h4>
+<div class="imageblock data-line-316">
+<div class="content">
+<img src="images_pour_DOC/menu_creation_partie5.jpg" alt="Partie5">
+</div>
+</div>
+<div class="sect4 data-line-317">
+<h5 id="_cdp_tad_3">CDP / TAD :</h5>
+<div class="paragraph data-line-318">
+<p><strong>Nom PCL transfert :</strong> Sur un flux open uniquement<br>
+- - si on a un PCL qui dépose le fichier sur le que de dépôt CDP , c’est ce PCL là qui appelle un script Windows <br></p>
+</div>
+<div class="paragraph data-line-321">
+<p><strong>Nom du PCL de transfert vers le serveur open :</strong>  Sur un flus OPEN uniquement<br>
+- - PCL qui éclatement un fichier en plusieurs sur le quai de dépôt CDP, le PCL qui fait le split <br></p>
+</div>
+<div class="paragraph data-line-324">
+<p><strong>Nom du PCL mise en forme 1 :</strong>  Premier PCL possible de mise en forme de données, ça peut être une MAP de table DB2 ; de lot ispool, Un chargement de lot ispool &#8230;&#8203;<br></p>
+</div>
+<div class="paragraph data-line-326">
+<p><strong>Nom du PCL mise en forme 2 :</strong>  second PCL possible de la mise en forme de données , ça peut être un déchargement de lot ispool, … <br></p>
+</div>
+<div class="paragraph data-line-328">
+<p><strong>PCL de tokenrisation :</strong>  PCL qui tokenise ( anonimise ) les N° de carte<br></p>
+</div>
+<div class="paragraph data-line-330">
+<p><strong>Nom du fichier en entré du TPT :</strong> Obligatoire pour une flux CDP HOST<br></p>
+</div>
+<div class="paragraph data-line-332">
+<p><strong>Nom du PCL TPT :</strong> Le nom du PCL TPT qui charge les données dans teradata pour CDP<br></p>
+</div>
+<div class="paragraph data-line-334">
+<p><strong>Remarques :</strong>  Pour un flux OPEN avec PCL d transfert : Nom du script Windows<br></p>
+</div>
+</div>
+<div class="sect4 data-line-336">
+<h5 id="_sidvservbigdata_3">SIDV/SERV/BIGDATA</h5>
+<div class="paragraph data-line-337">
+<p><strong>Nom PCL transfert :</strong> RAS<br>
+<strong>Nom du PCL d’éclatement:</strong> RAS<br>
+<strong>Nom du PCL mise en forme 1 :</strong> Nom du PCL <br>
+<strong>Nom du PCL mise en forme 2:</strong> RAS<br>
+<strong>PCL de tolérisation:</strong> RAS<br>
+<strong>Nom du fichier en entré du TPT:</strong> RAS<br>
+<strong>Nom du PCL TPT :</strong> RAS<br>
+<strong>Remarques :</strong> Nom du script Shell<br></p>
+</div>
+</div>
+</div>
+<div class="sect3 data-line-346">
+<h4 id="_partie_6">Partie 6</h4>
+<div class="imageblock data-line-348">
+<div class="content">
+<img src="images_pour_DOC/menu_creation_partie6.jpg" alt="Partie6">
+</div>
+</div>
+<div class="sect4 data-line-349">
+<h5 id="_pour_les_cdp_tad">Pour les CDP / TAD :</h5>
+<div class="paragraph data-line-350">
+<p>LA but est de mettre les règles de PSI qu’on appliquera lors d’un PSI<br></p>
+</div>
+<div class="listingblock data-line-351">
+<div class="content">
+<pre>Qu'est ce qu'un PSI
+Ou plan de Sauvegearde informatique . il est activé lors d'un accident majeur sur un des sites de production ( Diderot / d'Alemberg)
+il permet lors de l'arrêt d'un des 2 sites , de faire basculer les CRs qui sont sur les caisses arrêté s sur l'autre site.
+Mais durant le l'apse de temps de bascule les traitements sont arrêtés .
+Afin de ne pas engeorger la machine, et étant donné que les flux CDP representent 1/3 des traitements de la production, on désactive tout ce qui n'est pas vitale.
+on va désactivé tous les flux journalier complet( stock)  ,  qui seront repris automatiquement au prochain passage de ces traitements
+La desactivation se fait alors sur les TPT et les Unload .
+Si l'arrêt de la machine est de plus de 24h, on peut aussi dans certains avoir des actions sur les flus CDP partiel ( flux ). Pour facilté les actions ,
+on marque dans ref_CDP la règle qu'on peut appliqué. En effet certains flux partiel , sont de faux partiel ( flux complet mis en partiel),
+certains ont des ispools  en amont ce qui fait qu'ils peuvent être arrêtés, d'autre des PGMS d'extraction par date , ....</pre>
+</div>
+</div>
+<div class="ulist data-line-365">
+<div class="title">Les règles ont été établit en fonction de<br></div>
+<ul>
+<li class="data-line-365">
+<p>Le type de chargement<br></p>
+<div class="ulist data-line-366">
+<ul>
+<li class="data-line-366">
+<p>PARTIEL / COMPLET<br></p>
+</li>
+</ul>
+</div>
+</li>
+<li class="data-line-367">
+<p>Périodicité<br></p>
+</li>
+<li class="data-line-368">
+<p>Le type de flux ( HOST , OPE? , remonte ou non dans dTW , &#8230;&#8203; ) <br></p>
+</li>
+</ul>
+</div>
+<div class="ulist data-line-371">
+<div class="title">Pour tout flux CDP OPEN <br></div>
+<ul>
+<li class="data-line-371">
+<p>Les traitements s’arrêtent lors du PSI passeront après le déblocage, peu importe la périodicité<br></p>
+</li>
+<li class="data-line-372">
+<p>REGLE : EXE UNLOAD , EXE TPT<br></p>
+</li>
+</ul>
+</div>
+<div class="ulist data-line-375">
+<div class="title">Pour Tout flux CDP host COMPLET<br></div>
+<ul>
+<li class="data-line-375">
+<p>Si non journalier mettre dans règle la périodicité <br></p>
+<div class="ulist data-line-376">
+<ul>
+<li class="data-line-376">
+<p>REGLE : MENSUEL , HEBDOMADAIRE, … <br></p>
+</li>
+</ul>
+</div>
+</li>
+<li class="data-line-377">
+<p>Si journalier<br></p>
+<div class="ulist data-line-378">
+<ul>
+<li class="data-line-378">
+<p>REGLE NEXE mise en forme 2 , NEXE TPT ou NEXE mise en forme, NEXE TPT<br></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist data-line-381">
+<div class="title">Pour Tout flux CDP host PARTIEL<br></div>
+<ul>
+<li class="data-line-381">
+<p>Si non journalier mettre dans règle la périodicité <br></p>
+<div class="ulist data-line-382">
+<ul>
+<li class="data-line-382">
+<p>REGLE : MENSUEL , HEBDOMADAIRE, … <br></p>
+</li>
+</ul>
+</div>
+</li>
+<li class="data-line-383">
+<p>Si journalier<br></p>
+<div class="ulist data-line-384">
+<ul>
+<li class="data-line-384">
+<p>Si ispool les diffrentes règles possible sont :</p>
+<div class="ulist data-line-385">
+<ul>
+<li class="data-line-385">
+<p>NEXE mise en forme 2 , NEXE TPT<br></p>
+</li>
+<li class="data-line-386">
+<p>NEXE et le nom des PCLs à mettre à NEXE  <br></p>
+</li>
+<li class="data-line-387">
+<p>NEXE mise en forme, NEXE TPT<br></p>
+</li>
+</ul>
+</div>
+</li>
+<li class="data-line-388">
+<p>Si pas ispool <br></p>
+<div class="ulist data-line-389">
+<ul>
+<li class="data-line-389">
+<p>A reprendre<br></p>
+</li>
+<li class="data-line-390">
+<p>pas un vrai partiel mise à NEXE <br></p>
+</li>
+<li class="data-line-391">
+<p>PGM extacte à date  -Mise à NEXE UNLOAD et TPT<br></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock warning data-line-394">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+<strong>Nom ispool utilisable pour le PSI :</strong> <br>
+ Mettre ISPOOL si le flux a un ispool soit en amont  ou sur un des PCLS CDP  <br>
+<strong>Règle de PSI :</strong> <br>
+	Les différentes règles qui existent  ( cf ci-dessus ) <br>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4 data-line-400">
+<h5 id="_pour_les_sidvservbigdata">Pour les SIDV/SERV/BIGDATA</h5>
+<div class="paragraph data-line-401">
+<p>RAS</p>
+</div>
+</div>
+</div>
+<div class="sect3 data-line-403">
+<h4 id="_partie_7">Partie 7</h4>
+<div class="imageblock data-line-405">
+<div class="content">
+<img src="images_pour_DOC/menu_creation_partie7.jpg" alt="Partie7">
+</div>
+</div>
+<div class="sect4 data-line-406">
+<h5 id="_pour_cdp_tad">Pour CDP / TAD :</h5>
+<div class="paragraph data-line-407">
+<p>Au moins 1 zone obligatoire <br></p>
+</div>
+</div>
+<div class="sect4 data-line-409">
+<h5 id="_pour_sidvservbigdata">Pour SIDV/SERV/BIGDATA</h5>
+<div class="paragraph data-line-410">
+<p>RAS<br></p>
+</div>
+</div>
+</div>
+<div class="sect3 data-line-412">
+<h4 id="_partie_8">Partie 8</h4>
+<div class="imageblock data-line-414">
+<div class="content">
+<img src="images_pour_DOC/menu_creation_partie8.jpg" alt="Partie8">
+</div>
+</div>
+<div class="paragraph data-line-415">
+<p>La date de livraison <br>
+	2020S21 par exemple <br></p>
+</div>
+</div>
+<div class="sect3 data-line-418">
+<h4 id="_génération_de_la_requête">Génération de la requête</h4>
+<div class="imageblock data-line-420">
+<div class="content">
+<img src="images_pour_DOC/menu_creation_generationReq.jpg" alt="Bouton de génération de la Requête">
+</div>
+</div>
+<div class="paragraph data-line-422">
+<p>Le traitement va faire des contrôles sur les zones <br>
+S’il y a des anomalies <br>
+	Une feuille TXT va s’ouvrir dans notepad++ avec la liste des anomalies <br></p>
+</div>
+<div class="paragraph data-line-426">
+<p>Exemple d’anomalie :<br>
+image::menu_creation_ano.jpg[Exemple d&#8217;Anomalies]</p>
+</div>
+<div class="paragraph data-line-431">
+<p>Le traitement va aussi faire des  vérifications :<br>
+Si le flux existe déjà , le traitement vérifie si le TPT renseigné ou le nom du flux existe <br>
+- - Si oui il fera une requête de MAJ <br>
+- - Sinon une requête de création <br></p>
+</div>
+<div class="paragraph data-line-436">
+<p>Dans le cas d’une MAJ , il vérifie si la MAJ va faire impacté plus d’une ligne <br>
+	Il produira une requête mais avec des ATTENTION <br>
+	Il faudra alors faire des correction soit dans la requête ( créé une ligne de delete puis une creation par exemple , ou changer le nom de l&#8217;object name )</p>
+</div>
+</div>
+</div>
+<div class="sect2 data-line-441">
+<h3 id="_cas_de_maj_de_référentiel">Cas de MAJ de référentiel</h3>
+<div class="paragraph data-line-442">
+<p>Dans le cas d’un flux qu’on veut mettre à jour , il est fortement conseillé de faire une recherche par nom du flux ou du PCL TPT ( traitement qui charge les données dans CDP )
+ Cette recherche pre-remplira les zones de saisie avec les anciennes valeurs</p>
+</div>
+<div class="sect3 data-line-445">
+<h4 id="_partie_1_2">Partie 1</h4>
+<div class="imageblock data-line-447">
+<div class="content">
+<img src="images_pour_DOC/menu_creation_MAJ_recherche.jpg" alt="boutons de recherche recherche pour pré-remplissage">
+</div>
+</div>
+<div class="paragraph data-line-449">
+<p>Saisie du nom du flux ou du PCL TPT, si la recherche renvoie plus d’une ligne , il y aura un message d’anomalie qui demandera d’affiner la sélection en passant par la fenêtre recherche
+Si la recherche renvoie qu’une ligne, l’écran sera alors rempli avec les informations du flux
+ Il suffira de modifier la zone voulue
+Et de cliquer sur</p>
+</div>
+</div>
+<div class="sect3 data-line-454">
+<h4 id="_partie_2_2">Partie 2</h4>
+<div class="imageblock data-line-456">
+<div class="content">
+<img src="images_pour_DOC/menu_creation_MAJ_generationReq.jpg" alt="Bouton generation requête">
+</div>
+</div>
+<div class="paragraph data-line-458">
+<p>Le traitement va faire des contrôles sur les zones
+S’il y a des anomalies
+	Une feuille TXT va s’ouvrir dans notepad++ avec la liste des anomalies
+Exemple d’anomalie :</p>
+</div>
+<div class="imageblock data-line-464">
+<div class="content">
+<img src="images_pour_DOC/menu_creation_ano.jpg" alt="Exemeple d&#8217;Anomalies">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-468">
+<h2 id="_fenêtre_contrôle">Fenêtre contrôle</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-469">
+<p>La table Metatech REF_CDP est très important , car c’est dessus que s’appuit des rapports à destinations des PP métiers et des CRs+
+Nous être sur que la table est conforme à ce qui tourne en production , un e page de contrôle a été rajouté<br></p>
+</div>
+<div class="ulist data-line-473">
+<div class="title">Pour le moment on a 2 contrôles en place</div>
+<ul>
+<li class="data-line-473">
+<p>contrôle par rapport à la table CDP_log ( qui liste tous les flux CDP qui ont été sous teradata )</p>
+</li>
+<li class="data-line-474">
+<p>Contrôle par rapportà la table de purge n table qui liste les caractéristiques de purges du flux CDP ( la purge est hebdomadaire )</p>
+</li>
+</ul>
+</div>
+<div class="imageblock data-line-477">
+<div class="content">
+<img src="images_pour_DOC/menu_controle.jpg" alt="Bouton controle">
+</div>
+</div>
+<div class="paragraph data-line-479">
+<p>La fenêtre comprend 3 zones<br></p>
+</div>
+<div class="imageblock data-line-482">
+<div class="content">
+<img src="images_pour_DOC/menu_controle_partie.jpg" alt="présentation fenêtre contrôle">
+</div>
+</div>
+<div class="paragraph data-line-484">
+<p><strong>Le bouton 1 :</strong> Liste flux CDP en prod, pas dans le référentiel<br>
+<strong>Le bouton 2 :</strong> Liste flux CDP en prod, et qui n’existe pas dans le table de purge CDP <br>
+<strong>La zone 3 :</strong> restitution des listes<br>
+<strong>Le bouton aide :</strong> pour ouvrir la doc d&#8217;aide <br></p>
+</div>
+<div class="paragraph data-line-489">
+<p>En cliquant sur le bouton Liste flux CDP en prod, pas dans le référentiel,<br>
+On restitue la liste de  tous les flux CDP qui tournent en prod ( extrait de CDP_log )  et qui ne sont pas dans la table ref_CDP+</p>
+</div>
+<div class="paragraph data-line-492">
+<p>En cliquant sur le bouton : Liste   flux CDP en prod, et qui n’existe pas dans le table de purge CDP<br>
+On restitue la liste des tables CDP qui n’ont pas purge ( table OTL_Purge_CDP)<br></p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 1.0<br>
+Last updated 2020-08-19 11:48:07 +0200
+</div>
+</div>
+</body>
+</html>

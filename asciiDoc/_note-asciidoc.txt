@@ -1,0 +1,16 @@
+https://asciidoc.org/INSTALL.html
+C:\AncienDisqueD\myTools\asciidoc-py3-master>c:\LOGICIELS\Anaconda3\python.exe ./asciidoc.py
+Man page:     asciidoc --help manpage
+Syntax:       asciidoc --help syntax
+Permet de generer du html ou du docbook
+
+Transformation en pdf par https://wkhtmltopdf.org/
+https://wkhtmltopdf.org/downloads.html
+
+
+optionel : Transformation en * par pandoc
+https://pandoc.org/demos.html
+https://pandoc.org/MANUAL.html#creating-a-pdf
+https://github.com/jgm/pandoc/releases/tag/2.10.1
+
+Edition par Visual Studio Code, qui permet de visualiser le rendu en live.

@@ -1,0 +1,824 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>SHUB</title>
+<date>2018-06-11</date>
+<author>
+<personname>
+<firstname>Bourget</firstname>
+<surname>sophie</surname>
+</personname>
+</author>
+<authorinitials>Bs</authorinitials>
+<revhistory>
+<revision>
+<revnumber>1.0</revnumber>
+<date>2018-06-11</date>
+<authorinitials>Bs</authorinitials>
+</revision>
+</revhistory>
+</info>
+<section xml:id="_généralités" role="data-line-8">
+<title>Généralités</title>
+<simpara role="data-line-11">SourceTree est un open source qui permet d’encapsulé GIT
+.Bloc.</simpara>
+<screen role="data-line-13">Le but de cet outil est de pouvoir
+  * Créer facilement les requêtes de MAJ ou de création des flux CDP pour les squad
+  * De faire des recherches dans la tables de référence sur un certain nombre de critères
+  * Extraire la totalité de la table et de la mettre dans une feuille excel
+
+L’outils ne mets pas à jour directement le référentiel, il ne produit que des requêtes qu’il faudra après demander à passer par les DBA de prod</screen>
+</section>
+<section xml:id="_fenêtre_menu" role="data-line-23">
+<title>Fenêtre menu</title>
+<informalfigure role="data-line-25">
+<mediaobject>
+<imageobject>
+<imagedata fileref="images_pour_DOC/menu_principale.jpg"/>
+</imageobject>
+<textobject><phrase>menu_principale</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<screen role="data-line-27">La fenêtre est divisée en 4 parties
+  * Connexion TERADATA
+  * Extraction du référentiel vers Excel
+     Il faudra saisir la type d’affichage avant de cliquer sur le bouton
+  * Recherche par lot ou création de requête de pour MAJ du référentiel
+  * Contrôle du référentiel =
+
+Pour pouvoir utiliser l’outil, il faut commencer par se connecter avec :
+	son user
+	son mot de passe TERADATA
+	Ou le user générique teradata pour l'outil
+
+Il faut mettre le Mot de passe qui correspond  à l’environnement de saisie
+	MUP10 étant le référentiel CDP
+	ZUDA0 étant un environnement de DEV , ou on peut tester ses requêtes</screen>
+<warning role="data-line-46">
+<simpara><emphasis role="strong">Message d’anomalie possible sur cette fenêtre :</emphasis><?asciidoc-br?>
+  User obligatoire<?asciidoc-br?>
+   Mot de passe obligatoire<?asciidoc-br?></simpara>
+</warning>
+<screen role="data-line-50">L’outils n’est pas capable de dire si vous vous êtes trompé dans la saisie de votre mot de passe.
+L’outils ouvrira une fenêtre anomalie, avec la requête qu’il a tentée lancé et qui est tombé en anomalie.
+
+95% des anomalies sont dû à un mot de passe incorrecte.</screen>
+</section>
+<section xml:id="_fenêtre_consultation" role="data-line-60">
+<title>Fenêtre consultation</title>
+<informalfigure role="data-line-62">
+<mediaobject>
+<imageobject>
+<imagedata fileref="images_pour_DOC/menu_consultation.jpg"/>
+</imageobject>
+<textobject><phrase>Présentation fenêtre consultation</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara role="data-line-64">On saisit le type d’affiche sur le menu  initial <?asciidoc-br?></simpara>
+<itemizedlist role="data-line-67">
+<title>On a 2 parties dans cette fenêtre<?asciidoc-br?></title>
+<listitem role="data-line-67">
+<simpara>le résultat de la mise à plat de la table de référence <?asciidoc-br?></simpara>
+</listitem>
+<listitem role="data-line-68">
+<simpara>un bouton qui permet de d’exporter cette MAP vers un document csv +&#8201;&#8212;&#8201;L’outil n’ouvre pas le csv, mais le créé dans le répertoire d:\SHUB...<?asciidoc-br?></simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section xml:id="_fenêtre_recherche" role="data-line-74">
+<title>Fenêtre Recherche</title>
+<informalfigure role="data-line-76">
+<mediaobject>
+<imageobject>
+<imagedata fileref="images_pour_DOC/menu_recherche.jpg"/>
+</imageobject>
+<textobject><phrase>Présentation fenêtre Recherche</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara role="data-line-78"><emphasis role="strong">Partie 1</emphasis><?asciidoc-br?></simpara>
+<screen role="data-line-79">C'est la zone où on va definir les recehrches . les reCehrches possibles sont : +
+	* Squad
+	* Nom d’un PCL  ( on peut saisir le nom complet ou avec *  )
+	* Nom du flux ( on peut saisir le nom du PCL complet ou avec *  )
+	* La périodicité
+	* Le type de flux CDP
+	* Le type de chargement CDP
+
+On peut cumuler plusieurs recherches en même temps</screen>
+<screen role="data-line-91">Et le type d’affichage souhaité
+	* Total : toutes les colonnes
+	* Abrégé : 23 des 43 colonnes (ancienne liste simplifié de l’ancien référentiel excel)
+	* Light : 17 colonnes (les colonnes techniques indispensables pour une analyse)</screen>
+<simpara role="data-line-98"><emphasis role="strong">Partie 2</emphasis><?asciidoc-br?>
+	Le boutons pour lancer la requête de recherche<?asciidoc-br?></simpara>
+<simpara role="data-line-101"><emphasis role="strong">Partie 3</emphasis><?asciidoc-br?>
+	C&#8217;est la partie où le resultat de la requête va apparaitre . les colonnes visible seront en focntione du type d&#8217;affichage qu&#8217;on aura definit <?asciidoc-br?></simpara>
+<simpara role="data-line-104"><emphasis role="strong">Partie 4</emphasis><?asciidoc-br?>
+	L’environnement où la requête de recherche a été lancé ( c’est celui saisie sur le menu ) <?asciidoc-br?></simpara>
+<simpara role="data-line-107"><emphasis role="strong">Partie 5</emphasis><?asciidoc-br?>
+	Boutons pour exporter le résultat dans une feuille csv<?asciidoc-br?>
+	L’outil n’ouvre pas le csv, mais le créé dans le répertoire d:\SHUB...<?asciidoc-br?></simpara>
+</section>
+<section xml:id="_fenêtre_création_requêtes" role="data-line-113">
+<title>Fenêtre création requêtes</title>
+<section xml:id="_généralitées" role="data-line-114">
+<title>généralitées</title>
+<screen role="data-line-115">Cette fenêtre est composée de 3 parties +
+	* la partie recherche si le flux existe +
+	* la partie de saisie +
+	* le boutons pour générer la requête  +</screen>
+<informalfigure role="data-line-123">
+<mediaobject>
+<imageobject>
+<imagedata fileref="images_pour_DOC/menu_creation.jpg"/>
+</imageobject>
+<textobject><phrase>Présentation fenêtre Création de requête</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara role="data-line-126">tableau correspondance nom champ et libellé de la fenêtre + informations importantes<?asciidoc-br?></simpara>
+<informaltable role="data-line-128" frame="all" rowsep="1" colsep="1">
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="33.3333*"/>
+<colspec colname="col_2" colwidth="33.3333*"/>
+<colspec colname="col_3" colwidth="33.3334*"/>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Nom colonne dans REF_CDP</simpara></entry>
+<entry align="left" valign="top"><simpara>Libellé dans la fenêtre</simpara></entry>
+<entry align="left" valign="top"><simpara>commentaire</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Object_name</simpara></entry>
+<entry align="left" valign="top"><simpara>Nom de l’objet</simpara></entry>
+<entry align="left" valign="top"><simpara>Notion d’unicité</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>LIB_OBJECT_NAME</simpara></entry>
+<entry align="left" valign="top"><simpara>Libellé de l’objet</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>CDAP</simpara></entry>
+<entry align="left" valign="top"><simpara>Code Application CDP</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>THEME_NAME_DTWH_V2</simpara></entry>
+<entry align="left" valign="top"><simpara>Thème DATAWARE</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>FLUX_NAME</simpara></entry>
+<entry align="left" valign="top"><simpara>Nom du flux ( peut être différent de objet name)</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>CDAP_ORIGINE</simpara></entry>
+<entry align="left" valign="top"><simpara>Code application amont</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>CDAP_ORIGINE_LIB</simpara></entry>
+<entry align="left" valign="top"><simpara>Libéllé du code appli amont</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>FLUX_TYPE</simpara></entry>
+<entry align="left" valign="top"><simpara>Type de traitement -  adhérent ou communautaire</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>CDAP_COURT</simpara></entry>
+<entry align="left" valign="top"><simpara>Libellé court CDP ( H0 H1 H2 H3 H4 )</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>TEMPORALITE</simpara></entry>
+<entry align="left" valign="top"><simpara>Temporalité ( BvaTn BvnTn Tn )</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>TYPE_CDP</simpara></entry>
+<entry align="left" valign="top"><simpara>* Type de flux CDP<?asciidoc-br?>
+					* AD 1 : flux host DTWH<?asciidoc-br?>
+					* AD3 : Flux host non DTWH<?asciidoc-br?>
+					* AD4 : flux open non DTWH <?asciidoc-br?>
+					* AD4.2 : flux open DTW <?asciidoc-br?>
+					* TAD : autoroute de la donnée<?asciidoc-br?>
+					* SERV : Servitude <?asciidoc-br?>
+					* Big Data <?asciidoc-br?>
+					* Hors périmètre</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>FILE_MODE</simpara></entry>
+<entry align="left" valign="top"><simpara>* Type de Chargement<?asciidoc-br?>
+					 * Stock – COMPLET<?asciidoc-br?>
+					 * Flux – PARTIEL</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>squad</simpara></entry>
+<entry align="left" valign="top"><simpara>* Squad support<?asciidoc-br?>
+					 * Ban : bancaire<?asciidoc-br?>
+					 * REG : régalien<?asciidoc-br?>
+					 * DIS : distribution<?asciidoc-br?>
+					 * PRO : plateform</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>CODE_PRIO</simpara></entry>
+<entry align="left" valign="top"><simpara>* Si un flux priorisé<?asciidoc-br?>
+					* Priorité car lié à un flux AD1 : Priorité AD1<?asciidoc-br?>
+					* Priorité des flux AD3 pour être iso avec la V1 ( univers compta … )<?asciidoc-br?>
+					* Priorité iso V1<?asciidoc-br?>
+					* les flux AD1 qui passe après 6 h doivent finir avant 9h : Priorité autre 6h</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>RGPD</simpara></entry>
+<entry align="left" valign="top"><simpara>Flux soumis à RGPD</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>TABLE_V1</simpara></entry>
+<entry align="left" valign="top"><simpara>Nom de la table V1 si elle existe</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>TYPE_ORIGINE</simpara></entry>
+<entry align="left" valign="top"><simpara>Origine de la donnée<?asciidoc-br?>
+					FIC : Fichier<?asciidoc-br?>
+					CDP : données issus de CDP<?asciidoc-br?>
+					TET4<?asciidoc-br?>
+					Start : données issu de table START<?asciidoc-br?>
+					DB2 : données issus de Mise à plat table DB2<?asciidoc-br?>
+					DB2 PGM : données issus de table DB2<?asciidoc-br?>
+					Ispool : données issus d’un ispool<?asciidoc-br?>
+					OPEN : Données issus d’un fichier open<?asciidoc-br?>
+					Servitudes</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>ORIGINE</simpara></entry>
+<entry align="left" valign="top"><simpara>Nom usuel origine</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>FILE_LOCATION</simpara></entry>
+<entry align="left" valign="top"><simpara>Nom physique de la source</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>DB2</simpara></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>SOURCE_NAME</simpara></entry>
+<entry align="left" valign="top"><simpara>Nom du répertoire sur le quai de dépôt CPCI CPCC CPDM CPFI CPMS CPDT CPMP CPOT DTWH</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>PERIODICITE</simpara></entry>
+<entry align="left" valign="top"><simpara>Périodicité du PCL <?asciidoc-br?>
+						TPT pour CDP<?asciidoc-br?>
+						Du PCL de SIDV2 pour DTW</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>PCL_TRANF_OPEN</simpara></entry>
+<entry align="left" valign="top"><simpara>Nom du PCL de transfert de donné du monde WINDOWS vers le quai de dépôt CDP</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>PCL_ECLAT_OPEN</simpara></entry>
+<entry align="left" valign="top"><simpara>PCL d’éclatement d’un fichier OPEN en plusieurs fichiers</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>PCL_FOR1</simpara></entry>
+<entry align="left" valign="top"><simpara>Premiers PCLS de mise en forme ( unload - extraction ispool - chargement ispool - … )</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>ISPOOL</simpara></entry>
+<entry align="left" valign="top"><simpara>Nom de l’ispool s’il existe</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>PCL_FOR2</simpara></entry>
+<entry align="left" valign="top"><simpara>2eme PCL de mise en  forme ( extraction ispool … )</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>PCL_TOKEN</simpara></entry>
+<entry align="left" valign="top"><simpara>PCL detokenisation</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>DCLF</simpara></entry>
+<entry align="left" valign="top"><simpara>Nom du fichier en entré du TPT</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>PCL_TPT</simpara></entry>
+<entry align="left" valign="top"><simpara>Nom du PCL TPT	Si remplit doit être unique</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>RQ_TRT</simpara></entry>
+<entry align="left" valign="top"><simpara>Remarques<?asciidoc-br?>
+						Nom du script pour la matière windows<?asciidoc-br?>
+						Nom script pour les PCL SIDV2</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>PSI_ISPOOL</simpara></entry>
+<entry align="left" valign="top"><simpara>Nom de l’ispool sur lequel on peut s’appuyer en cas de PSI</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>PSI_REGLE</simpara></entry>
+<entry align="left" valign="top"><simpara>Regle de SPI qu’on peut appliqué</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>MOE_DIR</simpara></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>MOE_DEP</simpara></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>MOE_SERV</simpara></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>MOE_UNIT</simpara></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>MOE_GR_SUPPORT</simpara></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>MOA_FILIERE</simpara></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>MOA_POLE</simpara></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>MOA_DOMAINE</simpara></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>MOA_CODE_DOM</simpara></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>DATE_DENIERE_LIVRAISON</simpara></entry>
+<entry align="left" valign="top"><simpara>Date dernière livraison</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section xml:id="_cas_de_création_dun_flux" role="data-line-207">
+<title>Cas de création d&#8217;un flux</title>
+<simpara role="data-line-208">Il va falloir remplir les zones saisissables
+Certaines zones sont obligatoires ( étoiles rouges )  et d’autre sont obligatoires par rapport au type de flux.
+Des messages d’anomalies indiqueront les anomalies trouvées lors de la génération de la requête.
+Ces contrôles sont importants car ce sont eux qui assure la cohérence des informations du flux .</simpara>
+<section xml:id="_partie_1" role="data-line-213">
+<title>Partie 1</title>
+<informalfigure role="data-line-215">
+<mediaobject>
+<imageobject>
+<imagedata fileref="images_pour_DOC/menu_creation_partie1.jpg"/>
+</imageobject>
+<textobject><phrase>Partie1</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara role="data-line-216">Le nom du flux et son libellé est obligatoire <?asciidoc-br?>
+Qu’on soit sur une flux CDP , SIDV , TAD , SERV BIGDATA , … <?asciidoc-br?></simpara>
+</section>
+<section xml:id="_partie_2" role="data-line-219">
+<title>Partie 2</title>
+<simpara role="data-line-221">Exemple pour aider à remplir les cases</simpara>
+<section xml:id="_cdp_tad" role="data-line-223">
+<title>CDP / TAD :</title>
+<simpara role="data-line-225">Thème : en fonction du domaine , s’il manque des domaine , il faudra les demander , on en ajoutera<?asciidoc-br?>
+<emphasis role="strong">Nom du flux :</emphasis> = Au nom du flux <?asciidoc-br?>
+<emphasis role="strong">Code application amont :</emphasis> Obligatoire  code de l’application qui fournit les données<?asciidoc-br?>
+<emphasis role="strong">Libellé du code application amont :</emphasis> Obligatoire libellé de l’application qui fournit les données<?asciidoc-br?>
+<emphasis role="strong">Type de traitement :</emphasis> Adhérent ou communautaire<?asciidoc-br?>
+<emphasis role="strong">Lib court CDP :</emphasis> H0 H1 H2 H3 H4 suivant le domaine amont<?asciidoc-br?>
+<emphasis role="strong">Temporalité :</emphasis> celui utilisé lors du maping<?asciidoc-br?>
+<emphasis role="strong">Type de flux :</emphasis><?asciidoc-br?>
+- -AD1 flux host CDP remontant dans DTW<?asciidoc-br?>
+- -AD3 flux host CDP ne remontant pas dans DTW<?asciidoc-br?>
+- -AD4 flux open CDP remontant dans DTW
+- -AD42 flux open CDP ne remontant pas dans DTW<?asciidoc-br?>
+- -TAD : table de l’autoroute<?asciidoc-br?></simpara>
+<simpara role="data-line-239"><emphasis role="strong">Type de chargement :</emphasis> PARTIEL ( flux )  ou complet ( stock)<?asciidoc-br?>
+<emphasis role="strong">Squad Support :</emphasis>  la squad support<?asciidoc-br?>
+<emphasis role="strong">Flux prioritaire :</emphasis> si on est sur un flux soumis à un jalon prioritaire<?asciidoc-br?>
+- -Priorité AD1  si on est sur un flux AD1+
+- -Priorité iso V1<?asciidoc-br?>
+- - - -	Jalon pour que des flux CDP AD3 passe avant 6h du matin ( c’est une planif particulière à saisir dans le DCNT )<?asciidoc-br?>
+- -Priorité autre 6h<?asciidoc-br?>
+- - - -	Jalon pour que des flux CDP AD3 passe avant 6h ( pour BO compta entre autre )  du matin ( c’est une planif particulière à saisir dans le DCNT )<?asciidoc-br?>
+- -Sans objet<?asciidoc-br?></simpara>
+<warning role="data-line-250">
+<simpara> <emphasis role="strong">La notion de priorité est très importante pour le suivi de production, les flux soumis à priorité seront à déplanter en premier</emphasis></simpara>
+</warning>
+<simpara role="data-line-252"><emphasis role="strong">RGPD :</emphasis> cocher si cette table est soumise à RGPD<?asciidoc-br?></simpara>
+</section>
+<section xml:id="_sidvservbigdata" role="data-line-254">
+<title>SIDV/SERV/BIGDATA</title>
+<simpara role="data-line-255"><emphasis role="strong">Thème :</emphasis> Thème defaut<?asciidoc-br?>
+<emphasis role="strong">Nom du flux :</emphasis> = nom du flux<?asciidoc-br?>
+<emphasis role="strong">Code application amont :</emphasis> CPDT / DTWH<?asciidoc-br?>
+<emphasis role="strong">Libellé du code application amont :</emphasis> Copie de production ou DATAWARE<?asciidoc-br?>
+<emphasis role="strong">Type de traitement :</emphasis> Adhérent ou communautaire<?asciidoc-br?>
+<emphasis role="strong">Lib court CDP :</emphasis> sans objet<?asciidoc-br?>
+<emphasis role="strong">Temporalité :</emphasis> sans objet<?asciidoc-br?>
+<emphasis role="strong">Type de flux :</emphasis><?asciidoc-br?>
+- -SERV pour servitude<?asciidoc-br?>
+- -SIDV pour les PCLS qui tournent sur TET4 pour le plan communautaire<?asciidoc-br?>
+- -BIGDATA pour les flux big data<?asciidoc-br?></simpara>
+<simpara role="data-line-267"><emphasis role="strong">Type de chargement :</emphasis> sans objet<?asciidoc-br?>
+<emphasis role="strong">Squad Support :</emphasis>   SERV et SIV bien souvent plateform PROD<?asciidoc-br?>
+<emphasis role="strong">Flux prioritaire :</emphasis><?asciidoc-br?></simpara>
+</section>
+</section>
+<section xml:id="_partie_3" role="data-line-271">
+<title>Partie 3</title>
+<informalfigure role="data-line-273">
+<mediaobject>
+<imageobject>
+<imagedata fileref="images_pour_DOC/menu_creation_partie3.jpg"/>
+</imageobject>
+<textobject><phrase>Partie 3</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara role="data-line-274">Sur flux CDP ( AD1 AD3 AD4 AD42 TAD) , s’il existe une table V1 , on mets le nom , pour pouvoir faire le rapprochement pour les rapports BO .</simpara>
+</section>
+<section xml:id="_partie_4" role="data-line-276">
+<title>Partie 4</title>
+<informalfigure role="data-line-278">
+<mediaobject>
+<imageobject>
+<imagedata fileref="images_pour_DOC/menu_creation_partie4.jpg"/>
+</imageobject>
+<textobject><phrase>Partie 4</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<section xml:id="_cdp_tad_2" role="data-line-280">
+<title>CDP / TAD :</title>
+<simpara role="data-line-281"><emphasis role="strong">Type origine source de donné :</emphasis>  Type de la source de donnée d&#8217;origine<?asciidoc-br?>
+- - FIC fichier<?asciidoc-br?>
+- -	DB2 pour une MAP de vue DB2<?asciidoc-br?>
+- -	DB2 PGM pour une extraction de table DB2 via un PGM <?asciidoc-br?>
+- -	CDP , CDP<?asciidoc-br?>
+- -	ISPOOL pour un lot ispool <?asciidoc-br?>
+- -	OPEN pour une flux OPEN<?asciidoc-br?>
+- -	START pour une MAP start<?asciidoc-br?>
+- -	A DELETER pour un flux qui ne tourne plus et qui va être supprimé<?asciidoc-br?>
+- -	A voir quand on n’arrive pas à savoir<?asciidoc-br?></simpara>
+<simpara role="data-line-292"><emphasis role="strong">Nom usuel origine :</emphasis> Nom du fichier usuel d&#8217;origine , le nom physique n&#8217;est pas toujours le nom qu&#8217;on utilise <?asciidoc-br?>
+<emphasis role="strong">Nom physique de la source :</emphasis><?asciidoc-br?>
+- - Nom réel de la source de données<?asciidoc-br?>
+- - Nom du fichier type pour un flux OPEN<?asciidoc-br?>
+- - La vue de MAP pour une unload DB2 Host <?asciidoc-br?>
+		….</simpara>
+<simpara role="data-line-299"><emphasis role="strong">Saisie OPEN source file LOCATION</emphasis><?asciidoc-br?>
+ le nom du répertoire domaine ( CPDT, CPCC, CPCR, … ) pour les flux OPEN AD4 AD42<?asciidoc-br?>
+<emphasis role="strong">Périodicité :</emphasis> OBLIGATOIRE  pour tous les PCLS déclarés<?asciidoc-br?></simpara>
+</section>
+<section xml:id="_sidvservbigdata_2" role="data-line-304">
+<title>SIDV/SERV/BIGDATA</title>
+<simpara role="data-line-305"><emphasis role="strong">Type origine source de donné :</emphasis>
+- - SERV pour SERVitude<?asciidoc-br?>
+- - TET4 pour SIDV<?asciidoc-br?></simpara>
+<simpara role="data-line-309"><emphasis role="strong">Nom user origine :</emphasis> Sans objet <?asciidoc-br?>
+<emphasis role="strong">Nom physique de la source :</emphasis> Sans objet<?asciidoc-br?>
+<emphasis role="strong">Saisie OPEN source file LOCATION :</emphasis> Sans objet<?asciidoc-br?>
+<emphasis role="strong">Périodicité :</emphasis> OBLIGATOIRE  pour tous les PCLS déclarés<?asciidoc-br?></simpara>
+</section>
+</section>
+<section xml:id="_partie_5" role="data-line-314">
+<title>partie 5</title>
+<informalfigure role="data-line-316">
+<mediaobject>
+<imageobject>
+<imagedata fileref="images_pour_DOC/menu_creation_partie5.jpg"/>
+</imageobject>
+<textobject><phrase>Partie5</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<section xml:id="_cdp_tad_3" role="data-line-317">
+<title>CDP / TAD :</title>
+<simpara role="data-line-318"><emphasis role="strong">Nom PCL transfert :</emphasis> Sur un flux open uniquement<?asciidoc-br?>
+- - si on a un PCL qui dépose le fichier sur le que de dépôt CDP , c’est ce PCL là qui appelle un script Windows <?asciidoc-br?></simpara>
+<simpara role="data-line-321"><emphasis role="strong">Nom du PCL de transfert vers le serveur open :</emphasis>  Sur un flus OPEN uniquement<?asciidoc-br?>
+- - PCL qui éclatement un fichier en plusieurs sur le quai de dépôt CDP, le PCL qui fait le split <?asciidoc-br?></simpara>
+<simpara role="data-line-324"><emphasis role="strong">Nom du PCL mise en forme 1 :</emphasis>  Premier PCL possible de mise en forme de données, ça peut être une MAP de table DB2 ; de lot ispool, Un chargement de lot ispool &#8230;&#8203;<?asciidoc-br?></simpara>
+<simpara role="data-line-326"><emphasis role="strong">Nom du PCL mise en forme 2 :</emphasis>  second PCL possible de la mise en forme de données , ça peut être un déchargement de lot ispool, … <?asciidoc-br?></simpara>
+<simpara role="data-line-328"><emphasis role="strong">PCL de tokenrisation :</emphasis>  PCL qui tokenise ( anonimise ) les N° de carte<?asciidoc-br?></simpara>
+<simpara role="data-line-330"><emphasis role="strong">Nom du fichier en entré du TPT :</emphasis> Obligatoire pour une flux CDP HOST<?asciidoc-br?></simpara>
+<simpara role="data-line-332"><emphasis role="strong">Nom du PCL TPT :</emphasis> Le nom du PCL TPT qui charge les données dans teradata pour CDP<?asciidoc-br?></simpara>
+<simpara role="data-line-334"><emphasis role="strong">Remarques :</emphasis>  Pour un flux OPEN avec PCL d transfert : Nom du script Windows<?asciidoc-br?></simpara>
+</section>
+<section xml:id="_sidvservbigdata_3" role="data-line-336">
+<title>SIDV/SERV/BIGDATA</title>
+<simpara role="data-line-337"><emphasis role="strong">Nom PCL transfert :</emphasis> RAS<?asciidoc-br?>
+<emphasis role="strong">Nom du PCL d’éclatement:</emphasis> RAS<?asciidoc-br?>
+<emphasis role="strong">Nom du PCL mise en forme 1 :</emphasis> Nom du PCL <?asciidoc-br?>
+<emphasis role="strong">Nom du PCL mise en forme 2:</emphasis> RAS<?asciidoc-br?>
+<emphasis role="strong">PCL de tolérisation:</emphasis> RAS<?asciidoc-br?>
+<emphasis role="strong">Nom du fichier en entré du TPT:</emphasis> RAS<?asciidoc-br?>
+<emphasis role="strong">Nom du PCL TPT :</emphasis> RAS<?asciidoc-br?>
+<emphasis role="strong">Remarques :</emphasis> Nom du script Shell<?asciidoc-br?></simpara>
+</section>
+</section>
+<section xml:id="_partie_6" role="data-line-346">
+<title>Partie 6</title>
+<informalfigure role="data-line-348">
+<mediaobject>
+<imageobject>
+<imagedata fileref="images_pour_DOC/menu_creation_partie6.jpg"/>
+</imageobject>
+<textobject><phrase>Partie6</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<section xml:id="_pour_les_cdp_tad" role="data-line-349">
+<title>Pour les CDP / TAD :</title>
+<simpara role="data-line-350">LA but est de mettre les règles de PSI qu’on appliquera lors d’un PSI<?asciidoc-br?></simpara>
+<screen role="data-line-351">Qu'est ce qu'un PSI
+Ou plan de Sauvegearde informatique . il est activé lors d'un accident majeur sur un des sites de production ( Diderot / d'Alemberg)
+il permet lors de l'arrêt d'un des 2 sites , de faire basculer les CRs qui sont sur les caisses arrêté s sur l'autre site.
+Mais durant le l'apse de temps de bascule les traitements sont arrêtés .
+Afin de ne pas engeorger la machine, et étant donné que les flux CDP representent 1/3 des traitements de la production, on désactive tout ce qui n'est pas vitale.
+on va désactivé tous les flux journalier complet( stock)  ,  qui seront repris automatiquement au prochain passage de ces traitements
+La desactivation se fait alors sur les TPT et les Unload .
+Si l'arrêt de la machine est de plus de 24h, on peut aussi dans certains avoir des actions sur les flus CDP partiel ( flux ). Pour facilté les actions ,
+on marque dans ref_CDP la règle qu'on peut appliqué. En effet certains flux partiel , sont de faux partiel ( flux complet mis en partiel),
+certains ont des ispools  en amont ce qui fait qu'ils peuvent être arrêtés, d'autre des PGMS d'extraction par date , ....</screen>
+<itemizedlist role="data-line-365">
+<title>Les règles ont été établit en fonction de<?asciidoc-br?></title>
+<listitem role="data-line-365">
+<simpara>Le type de chargement<?asciidoc-br?></simpara>
+<itemizedlist role="data-line-366">
+<listitem role="data-line-366">
+<simpara>PARTIEL / COMPLET<?asciidoc-br?></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem role="data-line-367">
+<simpara>Périodicité<?asciidoc-br?></simpara>
+</listitem>
+<listitem role="data-line-368">
+<simpara>Le type de flux ( HOST , OPE? , remonte ou non dans dTW , &#8230;&#8203; ) <?asciidoc-br?></simpara>
+</listitem>
+</itemizedlist>
+<itemizedlist role="data-line-371">
+<title>Pour tout flux CDP OPEN <?asciidoc-br?></title>
+<listitem role="data-line-371">
+<simpara>Les traitements s’arrêtent lors du PSI passeront après le déblocage, peu importe la périodicité<?asciidoc-br?></simpara>
+</listitem>
+<listitem role="data-line-372">
+<simpara>REGLE : EXE UNLOAD , EXE TPT<?asciidoc-br?></simpara>
+</listitem>
+</itemizedlist>
+<itemizedlist role="data-line-375">
+<title>Pour Tout flux CDP host COMPLET<?asciidoc-br?></title>
+<listitem role="data-line-375">
+<simpara>Si non journalier mettre dans règle la périodicité <?asciidoc-br?></simpara>
+<itemizedlist role="data-line-376">
+<listitem role="data-line-376">
+<simpara>REGLE : MENSUEL , HEBDOMADAIRE, … <?asciidoc-br?></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem role="data-line-377">
+<simpara>Si journalier<?asciidoc-br?></simpara>
+<itemizedlist role="data-line-378">
+<listitem role="data-line-378">
+<simpara>REGLE NEXE mise en forme 2 , NEXE TPT ou NEXE mise en forme, NEXE TPT<?asciidoc-br?></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+<itemizedlist role="data-line-381">
+<title>Pour Tout flux CDP host PARTIEL<?asciidoc-br?></title>
+<listitem role="data-line-381">
+<simpara>Si non journalier mettre dans règle la périodicité <?asciidoc-br?></simpara>
+<itemizedlist role="data-line-382">
+<listitem role="data-line-382">
+<simpara>REGLE : MENSUEL , HEBDOMADAIRE, … <?asciidoc-br?></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem role="data-line-383">
+<simpara>Si journalier<?asciidoc-br?></simpara>
+<itemizedlist role="data-line-384">
+<listitem role="data-line-384">
+<simpara>Si ispool les diffrentes règles possible sont :</simpara>
+<itemizedlist role="data-line-385">
+<listitem role="data-line-385">
+<simpara>NEXE mise en forme 2 , NEXE TPT<?asciidoc-br?></simpara>
+</listitem>
+<listitem role="data-line-386">
+<simpara>NEXE et le nom des PCLs à mettre à NEXE  <?asciidoc-br?></simpara>
+</listitem>
+<listitem role="data-line-387">
+<simpara>NEXE mise en forme, NEXE TPT<?asciidoc-br?></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem role="data-line-388">
+<simpara>Si pas ispool <?asciidoc-br?></simpara>
+<itemizedlist role="data-line-389">
+<listitem role="data-line-389">
+<simpara>A reprendre<?asciidoc-br?></simpara>
+</listitem>
+<listitem role="data-line-390">
+<simpara>pas un vrai partiel mise à NEXE <?asciidoc-br?></simpara>
+</listitem>
+<listitem role="data-line-391">
+<simpara>PGM extacte à date  -Mise à NEXE UNLOAD et TPT<?asciidoc-br?></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+<warning role="data-line-394">
+<simpara><emphasis role="strong">Nom ispool utilisable pour le PSI :</emphasis> <?asciidoc-br?>
+ Mettre ISPOOL si le flux a un ispool soit en amont  ou sur un des PCLS CDP  <?asciidoc-br?>
+<emphasis role="strong">Règle de PSI :</emphasis> <?asciidoc-br?>
+	Les différentes règles qui existent  ( cf ci-dessus ) <?asciidoc-br?></simpara>
+</warning>
+</section>
+<section xml:id="_pour_les_sidvservbigdata" role="data-line-400">
+<title>Pour les SIDV/SERV/BIGDATA</title>
+<simpara role="data-line-401">RAS</simpara>
+</section>
+</section>
+<section xml:id="_partie_7" role="data-line-403">
+<title>Partie 7</title>
+<informalfigure role="data-line-405">
+<mediaobject>
+<imageobject>
+<imagedata fileref="images_pour_DOC/menu_creation_partie7.jpg"/>
+</imageobject>
+<textobject><phrase>Partie7</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<section xml:id="_pour_cdp_tad" role="data-line-406">
+<title>Pour CDP / TAD :</title>
+<simpara role="data-line-407">Au moins 1 zone obligatoire <?asciidoc-br?></simpara>
+</section>
+<section xml:id="_pour_sidvservbigdata" role="data-line-409">
+<title>Pour SIDV/SERV/BIGDATA</title>
+<simpara role="data-line-410">RAS<?asciidoc-br?></simpara>
+</section>
+</section>
+<section xml:id="_partie_8" role="data-line-412">
+<title>Partie 8</title>
+<informalfigure role="data-line-414">
+<mediaobject>
+<imageobject>
+<imagedata fileref="images_pour_DOC/menu_creation_partie8.jpg"/>
+</imageobject>
+<textobject><phrase>Partie8</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara role="data-line-415">La date de livraison <?asciidoc-br?>
+	2020S21 par exemple <?asciidoc-br?></simpara>
+</section>
+<section xml:id="_génération_de_la_requête" role="data-line-418">
+<title>Génération de la requête</title>
+<informalfigure role="data-line-420">
+<mediaobject>
+<imageobject>
+<imagedata fileref="images_pour_DOC/menu_creation_generationReq.jpg"/>
+</imageobject>
+<textobject><phrase>Bouton de génération de la Requête</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara role="data-line-422">Le traitement va faire des contrôles sur les zones <?asciidoc-br?>
+S’il y a des anomalies <?asciidoc-br?>
+	Une feuille TXT va s’ouvrir dans notepad++ avec la liste des anomalies <?asciidoc-br?></simpara>
+<simpara role="data-line-426">Exemple d’anomalie :<?asciidoc-br?>
+image::menu_creation_ano.jpg[Exemple d&#8217;Anomalies]</simpara>
+<simpara role="data-line-431">Le traitement va aussi faire des  vérifications :<?asciidoc-br?>
+Si le flux existe déjà , le traitement vérifie si le TPT renseigné ou le nom du flux existe <?asciidoc-br?>
+- - Si oui il fera une requête de MAJ <?asciidoc-br?>
+- - Sinon une requête de création <?asciidoc-br?></simpara>
+<simpara role="data-line-436">Dans le cas d’une MAJ , il vérifie si la MAJ va faire impacté plus d’une ligne <?asciidoc-br?>
+	Il produira une requête mais avec des ATTENTION <?asciidoc-br?>
+	Il faudra alors faire des correction soit dans la requête ( créé une ligne de delete puis une creation par exemple , ou changer le nom de l&#8217;object name )</simpara>
+</section>
+</section>
+<section xml:id="_cas_de_maj_de_référentiel" role="data-line-441">
+<title>Cas de MAJ de référentiel</title>
+<simpara role="data-line-442">Dans le cas d’un flux qu’on veut mettre à jour , il est fortement conseillé de faire une recherche par nom du flux ou du PCL TPT ( traitement qui charge les données dans CDP )
+ Cette recherche pre-remplira les zones de saisie avec les anciennes valeurs</simpara>
+<section xml:id="_partie_1_2" role="data-line-445">
+<title>Partie 1</title>
+<informalfigure role="data-line-447">
+<mediaobject>
+<imageobject>
+<imagedata fileref="images_pour_DOC/menu_creation_MAJ_recherche.jpg"/>
+</imageobject>
+<textobject><phrase>boutons de recherche recherche pour pré-remplissage</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara role="data-line-449">Saisie du nom du flux ou du PCL TPT, si la recherche renvoie plus d’une ligne , il y aura un message d’anomalie qui demandera d’affiner la sélection en passant par la fenêtre recherche
+Si la recherche renvoie qu’une ligne, l’écran sera alors rempli avec les informations du flux
+ Il suffira de modifier la zone voulue
+Et de cliquer sur</simpara>
+</section>
+<section xml:id="_partie_2_2" role="data-line-454">
+<title>Partie 2</title>
+<informalfigure role="data-line-456">
+<mediaobject>
+<imageobject>
+<imagedata fileref="images_pour_DOC/menu_creation_MAJ_generationReq.jpg"/>
+</imageobject>
+<textobject><phrase>Bouton generation requête</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara role="data-line-458">Le traitement va faire des contrôles sur les zones
+S’il y a des anomalies
+	Une feuille TXT va s’ouvrir dans notepad++ avec la liste des anomalies
+Exemple d’anomalie :</simpara>
+<informalfigure role="data-line-464">
+<mediaobject>
+<imageobject>
+<imagedata fileref="images_pour_DOC/menu_creation_ano.jpg"/>
+</imageobject>
+<textobject><phrase>Exemeple d&#8217;Anomalies</phrase></textobject>
+</mediaobject>
+</informalfigure>
+</section>
+</section>
+</section>
+<section xml:id="_fenêtre_contrôle" role="data-line-468">
+<title>Fenêtre contrôle</title>
+<simpara role="data-line-469">La table Metatech REF_CDP est très important , car c’est dessus que s’appuit des rapports à destinations des PP métiers et des CRs+
+Nous être sur que la table est conforme à ce qui tourne en production , un e page de contrôle a été rajouté<?asciidoc-br?></simpara>
+<itemizedlist role="data-line-473">
+<title>Pour le moment on a 2 contrôles en place</title>
+<listitem role="data-line-473">
+<simpara>contrôle par rapport à la table CDP_log ( qui liste tous les flux CDP qui ont été sous teradata )</simpara>
+</listitem>
+<listitem role="data-line-474">
+<simpara>Contrôle par rapportà la table de purge n table qui liste les caractéristiques de purges du flux CDP ( la purge est hebdomadaire )</simpara>
+</listitem>
+</itemizedlist>
+<informalfigure role="data-line-477">
+<mediaobject>
+<imageobject>
+<imagedata fileref="images_pour_DOC/menu_controle.jpg"/>
+</imageobject>
+<textobject><phrase>Bouton controle</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara role="data-line-479">La fenêtre comprend 3 zones<?asciidoc-br?></simpara>
+<informalfigure role="data-line-482">
+<mediaobject>
+<imageobject>
+<imagedata fileref="images_pour_DOC/menu_controle_partie.jpg"/>
+</imageobject>
+<textobject><phrase>présentation fenêtre contrôle</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara role="data-line-484"><emphasis role="strong">Le bouton 1 :</emphasis> Liste flux CDP en prod, pas dans le référentiel<?asciidoc-br?>
+<emphasis role="strong">Le bouton 2 :</emphasis> Liste flux CDP en prod, et qui n’existe pas dans le table de purge CDP <?asciidoc-br?>
+<emphasis role="strong">La zone 3 :</emphasis> restitution des listes<?asciidoc-br?>
+<emphasis role="strong">Le bouton aide :</emphasis> pour ouvrir la doc d&#8217;aide <?asciidoc-br?></simpara>
+<simpara role="data-line-489">En cliquant sur le bouton Liste flux CDP en prod, pas dans le référentiel,<?asciidoc-br?>
+On restitue la liste de  tous les flux CDP qui tournent en prod ( extrait de CDP_log )  et qui ne sont pas dans la table ref_CDP+</simpara>
+<simpara role="data-line-492">En cliquant sur le bouton : Liste   flux CDP en prod, et qui n’existe pas dans le table de purge CDP<?asciidoc-br?>
+On restitue la liste des tables CDP qui n’ont pas purge ( table OTL_Purge_CDP)<?asciidoc-br?></simpara>
+</section>
+</article>
