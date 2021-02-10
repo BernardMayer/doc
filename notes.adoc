@@ -11,3 +11,8 @@ https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
 http://blog.paumard.org/tutoriaux/eclipse-maven/
 
 https://w3blog.fr/2013/05/18/utiliser-maven-pour-un-projet-web/
+
+https://openclassrooms.com/fr/courses/4503526-organisez-et-packagez-une-application-java-avec-apache-maven
+
+http://www.jmdoudoux.fr/java/dej/chap-maven.htm
+
