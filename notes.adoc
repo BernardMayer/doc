@@ -4,15 +4,15 @@
 
 https://openclassrooms.com/fr/courses/6106191-installez-votre-environnement-de-developpement-java-avec-eclipse
 
-https://maven.apache.org/guides/getting-started/
+--https://maven.apache.org/guides/getting-started/
 
-https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
+--https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
 
-http://blog.paumard.org/tutoriaux/eclipse-maven/
+--http://blog.paumard.org/tutoriaux/eclipse-maven/
 
 https://w3blog.fr/2013/05/18/utiliser-maven-pour-un-projet-web/
 
-https://openclassrooms.com/fr/courses/4503526-organisez-et-packagez-une-application-java-avec-apache-maven
+--https://openclassrooms.com/fr/courses/4503526-organisez-et-packagez-une-application-java-avec-apache-maven
 
-http://www.jmdoudoux.fr/java/dej/chap-maven.htm
+--http://www.jmdoudoux.fr/java/dej/chap-maven.htm
 
