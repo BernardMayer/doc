@@ -1,0 +1,150 @@
+git
+===
+https://grafikart.fr/formations/git
+https://www.youtube.com/watch?v=hwqgzZBsc_I
+https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph
+https://ardalis.com/git-graph-visualizes-branches-in-vs-code-for-free/
+
+
+##  Notes a propos des variables Bash
+
+# https://devhints.io/bash
+# https://abs.traduc.org/abs-fr/ch04s04.html
+# https://devhints.io/bash
+# https://ss64.com/bash/syntax-variables.html
+
+## Declaration
+# Les variables ne sont pas typees
+A moins que ...
+# integer
+declare -i toto; 
+toto=289
+# Tableau / liste / Arrays
+declare -a toto
+toto=('pomme', 'poire', 'scoubidou')
+# Tableau associatif / dictionnaire
+declare -A toto
+toto[chien]='Rintintin'
+echo ${toto[1]} --> pomme
+echo ${toto[chien]} --> Rintintin
+echo ${toto[@]} --> tous les elements de la liste / du dico
+
+## Portee
+# Les variables ne sont accessibles que dans un processus, voire dans ses enfants.
+# Il n'est pas possible de "voir" les variables d'un processus sans avoir un lien de parente avec celui-ci
+# Contournement --> par des fichiers :-)
+local vs export
+
+
+for f in <listeFichiers.txt>; do
+  .....
+done
+
+$ file --brief --mime-encoding
+ISO-8859 | US-ASCII | UTF8
+
+$ iconv -f ISO8859-1 -t utf-8<fichier.txt> [-o|>] fichier.utf8
+
+crontab -l
+export EDITOR=nano
+crontab -e
+MAIL="" 
+# sinon mail vers /var/spool/mail/<user> ou ~/mbox ou ...
+# Supprimer mes mails
+$ echo 'd *' | mail -N
+59 23 31 12 * <commande> #
+minute heure jour1-31 mois jourDim-Lun <commande>
+# Toutes les 10 minutes
+0, 10, 20, 30, 40, 50 ou bien */10
+
+# Faire un TS pour fichier log
+<nomDuFichier_>$(date "+\%Y\%m\%d\%H\%M\%S.log") 2>&1
+
+$ diff --brief --recursive -i -E -Z -w -B <rep1> <rep2>
+
+## How to add a Help facility to your Bash program
+# https://opensource.com/article/19/12/help-bash-program
+
+##  Mesure du temps d'execution
+##  time et /usr/bin/time
+# https://www.cyberciti.biz/faq/unix-linux-time-command-examples-usage-syntax/
+# https://unix.stackexchange.com/questions/52313/how-to-get-execution-time-of-a-script-effectively
+# https://stackoverflow.com/questions/556405/what-do-real-user-and-sys-mean-in-the-output-of-time1/556411#556411
+# 
+
+##  Boucle (1)
+ while IFS="" read -r -d "" file ; do 
+   # Use "$file" not $file everywhere.
+   # You can set variables, and they'll stay set.
+ done < <(find . -print0)
+
+##  Lancer un indicateur MLAN (/ORD/LAN)
+sh /data/ZUDA0/Procparm/DTWH/OTL/ORD/shl/OTL_ORD_LanceJob.sh -j "Jc_G_Start_Application.ALEP_S500660_BMr"  -p pGlobalApplicationCode=ALEP -p pRequestProcessVacation="7-Init" -p pRequestFluxSet=S500660 -p pRequestProcessExecution="R-Replay"
+
+
+DZUDA0META_TEC_FWK_0.OTL_PURGE_BYKEY
+VZUDA0META_TEC_EXT_0.V_XTR_PURGE_BYKEY_PARAM
+
+VZUDA0META_TEC_EXT_0.V_XTR_PURGE_BYKEY_LOG
+DZUDA0META_TEC_RUN_0.PURGE_BYKEY_LOG_RUN 
+
+
+Après XLRelease : 
+sudo su - cdadpmup10ten  
+    export CMN_GEN_CONTEXTE=MUP10
+Supprimer les fichiers SQL de purge qui ne répondent pas à OTL_PUR_PATTERN_*.sql
+    rm /data/MUP10/Procparm/DTWH/OTL/PUR/sql/D*.sql  
+Déclencher la génération des fichiers SQL de purge
+    cd /data/ZUDA0/Procparm/DTWH/OTL/PUR/shl     
+    sh /data/MUP10/Procparm/DTWH/OTL/PUR/shl/OTL_PUR_PurgeBykey.sh -a NONE -f GEN  -l 80200,90200 -k 1234888   
+	
+	git add . && git commit -m 'p0402-628 purgeBK multiples' && git push
+
+#/* $Support: Equipe data socle outils services $
+
+#/* 26/07/2022  2.0         BMr        Transposition de la machine DTWH vers la machine Stambia
+
+bteq <<EOF
+.logmech LDAP
+.logon zuy10-d1tda.yres.ytech/ETA2458
+.IF ERROR > 0 THEN .EXIT 1
+select top 1 * from Dzuda0META_TEC_FWK_0.OTL_PURGE_CDP_F; 
+.LOGOFF
+EOF
+
+
+D'apres https://stackoverflow.com/questions/1956144/bash-script-to-rename-all-files-in-a-directory 
+==================================================================================================
+Bash 2.X/3.X
+------------
+#!/bin/bash
+while IFS= read -r -d $'\0' file; do
+    dirname="${file%/*}/"
+    basename="${file:${#dirname}}"
+    echo mv "$file" "$dirname${basename%.*}_$basename"
+done < <(find . -type f -print0)
+
+Bash 4.X
+--------
+#!/bin/bash
+shopt -s globstar
+for file in ./**; do 
+    if [[ -f "$file" ]]; then
+        dirname="${file%/*}/"
+        basename="${file:${#dirname}}"
+        echo mv "$file" "$dirname${basename%.*}_$basename"
+    fi
+done
+
+Pour renommer les fichiers du test *1339* en *1421*
+===================================================
+$ pwd /d/p0402-1421-1358-PurgeRgpd/TUs
+$ cd ..
+$ for f in ./TUs/* ; do mv "${f}" "${f//1339/1421}"; done
+
+
+Dates
+=====
+https://stackoverflow.com/questions/18731346/validate-date-format-in-a-shell-script
+
+
