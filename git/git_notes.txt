@@ -1,0 +1,7 @@
+
+git
+===
+https://grafikart.fr/formations/git
+https://www.youtube.com/watch?v=hwqgzZBsc_I
+https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph
+https://ardalis.com/git-graph-visualizes-branches-in-vs-code-for-free/
